@@ -1,1296 +1,2133 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =========================================================
+   TOS 2026 — TALENT OF STUDENT
+   BLACK × YELLOW × WHITE
+   FULL VERSION
+   ========================================================= */
+
+:root {
+  --black: #080808;
+  --black-soft: #111111;
+  --black-card: #161616;
+
+  --yellow: #f5c518;
+  --yellow-light: #ffd84a;
+  --yellow-dark: #9c7a00;
+
+  --white: #ffffff;
+  --cream: #f7f7f5;
+
+  --gray: #666666;
+  --gray-light: #999999;
+
+  --line: #e6e6e3;
+  --line-dark: #292929;
+
+  --shadow: 0 18px 50px rgba(0, 0, 0, .08);
+  --shadow-dark: 0 25px 70px rgba(0, 0, 0, .30);
+
+  --radius: 24px;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 105px 0;
+}
+
+.light {
+  background: var(--white);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+strong {
+  font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -.05em;
+}
+
+h2 em,
+h1 em {
+  color: var(--yellow);
+  font-style: normal;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 55px;
+}
+
+.section-heading > p {
+  max-width: 650px;
+  color: var(--gray);
+  margin-top: 20px;
+  font-size: 1.02rem;
+}
+
+.centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.centered .eyebrow {
+  justify-content: center;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+
+  color: var(--yellow);
+  margin-bottom: 18px;
+}
+
+.eyebrow span {
+  width: 28px;
+  height: 3px;
+  display: inline-block;
+  background: var(--yellow);
+}
+
+.eyebrow.dark {
+  color: var(--yellow-dark);
+}
+
+.eyebrow.dark span {
+  background: var(--yellow);
+}
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 52px;
+  padding: 0 23px;
+
+  border-radius: 999px;
+
+  font-weight: 800;
+  font-size: .78rem;
+  letter-spacing: .06em;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease,
+    border-color .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-yellow {
+  background: var(--yellow);
+  color: var(--black);
+  box-shadow: 0 12px 30px rgba(245, 197, 24, .22);
+}
+
+.btn-yellow:hover {
+  background: var(--yellow-light);
+  box-shadow: 0 15px 35px rgba(245, 197, 24, .30);
+}
+
+.btn-outline {
+  border: 1px solid #555;
+  color: white;
+}
+
+.btn-outline:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.full {
+  width: 100%;
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 
-  <meta name="description"
-    content="TOS 2026 - Talent Of Student. Penggalangan dana dan kerja sama untuk mendukung bakat pelajar.">
+  background: rgba(8, 8, 8, .92);
+  backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.nav-inner {
+  min-height: 76px;
 
-  <title>TOS 2026 | Talent Of Student</title>
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  <link rel="icon" href="assets/logo-tos.jpeg">
-  <link rel="stylesheet" href="style.css">
+  gap: 25px;
+}
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  color: white;
+}
+
+.brand img {
+  width: 54px;
+  height: 54px;
+
+  object-fit: cover;
+  border-radius: 50%;
+
+  background: white;
+  border: 2px solid rgba(245, 197, 24, .85);
+
+  padding: 2px;
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
-    rel="stylesheet">
-</head>
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .18);
 
-<body>
+  display: block;
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.brand img:hover {
+  transform: scale(1.06);
+  border-color: var(--yellow);
+
+  box-shadow:
+    0 7px 22px rgba(245, 197, 24, .25);
+}
 
-<header class="navbar" id="navbar">
+.brand strong {
+  display: block;
 
-  <div class="container nav-inner">
+  font-size: .95rem;
+  letter-spacing: .04em;
+}
 
-    <a href="#beranda" class="brand">
+.brand span {
+  display: block;
 
-      <img
-        src="assets/logo-tos.jpeg"
-        alt="Logo Talent Of Student">
+  color: #aaa;
+  font-size: .67rem;
+}
 
-      <div>
-        <strong>TOS 2026</strong>
-        <span>Talent Of Student</span>
-      </div>
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
 
-    </a>
+.nav-menu a {
+  color: #ddd;
 
-    <button
-      class="menu-toggle"
-      aria-label="Buka menu"
-      aria-expanded="false">
-      ☰
-    </button>
+  font-size: .82rem;
+  font-weight: 600;
 
-    <nav class="nav-menu">
+  transition: .2s;
+}
 
-      <a href="#beranda">Beranda</a>
-      <a href="#tentang">Tentang</a>
-      <a href="#dana">Penggalangan Dana</a>
-      <a href="#transparansi">Transparansi</a>
-      <a href="#partisipasi">Sponsor</a>
-      <a href="#donasi">Cara Donasi</a>
-      <a href="#kontak">Kontak</a>
+.nav-menu a:hover {
+  color: var(--yellow);
+}
 
-    </nav>
+.menu-toggle {
+  display: none;
 
-    <button
-      class="theme-toggle"
-      id="themeToggle"
-      type="button"
-      aria-label="Ganti tema">
+  background: none;
+  border: 0;
 
-      <span id="themeIcon">☾</span>
+  color: white;
+  font-size: 1.6rem;
 
-    </button>
+  cursor: pointer;
+}
 
-  </div>
+/* =========================================================
+   HERO
+   ========================================================= */
 
-</header>
+.hero {
+  position: relative;
 
+  min-height: 100vh;
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+  display: flex;
+  align-items: center;
 
-<main>
+  padding: 150px 0 85px;
 
+  background:
+    radial-gradient(
+      circle at 75% 35%,
+      rgba(245, 197, 24, .14),
+      transparent 27%
+    ),
+    linear-gradient(
+      120deg,
+      #070707 0%,
+      #111 55%,
+      #070707 100%
+    );
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+  color: white;
 
-<section class="hero" id="beranda">
+  overflow: hidden;
+}
 
-  <div class="hero-glow glow-one"></div>
-  <div class="hero-glow glow-two"></div>
+.hero::after {
+  content: "";
 
-  <div class="container hero-grid">
+  position: absolute;
+  inset: auto 0 0;
 
-    <div class="hero-copy reveal">
+  height: 1px;
 
-      <div class="eyebrow">
-        <span></span>
-        TALENT OF STUDENT 2026
-      </div>
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--yellow),
+      transparent
+    );
 
-      <h1>
-        Berikan Dukungan.<br>
-        <em>Wujudkan Bakat.</em>
-      </h1>
+  opacity: .5;
+}
 
-      <p class="hero-subtitle">
-        Bersama mendukung generasi muda untuk berkompetisi,
-        berkarya, dan mengembangkan potensi melalui
-        TOS (Talent Of Student) 2026.
-      </p>
+.hero-glow {
+  position: absolute;
 
-      <div class="hero-actions">
+  border-radius: 50%;
 
-        <a href="#dana" class="btn btn-yellow">
-          DONASI SEKARANG
-          <span>→</span>
-        </a>
+  filter: blur(80px);
 
-        <a href="#tentang" class="btn btn-outline">
-          KENALI ACARANYA
-        </a>
+  opacity: .12;
 
-      </div>
+  background: var(--yellow);
 
-      <div class="event-meta">
+  pointer-events: none;
+}
 
-        <div>
-          <span>📅</span>
+.glow-one {
+  width: 360px;
+  height: 360px;
 
-          <p>
-            <b>17–19 November 2026</b>
-            <small>Selasa–Kamis</small>
-          </p>
-        </div>
+  right: 3%;
+  top: 20%;
+}
 
-        <div>
-          <span>📍</span>
+.glow-two {
+  width: 250px;
+  height: 250px;
 
-          <p>
-            <b>Gedung MAM 1 Paciran</b>
-            <small>Paciran, Lamongan</small>
-          </p>
-        </div>
+  left: -5%;
+  bottom: 8%;
+}
 
-      </div>
+.hero-grid {
+  display: grid;
 
-    </div>
+  grid-template-columns: 1.2fr .8fr;
 
+  align-items: center;
 
-    <!-- LOGO HERO -->
+  gap: 70px;
 
-    <div class="hero-logo-card reveal">
+  position: relative;
+  z-index: 2;
+}
 
-      <img
-        src="assets/logo-tos.jpeg"
-        alt="Logo resmi TOS 2026">
+.hero-copy {
+  max-width: 720px;
+}
 
-      <span>TALENT OF STUDENT</span>
+.hero h1 {
+  font-size: clamp(3.1rem, 7vw, 6.7rem);
 
-      <small>
-        EMPOWERING FUTURE TALENTS
-      </small>
+  line-height: .94;
 
-    </div>
+  letter-spacing: -.065em;
+}
 
-  </div>
+.hero-subtitle {
+  max-width: 660px;
 
-</section>
+  color: #c8c8c8;
 
+  margin: 26px 0 32px;
 
+  font-size: 1.06rem;
+}
 
-<!-- =====================================================
-     TENTANG ACARA
-===================================================== -->
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-<section class="section light" id="tentang">
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
 
-  <div class="container">
+  gap: 25px;
 
-    <div class="section-heading reveal">
+  margin-top: 50px;
+}
 
-      <div class="eyebrow dark">
-        <span></span>
-        TENTANG ACARA
-      </div>
+.event-meta > div {
+  display: flex;
 
-      <h2>
-        Ruang untuk
-        <em>tumbuh & berprestasi.</em>
-      </h2>
+  gap: 11px;
 
-      <p>
-        TOS 2026 hadir sebagai wadah bagi pelajar untuk
-        mengekspresikan, mengasah, dan mengembangkan
-        bakat serta potensi mereka.
-      </p>
+  align-items: flex-start;
+}
 
-    </div>
+.event-meta > div > span {
+  font-size: 1.2rem;
+}
 
+.event-meta p {
+  font-size: .8rem;
+}
 
-    <!-- INFO -->
+.event-meta b,
+.event-meta small {
+  display: block;
+}
 
-    <div class="about-grid">
+.event-meta small {
+  color: #999;
 
-      <article class="info-card reveal">
+  margin-top: 2px;
+}
 
-        <div class="icon yellow">
-          🎯
-        </div>
+/* =========================================================
+   HERO LOGO
+   ========================================================= */
 
-        <h3>Tujuan</h3>
+.hero-logo-card {
+  min-height: 455px;
 
-        <p>
-          Meningkatkan kepercayaan diri, kemampuan,
-          kualitas, dan semangat berkompetisi siswa.
-        </p>
+  border: 1px solid rgba(255, 255, 255, .12);
 
-      </article>
+  border-radius: 35px;
 
+  background: rgba(255, 255, 255, .045);
 
-      <article class="info-card reveal">
+  display: flex;
+  flex-direction: column;
 
-        <div class="icon black">
-          👥
-        </div>
+  align-items: center;
+  justify-content: center;
 
-        <h3>Sasaran</h3>
+  position: relative;
 
-        <p>
-          Delegasi lembaga tingkat MTs/SMP se-Jawa Timur
-          sesuai ketentuan kegiatan.
-        </p>
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, .35);
 
-      </article>
+  overflow: hidden;
+}
 
+.hero-logo-card::before {
+  content: "";
 
-      <article class="info-card reveal">
+  position: absolute;
 
-        <div class="icon yellow">
-          🌱
-        </div>
+  width: 300px;
+  height: 300px;
 
-        <h3>Dampak</h3>
+  border-radius: 50%;
 
-        <p>
-          Mendorong kreativitas, sportivitas, rasa percaya
-          diri, dan semangat berprestasi.
-        </p>
+  border: 1px solid rgba(245, 197, 24, .25);
+}
 
-      </article>
+.logo-ring {
+  position: absolute;
 
-    </div>
+  width: 370px;
+  height: 370px;
 
+  border-radius: 50%;
 
-    <div class="about-text reveal">
+  border: 1px dashed rgba(245, 197, 24, .13);
 
-      <p>
-        Di era perkembangan teknologi dan digitalisasi,
-        generasi muda membutuhkan ruang yang mampu
-        mengembangkan kemampuan akademik, kreativitas,
-        inovasi, dan kemampuan beradaptasi.
-      </p>
+  animation: rotateRing 25s linear infinite;
+}
 
-    </div>
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
 
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-    <!-- CABANG PERLOMBAAN -->
+.hero-logo-card img {
+  position: relative;
 
-    <div class="competition-wrap reveal">
+  width: 235px;
+  height: 235px;
 
-      <div class="mini-title">
-        CABANG PERLOMBAAN
-      </div>
+  object-fit: cover;
 
-      <div class="competition-grid">
+  border-radius: 50%;
 
-        <div>
-          <b>📖 Olimpiade Tahfidzul Qur'an</b>
-          <span>ALISBA • Tahfidz</span>
-        </div>
+  background: white;
 
-        <div>
-          <b>🎨 Olahraga & Kesenian</b>
-          <span>Panahan • Kaligrafi • Pidato</span>
-        </div>
+  border: 8px solid white;
 
-        <div>
-          <b>🧭 Kepanduan</b>
-          <span>LKBB • Semaphore • Pionering • SSC</span>
-        </div>
+  box-shadow:
+    0 0 55px rgba(245, 197, 24, .15);
+}
 
-        <div>
-          <b>🔬 Sains</b>
-          <span>Olimpiade Sains dan Astronomi</span>
-        </div>
+.hero-logo-card > span {
+  font-family: "Montserrat", sans-serif;
 
-      </div>
+  font-weight: 900;
 
-    </div>
+  letter-spacing: .16em;
 
-  </div>
+  margin-top: 25px;
+}
 
-</section>
+.hero-logo-card > small {
+  color: var(--yellow);
 
+  letter-spacing: .15em;
 
+  font-size: .62rem;
 
-<!-- =====================================================
-     PENGGALANGAN DANA
-===================================================== -->
+  margin-top: 5px;
+}
 
-<section class="section fund-section" id="dana">
+/* =========================================================
+   ABOUT
+   ========================================================= */
 
-  <div class="container">
+.about-grid {
+  display: grid;
 
-    <div class="fund-grid">
+  grid-template-columns: repeat(3, 1fr);
 
-      <div class="fund-copy reveal">
+  gap: 18px;
+}
 
-        <div class="eyebrow">
-          <span></span>
-          PENGGALANGAN DANA
-        </div>
+.info-card {
+  padding: 32px;
 
-        <h2>
-          Bantu kami menutup
-          <em>kekurangan dana.</em>
-        </h2>
+  border: 1px solid var(--line);
 
-        <p>
-          Berdasarkan rancangan anggaran kegiatan,
-          TOS 2026 memiliki kebutuhan dana yang lebih
-          besar daripada pemasukan yang tersedia.
-        </p>
+  border-radius: var(--radius);
 
+  transition:
+    transform .25s,
+    box-shadow .25s,
+    border-color .25s;
+}
 
-        <div class="fund-numbers">
+.info-card:hover {
+  transform: translateY(-6px);
 
-          <div>
-            <small>KEKURANGAN DANA</small>
-            <strong>Rp43.545.000</strong>
-          </div>
+  box-shadow: var(--shadow);
 
-          <div>
-            <small>PEMASUKAN</small>
-            <strong>Rp22.150.000</strong>
-          </div>
+  border-color: rgba(245, 197, 24, .5);
+}
 
-          <div>
-            <small>PENGELUARAN</small>
-            <strong>Rp65.695.000</strong>
-          </div>
+.icon {
+  width: 48px;
+  height: 48px;
 
-        </div>
+  display: grid;
+  place-items: center;
 
-      </div>
+  border-radius: 14px;
 
+  margin-bottom: 22px;
+}
 
-      <!-- PROGRESS -->
+.icon.yellow {
+  background: var(--yellow);
+}
 
-      <div class="progress-card reveal">
+.icon.black {
+  background: var(--black);
+  color: white;
+}
 
-        <div class="progress-top">
+.info-card h3 {
+  font-size: 1.1rem;
 
-          <span>
-            Dana terkumpul
-          </span>
+  margin-bottom: 8px;
+}
 
-          <b id="progressPercent">
-            0%
-          </b>
+.info-card p {
+  color: var(--gray);
 
-        </div>
+  font-size: .9rem;
+}
 
-        <div class="amount">
+.about-text {
+  margin: 50px auto;
 
-          <span id="raisedAmount">
-            Rp0
-          </span>
+  max-width: 850px;
 
-          <small>
-            dari Rp43.545.000
-          </small>
+  text-align: center;
 
-        </div>
+  color: #4e4e4e;
 
-        <div class="progress-track">
+  font-size: 1.05rem;
+}
 
-          <div
-            class="progress-fill"
-            id="progressFill">
-          </div>
+.competition-wrap {
+  background: var(--cream);
 
-        </div>
+  border-radius: 28px;
 
-        <p class="progress-note">
-          Progress akan diperbarui sesuai donasi
-          yang diterima panitia.
-        </p>
+  padding: 32px;
+}
 
-        <a
-          href="#donasi"
-          class="btn btn-yellow full">
+.mini-title {
+  font-size: .72rem;
 
-          SAYA INGIN BERDONASI →
+  font-weight: 900;
 
-        </a>
+  letter-spacing: .14em;
 
-      </div>
+  margin-bottom: 20px;
+}
 
-    </div>
+.competition-grid {
+  display: grid;
 
-  </div>
+  grid-template-columns: repeat(4, 1fr);
 
-</section>
+  gap: 12px;
+}
 
+.competition-grid > div {
+  background: white;
 
+  padding: 20px;
 
-<!-- =====================================================
-     TRANSPARANSI
-===================================================== -->
+  border-radius: 18px;
 
-<section class="section light" id="transparansi">
+  transition: .2s;
+}
 
-  <div class="container">
+.competition-grid > div:hover {
+  transform: translateY(-4px);
 
-    <div class="section-heading centered reveal">
+  box-shadow: var(--shadow);
+}
 
-      <div class="eyebrow dark">
-        <span></span>
-        TRANSPARANSI
-      </div>
+.competition-grid b,
+.competition-grid span {
+  display: block;
+}
 
-      <h2>
-        Ke mana dana
-        <em>akan digunakan?</em>
-      </h2>
+.competition-grid b {
+  font-size: .84rem;
+}
 
-      <p>
-        Rincian berikut diambil dari Rancangan Anggaran
-        Pendapatan dan Belanja kegiatan.
-      </p>
+.competition-grid span {
+  color: var(--gray);
 
-    </div>
+  font-size: .75rem;
 
+  margin-top: 7px;
+}
 
-    <div class="budget-grid">
+/* =========================================================
+   FUNDRAISING
+   ========================================================= */
 
-      <div class="budget-card reveal">
-        <span class="budget-icon">📋</span>
-        <h3>Kesekretariatan</h3>
-        <strong>Rp3.630.000</strong>
-      </div>
+.fund-section {
+  background: var(--black);
 
-      <div class="budget-card reveal">
-        <span class="budget-icon">🍱</span>
-        <h3>Konsumsi</h3>
-        <strong>Rp21.930.000</strong>
-      </div>
+  color: white;
 
-      <div class="budget-card reveal">
-        <span class="budget-icon">🧰</span>
-        <h3>Perlengkapan</h3>
-        <strong>Rp3.355.000</strong>
-      </div>
+  position: relative;
 
-      <div class="budget-card reveal">
-        <span class="budget-icon">🏆</span>
-        <h3>Hadiah</h3>
-        <strong>Rp25.730.000</strong>
-      </div>
+  overflow: hidden;
+}
 
-      <div class="budget-card reveal">
-        <span class="budget-icon">🎒</span>
-        <h3>Fasilitas</h3>
-        <strong>Rp8.100.000</strong>
-      </div>
+.fund-section::before {
+  content: "DONATE";
 
-      <div class="budget-card reveal">
-        <span class="budget-icon">🎤</span>
-        <h3>Honorarium & Talk Show</h3>
-        <strong>Rp2.950.000</strong>
-      </div>
+  position: absolute;
 
-    </div>
+  font-family: "Montserrat", sans-serif;
 
+  font-size: 19vw;
 
-    <div class="budget-total reveal">
+  font-weight: 900;
 
-      <div>
-        <span>Total Pengeluaran</span>
-        <strong>Rp65.695.000</strong>
-      </div>
+  color: rgba(255, 255, 255, .025);
 
-      <div>
-        <span>Total Pemasukan</span>
-        <strong>Rp22.150.000</strong>
-      </div>
+  right: -4vw;
+  bottom: -4vw;
 
-      <div class="deficit">
-        <span>Kekurangan</span>
-        <strong>Rp43.545.000</strong>
-      </div>
+  line-height: .8;
+}
 
-    </div>
+.fund-grid {
+  display: grid;
 
-  </div>
+  grid-template-columns: 1fr .85fr;
 
-</section>
+  gap: 80px;
 
+  align-items: center;
 
+  position: relative;
 
-<!-- =====================================================
-     SPONSOR
-===================================================== -->
+  z-index: 1;
+}
 
-<section
-  class="section participation-section"
-  id="partisipasi">
+.fund-copy > p {
+  color: #aaa;
 
-  <div class="container">
+  max-width: 580px;
 
-    <div class="section-heading centered reveal">
+  margin-top: 22px;
+}
 
-      <div class="eyebrow dark">
-        <span></span>
-        PENAWARAN PARTISIPASI
-      </div>
+.fund-numbers {
+  display: grid;
 
-      <h2>
-        Jadilah bagian dari
-        <em>Talent Of Student 2026.</em>
-      </h2>
+  grid-template-columns: 1fr;
 
-      <p>
-        Dukungan dari sponsor, mitra, penyedia fasilitas,
-        dan donatur membantu menghadirkan kegiatan yang
-        lebih optimal bagi para pelajar.
-      </p>
+  gap: 15px;
 
-    </div>
+  margin-top: 40px;
+}
 
+.fund-numbers > div {
+  padding: 18px 0;
 
-    <!-- =================================================
-         SPONSOR CARDS
-    ================================================= -->
+  border-bottom: 1px solid #272727;
+}
 
-    <div class="sponsor-grid">
+.fund-numbers small {
+  display: block;
 
+  color: #8e8e8e;
 
-      <!-- SPONSOR TUNGGAL -->
+  font-size: .68rem;
 
-      <article class="sponsor-card sponsor-featured reveal">
+  letter-spacing: .12em;
+}
 
-        <div class="sponsor-tag">
-          SPONSOR TUNGGAL
-        </div>
+.fund-numbers strong {
+  display: block;
 
-        <div class="sponsor-icon">
-          👑
-        </div>
+  font-size: 1.7rem;
 
-        <h3>
-          Sponsor Tunggal
-        </h3>
+  margin-top: 2px;
+}
 
-        <p>
-          Penyedia dana terbesar pada kegiatan
-          Talent Of Student 2026.
-        </p>
+.progress-card {
+  background: white;
 
-        <div class="sponsor-price">
-          Rp6.000.000
-        </div>
+  color: var(--black);
 
-        <ul>
+  padding: 34px;
 
-          <li>
-            Spanduk bersama
-          </li>
+  border-radius: 30px;
 
-          <li>
-            Penyebutan nama perusahaan pendukung
-            oleh MC saat acara
-          </li>
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, .35);
+}
 
-          <li>
-            Pemasangan spanduk sponsor
-          </li>
+.progress-top {
+  display: flex;
 
-          <li>
-            Iklan baliho 1 titik di Paciran
-          </li>
+  justify-content: space-between;
 
-        </ul>
+  font-size: .8rem;
 
-        <a
-          class="btn btn-yellow full"
-          href="https://wa.me/6282245731958?text=Halo%20Panitia%20TOS%202026,%20saya%20tertarik%20menjadi%20Sponsor%20Tunggal."
-          target="_blank"
-          rel="noopener">
+  font-weight: 700;
+}
 
-          Pilih Sponsor Tunggal →
+.progress-top b {
+  color: #9c7a00;
+}
 
-        </a>
+.amount {
+  margin: 18px 0 22px;
+}
 
-      </article>
+.amount span {
+  font-family: "Montserrat", sans-serif;
 
+  font-size: 2.6rem;
 
+  font-weight: 900;
 
-      <!-- SPONSOR UTAMA -->
+  letter-spacing: -.05em;
+}
 
-      <article class="sponsor-card reveal">
+.amount small {
+  color: var(--gray);
+}
 
-        <div class="sponsor-icon">
-          ⭐
-        </div>
+.progress-track {
+  height: 13px;
 
-        <h3>
-          Sponsor Utama
-        </h3>
+  background: #ededeb;
 
-        <p>
-          Penyedia dana sebesar 50% dari
-          rencana anggaran.
-        </p>
+  border-radius: 99px;
 
-        <div class="sponsor-price">
-          Rp3.000.000
-        </div>
+  overflow: hidden;
+}
 
-        <ul>
+.progress-fill {
+  width: 0%;
 
-          <li>
-            Spanduk bersama
-          </li>
+  height: 100%;
 
-          <li>
-            Penyebutan nama perusahaan pendukung
-            oleh MC saat acara
-          </li>
+  background: var(--yellow);
 
-          <li>
-            Pemasangan spanduk sponsor
-          </li>
+  border-radius: inherit;
 
-        </ul>
+  transition: width 1s ease;
+}
 
-        <a
-          class="text-link"
-          href="https://wa.me/6282245731958?text=Halo%20Panitia%20TOS%202026,%20saya%20tertarik%20menjadi%20Sponsor%20Utama."
-          target="_blank"
-          rel="noopener">
+.progress-note {
+  color: var(--gray);
 
-          Pilih Paket →
+  font-size: .75rem;
 
-        </a>
+  margin: 14px 0 23px;
+}
 
-      </article>
+/* =========================================================
+   TRANSPARENCY
+   ========================================================= */
 
+.budget-grid {
+  display: grid;
 
+  grid-template-columns: repeat(3, 1fr);
 
-      <!-- SPONSOR MADYA -->
+  gap: 15px;
+}
 
-      <article class="sponsor-card reveal">
+.budget-card {
+  padding: 28px;
 
-        <div class="sponsor-icon">
-          💫
-        </div>
+  border: 1px solid var(--line);
 
-        <h3>
-          Sponsor Madya
-        </h3>
+  border-radius: 22px;
 
-        <p>
-          Penyedia dana sebesar 30% dari
-          rencana anggaran.
-        </p>
+  background: white;
 
-        <div class="sponsor-price">
-          Rp1.800.000
-        </div>
+  transition: .2s;
+}
 
-        <ul>
+.budget-card:hover {
+  border-color: var(--yellow);
 
-          <li>
-            Spanduk bersama dengan ukuran sedang
-          </li>
+  transform: translateY(-4px);
 
-          <li>
-            Penyebutan nama perusahaan pendukung
-            oleh MC saat acara
-          </li>
+  box-shadow: var(--shadow);
+}
 
-        </ul>
+.budget-icon {
+  font-size: 1.5rem;
+}
 
-        <a
-          class="text-link"
-          href="https://wa.me/6282245731958?text=Halo%20Panitia%20TOS%202026,%20saya%20tertarik%20menjadi%20Sponsor%20Madya."
-          target="_blank"
-          rel="noopener">
+.budget-card h3 {
+  font-size: .9rem;
 
-          Pilih Paket →
+  margin: 16px 0 4px;
+}
 
-        </a>
+.budget-card strong {
+  font-size: 1.35rem;
+}
 
-      </article>
+.budget-total {
+  margin-top: 22px;
 
+  background: var(--black);
 
+  color: white;
 
-      <!-- SPONSOR PARTISIPASI -->
+  border-radius: 24px;
 
-      <article class="sponsor-card reveal">
+  padding: 25px 30px;
 
-        <div class="sponsor-icon">
-          🤝
-        </div>
+  display: grid;
 
-        <h3>
-          Sponsor Partisipasi
-        </h3>
+  grid-template-columns: repeat(3, 1fr);
 
-        <p>
-          Penyedia dana sebesar 10% dari
-          rencana anggaran.
-        </p>
+  gap: 15px;
+}
 
-        <div class="sponsor-price">
-          Rp600.000
-        </div>
+.budget-total div {
+  padding: 8px 15px;
 
-        <ul>
+  border-right: 1px solid #2b2b2b;
+}
 
-          <li>
-            Spanduk bersama dengan ukuran kecil
-          </li>
+.budget-total div:last-child {
+  border-right: 0;
+}
 
-          <li>
-            Penyebutan nama perusahaan pendukung
-            oleh MC saat acara
-          </li>
+.budget-total span,
+.budget-total strong {
+  display: block;
+}
 
-        </ul>
+.budget-total span {
+  color: #aaa;
 
-        <a
-          class="text-link"
-          href="https://wa.me/6282245731958?text=Halo%20Panitia%20TOS%202026,%20saya%20tertarik%20menjadi%20Sponsor%20Partisipasi."
-          target="_blank"
-          rel="noopener">
+  font-size: .72rem;
+}
 
-          Pilih Paket →
+.budget-total strong {
+  margin-top: 5px;
 
-        </a>
+  font-size: 1.2rem;
+}
 
-      </article>
+.budget-total .deficit strong {
+  color: var(--yellow);
+}
 
-    </div>
+/* =========================================================
+   SPONSOR SECTION
+   ========================================================= */
 
+.participation-section {
+  background: var(--cream);
+}
 
+/* LIST UTAMA SPONSOR */
 
-    <!-- =================================================
-         DUKUNGAN LAIN
-    ================================================= -->
+.sponsor-list {
+  display: flex;
 
-    <div class="support-grid">
+  flex-direction: column;
 
+  border-top: 1px solid var(--line);
 
-      <!-- FASILITAS -->
+  border-bottom: 1px solid var(--line);
+}
 
-      <article class="support-card reveal">
+/* BARIS SPONSOR */
 
-        <div class="support-number">
-          E
-        </div>
+.sponsor-row {
+  display: grid;
 
-        <div class="support-icon">
-          📦
-        </div>
+  grid-template-columns: 70px 1fr 230px;
 
-        <h3>
-          Penyediaan Fasilitas
-        </h3>
+  gap: 35px;
 
-        <p>
-          Perusahaan atau pihak terkait dapat
-          berpartisipasi dengan menyediakan
-          fasilitas untuk penyelenggaraan kegiatan
-          Talent Of Student.
-        </p>
+  align-items: center;
 
+  padding: 38px 5px;
 
-        <div class="facility-pills">
+  border-bottom: 1px solid var(--line);
 
-          <span>🍱 Konsumsi</span>
+  position: relative;
 
-          <span>🖨️ Percetakan</span>
+  transition:
+    background .25s ease,
+    padding .25s ease;
+}
 
-          <span>🪧 Spanduk / Banner</span>
+.sponsor-row:last-child {
+  border-bottom: 0;
+}
 
-          <span>📸 Dokumentasi</span>
+.sponsor-row:hover {
+  background: rgba(245, 197, 24, .055);
 
-          <span>🧰 Perlengkapan</span>
+  padding-left: 18px;
 
-        </div>
+  padding-right: 18px;
+}
 
-      </article>
+/* SPONSOR UTAMA */
 
+.sponsor-main {
+  background: rgba(245, 197, 24, .08);
 
+  border-left: 4px solid var(--yellow);
 
-      <!-- DONATUR -->
+  padding-left: 22px;
+}
 
-      <article class="support-card support-dark reveal">
+.sponsor-main:hover {
+  background: rgba(245, 197, 24, .13);
 
-        <div class="support-number">
-          F
-        </div>
+  padding-left: 30px;
+}
 
-        <div class="support-icon">
-          💙
-        </div>
+/* NOMOR */
 
-        <h3>
-          Donatur
-        </h3>
+.sponsor-number {
+  font-family: "Montserrat", sans-serif;
 
-        <p>
-          Donatur adalah instansi, perusahaan,
-          atau perorangan yang dapat memberikan
-          dana secara sukarela.
-        </p>
+  font-size: .85rem;
 
+  font-weight: 900;
 
-        <div class="donor-note">
+  color: #aaa;
 
-          <strong>
-            Apresiasi untuk Donatur
-          </strong>
+  letter-spacing: .08em;
+}
 
-          <span>
-            Nama instansi atau perusahaan akan
-            disampaikan sebagai ucapan terima kasih
-            oleh MC saat acara berlangsung.
-          </span>
+/* INFO */
 
-        </div>
+.sponsor-info {
+  min-width: 0;
+}
 
-      </article>
+.sponsor-label {
+  display: inline-block;
 
-    </div>
+  color: var(--yellow-dark);
 
+  font-size: .65rem;
 
+  font-weight: 900;
 
-    <!-- PANITIA -->
+  letter-spacing: .14em;
 
-    <div class="committee-note reveal">
+  margin-bottom: 6px;
+}
 
-      <div>
+.sponsor-info h3 {
+  font-size: 1.35rem;
 
-        <strong>
-          Panitia Kegiatan TOS 2026
-        </strong>
+  margin-bottom: 7px;
 
-        <span>
-          Talent Of Student • MA Muhammadiyah 1 Paciran
-        </span>
+  letter-spacing: -.02em;
+}
 
-      </div>
+.sponsor-info p {
+  color: var(--gray);
 
-      <a
-        class="btn btn-outline light-btn"
-        href="https://wa.me/6282245731958?text=Halo%20Panitia%20TOS%202026,%20saya%20ingin%20mendapatkan%20informasi%20tentang%20kerja%20sama."
-        target="_blank"
-        rel="noopener">
+  font-size: .86rem;
 
-        Hubungi Panitia →
+  margin-bottom: 14px;
+}
 
-      </a>
+.sponsor-info ul {
+  list-style: none;
 
-    </div>
+  display: flex;
 
-  </div>
+  flex-wrap: wrap;
 
-</section>
+  gap: 7px 18px;
+}
 
+.sponsor-info li {
+  position: relative;
 
+  color: #555;
 
-<!-- =====================================================
-     MENGAPA BERDONASI
-===================================================== -->
+  font-size: .75rem;
 
-<section class="section dark-section">
+  padding-left: 13px;
+}
 
-  <div class="container">
+.sponsor-info li::before {
+  content: "";
 
-    <div class="why-grid">
+  position: absolute;
 
-      <div class="section-heading reveal">
+  width: 5px;
+  height: 5px;
 
-        <div class="eyebrow">
-          <span></span>
-          MENGAPA BERDONASI?
-        </div>
+  border-radius: 50%;
 
-        <h2>
-          Dukungan kecil,
-          <br>
-          <em>dampak yang berarti.</em>
-        </h2>
+  background: var(--yellow);
 
-      </div>
+  left: 0;
+  top: 8px;
+}
 
+/* HARGA SPONSOR */
 
-      <div class="why-content reveal">
+.sponsor-action {
+  text-align: right;
 
-        <p>
-          Setiap dukungan menjadi bagian dari upaya
-          menghadirkan ruang bagi pelajar untuk
-          berkompetisi, berkarya, dan menunjukkan
-          kemampuan terbaiknya.
-        </p>
+  display: flex;
 
-        <div class="why-list">
+  flex-direction: column;
 
-          <div>
-            <span>01</span>
-            <b>Mendukung kompetisi pelajar</b>
-          </div>
+  align-items: flex-end;
+}
 
-          <div>
-            <span>02</span>
-            <b>Mendukung kegiatan edukatif</b>
-          </div>
+.sponsor-action strong {
+  font-size: 1.35rem;
 
-          <div>
-            <span>03</span>
-            <b>Mengembangkan kreativitas dan bakat</b>
-          </div>
+  color: var(--black);
 
-          <div>
-            <span>04</span>
-            <b>Mendorong generasi muda untuk berprestasi</b>
-          </div>
+  letter-spacing: -.03em;
+}
 
-        </div>
+.sponsor-action > span {
+  color: #999;
 
-      </div>
+  font-size: .65rem;
 
-    </div>
+  margin: 2px 0 14px;
+}
 
-  </div>
+.sponsor-action .btn {
+  min-height: 44px;
 
-</section>
+  padding: 0 18px;
 
+  font-size: .68rem;
+}
 
+.sponsor-action .text-link {
+  margin-top: 5px;
+}
 
-<!-- =====================================================
-     CARA DONASI
-===================================================== -->
+/* =========================================================
+   SUPPORT SECTION
+   ========================================================= */
 
-<section
-  class="section donation-section"
-  id="donasi">
+.support-section {
+  margin-top: 65px;
 
-  <div class="container">
+  border-top: 1px solid var(--line);
 
-    <div class="section-heading centered reveal">
+  border-bottom: 1px solid var(--line);
+}
 
-      <div class="eyebrow dark">
-        <span></span>
-        CARA BERDONASI
-      </div>
+.support-heading {
+  padding: 30px 0;
 
-      <h2>
-        Jadilah bagian dari
-        <em>TOS 2026.</em>
-      </h2>
+  border-bottom: 1px solid var(--line);
+}
 
-      <p>
-        Informasi pembayaran resmi akan diisi setelah
-        data rekening atau QRIS panitia tersedia.
-      </p>
+.support-heading span {
+  display: block;
 
-    </div>
+  color: var(--yellow-dark);
 
+  font-size: .67rem;
 
-    <div class="steps">
+  font-weight: 900;
 
+  letter-spacing: .15em;
 
-      <article class="step reveal">
+  margin-bottom: 7px;
+}
 
-        <span>01</span>
+.support-heading h3 {
+  font-size: 1.25rem;
+}
 
-        <div class="step-icon">
-          💛
-        </div>
+.support-lines {
+  display: flex;
 
-        <h3>
-          Pilih Nominal
-        </h3>
+  flex-direction: column;
+}
 
-        <p>
-          Pilih nominal donasi sesuai kemampuan
-          dan keikhlasan Anda.
-        </p>
+.support-line {
+  display: grid;
 
-        <div class="amount-options">
+  grid-template-columns: 70px 1fr;
 
-          <button type="button">
-            Rp50K
-          </button>
+  gap: 25px;
 
-          <button type="button">
-            Rp100K
-          </button>
+  padding: 32px 5px;
 
-          <button type="button">
-            Rp250K
-          </button>
+  border-bottom: 1px solid var(--line);
+}
 
-        </div>
+.support-line:last-child {
+  border-bottom: 0;
+}
 
-      </article>
+.support-icon {
+  width: 48px;
+  height: 48px;
 
+  display: grid;
 
+  place-items: center;
 
-      <article class="step reveal">
+  background: var(--yellow);
 
-        <span>02</span>
+  border-radius: 14px;
 
-        <div class="step-icon">
-          💳
-        </div>
+  font-size: 1.2rem;
+}
 
-        <h3>
-          Pilih Pembayaran
-        </h3>
+.support-line h3 {
+  font-size: 1.05rem;
 
-        <p>
-          Gunakan metode pembayaran resmi
-          yang akan dicantumkan oleh panitia.
-        </p>
+  margin-bottom: 5px;
+}
 
-        <div class="payment-placeholder">
+.support-line p {
+  color: var(--gray);
 
-          QRIS / Transfer Bank
+  max-width: 760px;
 
-          <br>
+  font-size: .85rem;
+}
 
-          <small>
-            Segera tersedia
-          </small>
+/* FASILITAS */
 
-        </div>
+.facility-pills {
+  display: flex;
 
-      </article>
+  flex-wrap: wrap;
 
+  gap: 8px;
 
+  margin-top: 15px;
+}
 
-      <article class="step reveal">
+.facility-pills span {
+  background: white;
 
-        <span>03</span>
+  border: 1px solid var(--line);
 
-        <div class="step-icon">
-          📱
-        </div>
+  border-radius: 999px;
 
-        <h3>
-          Konfirmasi
-        </h3>
+  padding: 7px 11px;
 
-        <p>
-          Konfirmasi donasi kepada panitia
-          agar donasi dapat dicatat dan diverifikasi.
-        </p>
+  color: #555;
 
-        <a
-          class="text-link"
-          href="https://wa.me/6285646233673"
-          target="_blank"
-          rel="noopener">
+  font-size: .7rem;
 
-          Hubungi Panitia →
+  font-weight: 600;
+}
 
-        </a>
+/* DONOR */
 
-      </article>
+.donor-note {
+  margin-top: 15px;
 
-    </div>
+  padding: 15px 18px;
 
-  </div>
+  border-left: 3px solid var(--yellow);
 
-</section>
+  background: white;
+}
 
+.donor-note strong,
+.donor-note span {
+  display: block;
+}
 
+.donor-note strong {
+  font-size: .76rem;
+}
 
-<!-- =====================================================
-     KONTAK
-===================================================== -->
+.donor-note span {
+  color: #777;
 
-<section
-  class="contact-section"
-  id="kontak">
+  font-size: .72rem;
 
-  <div class="container contact-grid">
+  margin-top: 3px;
+}
 
+/* =========================================================
+   COMMITTEE NOTE
+   ========================================================= */
 
-    <div class="contact-brand reveal">
+.committee-note {
+  margin-top: 25px;
 
-      <img
-        src="assets/logo-tos.jpeg"
-        alt="Logo TOS">
+  padding: 23px 26px;
 
-      <h2>
-        Hubungi <em>kami.</em>
-      </h2>
+  background: var(--black);
 
-      <p>
-        Untuk kerja sama, donasi, dan informasi
-        lebih lanjut mengenai TOS 2026.
-      </p>
+  color: white;
 
-    </div>
+  border-radius: 20px;
 
+  display: flex;
 
-    <div class="contact-cards">
+  align-items: center;
 
+  justify-content: space-between;
 
-      <div class="contact-card reveal">
+  gap: 25px;
+}
 
-        <span>📱</span>
+.committee-note strong,
+.committee-note span {
+  display: block;
+}
 
-        <div>
+.committee-note strong {
+  font-size: .9rem;
+}
 
-          <small>
-            CONTACT PERSON
-          </small>
+.committee-note span {
+  color: #999;
 
-          <p>
-            Andi Vidiyanto, S.Pd
-          </p>
+  font-size: .7rem;
 
-          <a href="tel:+6282245731958">
-            +62 822-4573-1958
-          </a>
+  margin-top: 3px;
+}
 
-        </div>
+.light-btn {
+  color: white;
+}
 
-      </div>
+/* =========================================================
+   WHY DONATE
+   ========================================================= */
 
+.dark-section {
+  background: #111;
 
+  color: white;
+}
 
-      <div class="contact-card reveal">
+.why-grid {
+  display: grid;
 
-        <span>📧</span>
+  grid-template-columns: .9fr 1.1fr;
 
-        <div>
+  gap: 100px;
 
-          <small>
-            EMAIL
-          </small>
+  align-items: start;
+}
 
-          <p>
-            mutiarahikmania@gmail.com
-          </p>
+.why-content > p {
+  color: #aaa;
 
-          <a href="mailto:mutiarahikmania@gmail.com">
-            Kirim Email →
-          </a>
+  font-size: 1.05rem;
 
-        </div>
+  max-width: 600px;
 
-      </div>
+  margin-bottom: 35px;
+}
 
+.why-list {
+  border-top: 1px solid #2a2a2a;
+}
 
+.why-list > div {
+  display: flex;
 
-      <div class="contact-card reveal">
+  align-items: center;
 
-        <span>☏</span>
+  gap: 20px;
 
-        <div>
+  padding: 18px 0;
 
-          <small>
-            WHATSAPP KONFIRMASI PANITIA
-          </small>
+  border-bottom: 1px solid #2a2a2a;
+}
 
-          <p>
-            +62 822-4573-1958
-          </p>
+.why-list span {
+  color: var(--yellow);
 
-          <a
-            href="https://wa.me/6282245731958"
-            target="_blank"
-            rel="noopener">
+  font-family: "Montserrat", sans-serif;
 
-            Chat WhatsApp →
+  font-size: .72rem;
+}
 
-          </a>
+.why-list b {
+  font-size: .9rem;
+}
 
-        </div>
+/* =========================================================
+   DONATION
+   ========================================================= */
 
-      </div>
+.donation-section {
+  background: var(--cream);
+}
 
+.steps {
+  display: grid;
 
+  grid-template-columns: repeat(3, 1fr);
 
-      <div class="contact-card reveal">
+  gap: 18px;
+}
 
-        <span>📸</span>
+.step {
+  background: white;
 
-        <div>
+  border: 1px solid var(--line);
 
-          <small>
-            INSTAGRAM
-          </small>
+  border-radius: 26px;
 
-          <p>
-            @talentofstudent.official
-          </p>
+  padding: 32px;
 
-          <a
-            href="https://www.instagram.com/talentofstudent.official/"
-            target="_blank"
-            rel="noopener">
+  position: relative;
 
-            Kunjungi Instagram →
+  min-height: 340px;
 
-          </a>
+  transition: .25s;
+}
 
-        </div>
+.step:hover {
+  transform: translateY(-5px);
 
-      </div>
+  border-color: rgba(245, 197, 24, .6);
 
-    </div>
+  box-shadow: var(--shadow);
+}
 
-  </div>
+.step > span {
+  position: absolute;
 
-</section>
+  top: 22px;
+  right: 25px;
 
-</main>
+  font-family: "Montserrat", sans-serif;
 
+  font-size: .75rem;
 
+  color: #999;
+}
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+.step-icon {
+  width: 55px;
+  height: 55px;
 
-<footer>
+  display: grid;
 
-  <div class="container footer-inner">
+  place-items: center;
 
-    <div class="footer-brand">
+  border-radius: 16px;
 
-      <img
-        src="assets/logo-tos.jpeg"
-        alt="Logo TOS">
+  background: var(--yellow);
 
-      <div>
+  margin-bottom: 23px;
+}
 
-        <b>
-          TOS 2026
-        </b>
+.step h3 {
+  font-size: 1.15rem;
 
-        <span>
-          Talent Of Student
-        </span>
+  margin-bottom: 8px;
+}
 
-      </div>
+.step p {
+  color: var(--gray);
 
-    </div>
+  font-size: .84rem;
+}
 
+.amount-options {
+  display: flex;
 
-    <p>
-      © 2026 TOS — Talent Of Student.
-      All Rights Reserved.
-    </p>
+  gap: 8px;
 
+  margin-top: 24px;
 
-    <a href="#beranda">
-      Kembali ke atas ↑
-    </a>
+  flex-wrap: wrap;
+}
 
-  </div>
+.amount-options button {
+  border: 1px solid #ddd;
 
-</footer>
+  background: white;
 
+  border-radius: 999px;
 
+  padding: 8px 12px;
 
-<!-- JAVASCRIPT -->
+  cursor: pointer;
 
-<script src="script.js"></script>
+  transition: .2s;
+}
 
-</body>
-</html>
+.amount-options button:hover,
+.amount-options button.active {
+  background: var(--yellow);
+
+  border-color: var(--yellow);
+}
+
+.payment-placeholder {
+  margin-top: 22px;
+
+  border: 1px dashed #bbb;
+
+  border-radius: 14px;
+
+  padding: 16px;
+
+  text-align: center;
+
+  font-weight: 700;
+
+  font-size: .82rem;
+}
+
+.payment-placeholder small {
+  color: #888;
+
+  font-weight: 400;
+}
+
+.text-link {
+  display: inline-block;
+
+  margin-top: 24px;
+
+  color: #8a6b00;
+
+  font-weight: 800;
+
+  font-size: .8rem;
+
+  transition: .2s;
+}
+
+.text-link:hover {
+  color: var(--black);
+
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact-section {
+  background: var(--yellow);
+
+  padding: 90px 0;
+}
+
+.contact-grid {
+  display: grid;
+
+  grid-template-columns: .9fr 1.1fr;
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+.contact-brand img {
+  width: 82px;
+  height: 82px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 5px solid white;
+
+  margin-bottom: 20px;
+}
+
+.contact-brand h2 {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+}
+
+.contact-brand p {
+  max-width: 480px;
+
+  margin-top: 15px;
+
+  color: #4c3d00;
+}
+
+.contact-cards {
+  display: grid;
+
+  gap: 12px;
+}
+
+.contact-card {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 22px;
+
+  display: flex;
+
+  gap: 16px;
+
+  align-items: center;
+
+  transition: .2s;
+}
+
+.contact-card:hover {
+  transform: translateX(5px);
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .10);
+}
+
+.contact-card > span {
+  width: 46px;
+  height: 46px;
+
+  flex: 0 0 46px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: var(--black);
+
+  border-radius: 13px;
+}
+
+.contact-card small {
+  display: block;
+
+  color: #888;
+
+  font-size: .62rem;
+
+  letter-spacing: .1em;
+
+  font-weight: 800;
+}
+
+.contact-card p {
+  font-weight: 800;
+
+  font-size: .9rem;
+}
+
+.contact-card a {
+  color: #8a6b00;
+
+  font-size: .75rem;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  background: var(--black);
+
+  color: white;
+
+  padding: 27px 0;
+}
+
+.footer-inner {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.footer-brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.footer-brand img {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  background: white;
+}
+
+.footer-brand b,
+.footer-brand span {
+  display: block;
+}
+
+.footer-brand b {
+  font-family: "Montserrat", sans-serif;
+
+  font-size: .85rem;
+}
+
+.footer-brand span {
+  color: #999;
+
+  font-size: .65rem;
+}
+
+footer p,
+footer a {
+  color: #888;
+
+  font-size: .7rem;
+}
+
+footer a:hover {
+  color: var(--yellow);
+}
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(24px);
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .nav-menu {
+    position: absolute;
+
+    top: 76px;
+    left: 0;
+
+    width: 100%;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0;
+
+    padding: 12px 20px 20px;
+
+    background: rgba(8, 8, 8, .98);
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu a {
+    width: 100%;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #242424;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero-grid,
+  .fund-grid,
+  .why-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-logo-card {
+    min-height: 390px;
+  }
+
+  .competition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .budget-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    min-height: auto;
+  }
+
+  .fund-grid {
+    gap: 50px;
+  }
+
+  .why-grid {
+    gap: 40px;
+  }
+
+  .contact-grid {
+    gap: 40px;
+  }
+
+  /* SPONSOR TABLET */
+
+  .sponsor-row {
+    grid-template-columns: 55px 1fr;
+
+    gap: 20px;
+  }
+
+  .sponsor-action {
+    grid-column: 2;
+
+    text-align: left;
+
+    align-items: flex-start;
+
+    padding-top: 5px;
+  }
+
+  .sponsor-action > span {
+    margin-bottom: 10px;
+  }
+
+  .sponsor-info ul {
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .support-line {
+    grid-template-columns: 55px 1fr;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .section {
+    padding: 75px 0;
+  }
+
+  .hero {
+    padding-top: 120px;
+  }
+
+  .brand img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand strong {
+    font-size: .82rem;
+  }
+
+  .brand span {
+    font-size: .58rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .event-meta {
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .hero-logo-card {
+    min-height: 340px;
+  }
+
+  .hero-logo-card img {
+    width: 185px;
+    height: 185px;
+  }
+
+  .logo-ring {
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero-logo-card::before {
+    width: 240px;
+    height: 240px;
+  }
+
+  .about-grid,
+  .budget-grid,
+  .competition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-total {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-total div {
+    border-right: 0;
+
+    border-bottom: 1px solid #2b2b2b;
+
+    padding-bottom: 15px;
+  }
+
+  .budget-total div:last-child {
+    border-bottom: 0;
+  }
+
+  .progress-card {
+    padding: 25px;
+  }
+
+  .amount span {
+    font-size: 2rem;
+  }
+
+  /* SPONSOR MOBILE */
+
+  .sponsor-row {
+    display: block;
+
+    padding: 30px 0;
+  }
+
+  .sponsor-row:hover {
+    padding-left: 0;
+
+    padding-right: 0;
+  }
+
+  .sponsor-main {
+    padding-left: 15px;
+  }
+
+  .sponsor-main:hover {
+    padding-left: 20px;
+  }
+
+  .sponsor-number {
+    margin-bottom: 12px;
+  }
+
+  .sponsor-info h3 {
+    font-size: 1.15rem;
+  }
+
+  .sponsor-info p {
+    font-size: .82rem;
+  }
+
+  .sponsor-info ul {
+    margin-top: 10px;
+  }
+
+  .sponsor-action {
+    margin-top: 22px;
+
+    padding-top: 0;
+
+    align-items: flex-start;
+  }
+
+  .sponsor-action strong {
+    font-size: 1.25rem;
+  }
+
+  .sponsor-action .btn {
+    width: 100%;
+  }
+
+  /* SUPPORT MOBILE */
+
+  .support-section {
+    margin-top: 45px;
+  }
+
+  .support-line {
+    display: block;
+
+    padding: 28px 0;
+  }
+
+  .support-icon {
+    margin-bottom: 15px;
+  }
+
+  .facility-pills {
+    gap: 6px;
+  }
+
+  .facility-pills span {
+    font-size: .65rem;
+  }
+
+  .donor-note {
+    margin-top: 13px;
+  }
+
+  /* COMMITTEE MOBILE */
+
+  .committee-note {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 22px;
+  }
+
+  .committee-note .btn {
+    width: 100%;
+  }
+
+  /* CONTACT */
+
+  .contact-section {
+    padding: 70px 0;
+  }
+
+  .contact-grid {
+    gap: 35px;
+  }
+
+  .contact-card {
+    padding: 18px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .hero h1 {
+    font-size: 2.6rem;
+  }
+
+  .hero-logo-card img {
+    width: 165px;
+    height: 165px;
+  }
+
+  .hero-logo-card > span {
+    font-size: .75rem;
+  }
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .sponsor-info h3 {
+    font-size: 1.05rem;
+  }
+
+  .sponsor-action strong {
+    font-size: 1.15rem;
+  }
+}
