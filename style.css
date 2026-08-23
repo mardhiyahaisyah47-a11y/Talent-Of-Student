@@ -1,7 +1,13 @@
 /* =========================================================
    TOS 2026 — TALENT OF STUDENT
    BLACK × YELLOW × WHITE
-   FULL VERSION
+   FULL CSS — FINAL VERSION
+   Compatible with current index.html
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT
    ========================================================= */
 
 :root {
@@ -27,6 +33,7 @@
 
   --radius: 24px;
 }
+
 
 /* =========================================================
    RESET
@@ -62,6 +69,7 @@ button {
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 .container {
@@ -76,6 +84,7 @@ img {
 .light {
   background: var(--white);
 }
+
 
 /* =========================================================
    TYPOGRAPHY
@@ -94,8 +103,8 @@ h2 {
   letter-spacing: -.05em;
 }
 
-h2 em,
-h1 em {
+h1 em,
+h2 em {
   color: var(--yellow);
   font-style: normal;
 }
@@ -132,13 +141,16 @@ h1 em {
   letter-spacing: .16em;
 
   color: var(--yellow);
+
   margin-bottom: 18px;
 }
 
 .eyebrow span {
   width: 28px;
   height: 3px;
+
   display: inline-block;
+
   background: var(--yellow);
 }
 
@@ -149,6 +161,7 @@ h1 em {
 .eyebrow.dark span {
   background: var(--yellow);
 }
+
 
 /* =========================================================
    BUTTON
@@ -161,6 +174,7 @@ h1 em {
   gap: 12px;
 
   min-height: 52px;
+
   padding: 0 23px;
 
   border-radius: 999px;
@@ -168,6 +182,8 @@ h1 em {
   font-weight: 800;
   font-size: .78rem;
   letter-spacing: .06em;
+
+  cursor: pointer;
 
   transition:
     transform .2s ease,
@@ -183,12 +199,16 @@ h1 em {
 .btn-yellow {
   background: var(--yellow);
   color: var(--black);
-  box-shadow: 0 12px 30px rgba(245, 197, 24, .22);
+
+  box-shadow:
+    0 12px 30px rgba(245, 197, 24, .22);
 }
 
 .btn-yellow:hover {
   background: var(--yellow-light);
-  box-shadow: 0 15px 35px rgba(245, 197, 24, .30);
+
+  box-shadow:
+    0 15px 35px rgba(245, 197, 24, .30);
 }
 
 .btn-outline {
@@ -205,6 +225,7 @@ h1 em {
   width: 100%;
 }
 
+
 /* =========================================================
    NAVBAR
    ========================================================= */
@@ -212,13 +233,18 @@ h1 em {
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
+
   width: 100%;
+
   z-index: 1000;
 
   background: rgba(8, 8, 8, .92);
+
   backdrop-filter: blur(16px);
 
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  border-bottom:
+    1px solid rgba(255, 255, 255, .08);
 }
 
 .nav-inner {
@@ -244,16 +270,18 @@ h1 em {
   height: 54px;
 
   object-fit: cover;
+
   border-radius: 50%;
 
   background: white;
-  border: 2px solid rgba(245, 197, 24, .85);
+
+  border:
+    2px solid rgba(245, 197, 24, .85);
 
   padding: 2px;
 
-  box-shadow: 0 5px 16px rgba(0, 0, 0, .18);
-
-  display: block;
+  box-shadow:
+    0 5px 16px rgba(0, 0, 0, .18);
 
   transition:
     transform .25s ease,
@@ -263,6 +291,7 @@ h1 em {
 
 .brand img:hover {
   transform: scale(1.06);
+
   border-color: var(--yellow);
 
   box-shadow:
@@ -273,6 +302,7 @@ h1 em {
   display: block;
 
   font-size: .95rem;
+
   letter-spacing: .04em;
 }
 
@@ -280,12 +310,14 @@ h1 em {
   display: block;
 
   color: #aaa;
+
   font-size: .67rem;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
+
   gap: 22px;
 }
 
@@ -293,6 +325,7 @@ h1 em {
   color: #ddd;
 
   font-size: .82rem;
+
   font-weight: 600;
 
   transition: .2s;
@@ -306,13 +339,16 @@ h1 em {
   display: none;
 
   background: none;
+
   border: 0;
 
   color: white;
+
   font-size: 1.6rem;
 
   cursor: pointer;
 }
+
 
 /* =========================================================
    HERO
@@ -350,6 +386,7 @@ h1 em {
   content: "";
 
   position: absolute;
+
   inset: auto 0 0;
 
   height: 1px;
@@ -405,6 +442,7 @@ h1 em {
   gap: 70px;
 
   position: relative;
+
   z-index: 2;
 }
 
@@ -432,12 +470,15 @@ h1 em {
 
 .hero-actions {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 12px;
 }
 
 .event-meta {
   display: flex;
+
   flex-wrap: wrap;
 
   gap: 25px;
@@ -472,6 +513,7 @@ h1 em {
   margin-top: 2px;
 }
 
+
 /* =========================================================
    HERO LOGO
    ========================================================= */
@@ -479,16 +521,20 @@ h1 em {
 .hero-logo-card {
   min-height: 455px;
 
-  border: 1px solid rgba(255, 255, 255, .12);
+  border:
+    1px solid rgba(255, 255, 255, .12);
 
   border-radius: 35px;
 
-  background: rgba(255, 255, 255, .045);
+  background:
+    rgba(255, 255, 255, .045);
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
   position: relative;
@@ -509,7 +555,8 @@ h1 em {
 
   border-radius: 50%;
 
-  border: 1px solid rgba(245, 197, 24, .25);
+  border:
+    1px solid rgba(245, 197, 24, .25);
 }
 
 .logo-ring {
@@ -520,12 +567,15 @@ h1 em {
 
   border-radius: 50%;
 
-  border: 1px dashed rgba(245, 197, 24, .13);
+  border:
+    1px dashed rgba(245, 197, 24, .13);
 
-  animation: rotateRing 25s linear infinite;
+  animation:
+    rotateRing 25s linear infinite;
 }
 
 @keyframes rotateRing {
+
   from {
     transform: rotate(0deg);
   }
@@ -533,6 +583,7 @@ h1 em {
   to {
     transform: rotate(360deg);
   }
+
 }
 
 .hero-logo-card img {
@@ -573,6 +624,7 @@ h1 em {
   margin-top: 5px;
 }
 
+
 /* =========================================================
    ABOUT
    ========================================================= */
@@ -580,7 +632,8 @@ h1 em {
 .about-grid {
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:
+    repeat(3, 1fr);
 
   gap: 18px;
 }
@@ -588,7 +641,8 @@ h1 em {
 .info-card {
   padding: 32px;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius: var(--radius);
 
@@ -603,7 +657,8 @@ h1 em {
 
   box-shadow: var(--shadow);
 
-  border-color: rgba(245, 197, 24, .5);
+  border-color:
+    rgba(245, 197, 24, .5);
 }
 
 .icon {
@@ -611,6 +666,7 @@ h1 em {
   height: 48px;
 
   display: grid;
+
   place-items: center;
 
   border-radius: 14px;
@@ -624,6 +680,7 @@ h1 em {
 
 .icon.black {
   background: var(--black);
+
   color: white;
 }
 
@@ -672,7 +729,8 @@ h1 em {
 .competition-grid {
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns:
+    repeat(4, 1fr);
 
   gap: 12px;
 }
@@ -710,6 +768,7 @@ h1 em {
   margin-top: 7px;
 }
 
+
 /* =========================================================
    FUNDRAISING
    ========================================================= */
@@ -735,9 +794,11 @@ h1 em {
 
   font-weight: 900;
 
-  color: rgba(255, 255, 255, .025);
+  color:
+    rgba(255, 255, 255, .025);
 
   right: -4vw;
+
   bottom: -4vw;
 
   line-height: .8;
@@ -778,7 +839,8 @@ h1 em {
 .fund-numbers > div {
   padding: 18px 0;
 
-  border-bottom: 1px solid #272727;
+  border-bottom:
+    1px solid #272727;
 }
 
 .fund-numbers small {
@@ -863,7 +925,8 @@ h1 em {
 
   border-radius: inherit;
 
-  transition: width 1s ease;
+  transition:
+    width 1s ease;
 }
 
 .progress-note {
@@ -874,6 +937,7 @@ h1 em {
   margin: 14px 0 23px;
 }
 
+
 /* =========================================================
    TRANSPARENCY
    ========================================================= */
@@ -881,7 +945,8 @@ h1 em {
 .budget-grid {
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:
+    repeat(3, 1fr);
 
   gap: 15px;
 }
@@ -889,7 +954,8 @@ h1 em {
 .budget-card {
   padding: 28px;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius: 22px;
 
@@ -933,7 +999,8 @@ h1 em {
 
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:
+    repeat(3, 1fr);
 
   gap: 15px;
 }
@@ -941,7 +1008,8 @@ h1 em {
 .budget-total div {
   padding: 8px 15px;
 
-  border-right: 1px solid #2b2b2b;
+  border-right:
+    1px solid #2b2b2b;
 }
 
 .budget-total div:last-child {
@@ -969,6 +1037,7 @@ h1 em {
   color: var(--yellow);
 }
 
+
 /* =========================================================
    SPONSOR SECTION
    ========================================================= */
@@ -977,255 +1046,242 @@ h1 em {
   background: var(--cream);
 }
 
-/* LIST UTAMA SPONSOR */
 
-.sponsor-list {
+/* =========================================================
+   SPONSOR GRID
+   ========================================================= */
+
+.sponsor-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 22px;
+}
+
+
+/* =========================================================
+   SPONSOR CARD
+   ========================================================= */
+
+.sponsor-card {
+  position: relative;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 26px;
+
+  padding: 34px;
+
+  overflow: hidden;
+
   display: flex;
 
   flex-direction: column;
 
-  border-top: 1px solid var(--line);
-
-  border-bottom: 1px solid var(--line);
-}
-
-/* BARIS SPONSOR */
-
-.sponsor-row {
-  display: grid;
-
-  grid-template-columns: 70px 1fr 230px;
-
-  gap: 35px;
-
-  align-items: center;
-
-  padding: 38px 5px;
-
-  border-bottom: 1px solid var(--line);
-
-  position: relative;
-
   transition:
-    background .25s ease,
-    padding .25s ease;
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
 }
 
-.sponsor-row:last-child {
-  border-bottom: 0;
+.sponsor-card:hover {
+  transform: translateY(-7px);
+
+  border-color:
+    rgba(245, 197, 24, .65);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, .10);
 }
 
-.sponsor-row:hover {
-  background: rgba(245, 197, 24, .055);
 
-  padding-left: 18px;
+/* =========================================================
+   FEATURED SPONSOR
+   ========================================================= */
 
-  padding-right: 18px;
+.sponsor-featured {
+  border:
+    2px solid var(--yellow);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf2 0%,
+      #ffffff 55%
+    );
+
+  box-shadow:
+    0 15px 45px
+    rgba(245, 197, 24, .12);
 }
 
-/* SPONSOR UTAMA */
-
-.sponsor-main {
-  background: rgba(245, 197, 24, .08);
-
-  border-left: 4px solid var(--yellow);
-
-  padding-left: 22px;
-}
-
-.sponsor-main:hover {
-  background: rgba(245, 197, 24, .13);
-
-  padding-left: 30px;
-}
-
-/* NOMOR */
-
-.sponsor-number {
-  font-family: "Montserrat", sans-serif;
-
-  font-size: .85rem;
-
-  font-weight: 900;
-
-  color: #aaa;
-
-  letter-spacing: .08em;
-}
-
-/* INFO */
-
-.sponsor-info {
-  min-width: 0;
-}
-
-.sponsor-label {
-  display: inline-block;
-
-  color: var(--yellow-dark);
-
-  font-size: .65rem;
-
-  font-weight: 900;
-
-  letter-spacing: .14em;
-
-  margin-bottom: 6px;
-}
-
-.sponsor-info h3 {
-  font-size: 1.35rem;
-
-  margin-bottom: 7px;
-
-  letter-spacing: -.02em;
-}
-
-.sponsor-info p {
-  color: var(--gray);
-
-  font-size: .86rem;
-
-  margin-bottom: 14px;
-}
-
-.sponsor-info ul {
-  list-style: none;
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 7px 18px;
-}
-
-.sponsor-info li {
-  position: relative;
-
-  color: #555;
-
-  font-size: .75rem;
-
-  padding-left: 13px;
-}
-
-.sponsor-info li::before {
+.sponsor-featured::before {
   content: "";
 
   position: absolute;
 
-  width: 5px;
-  height: 5px;
+  width: 180px;
+  height: 180px;
 
   border-radius: 50%;
 
+  background:
+    rgba(245, 197, 24, .10);
+
+  top: -80px;
+  right: -70px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SPONSOR TAG
+   ========================================================= */
+
+.sponsor-tag {
+  position: absolute;
+
+  top: 0;
+  right: 28px;
+
   background: var(--yellow);
-
-  left: 0;
-  top: 8px;
-}
-
-/* HARGA SPONSOR */
-
-.sponsor-action {
-  text-align: right;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: flex-end;
-}
-
-.sponsor-action strong {
-  font-size: 1.35rem;
 
   color: var(--black);
 
-  letter-spacing: -.03em;
-}
+  padding: 7px 14px;
 
-.sponsor-action > span {
-  color: #999;
+  border-radius:
+    0 0 10px 10px;
 
-  font-size: .65rem;
-
-  margin: 2px 0 14px;
-}
-
-.sponsor-action .btn {
-  min-height: 44px;
-
-  padding: 0 18px;
-
-  font-size: .68rem;
-}
-
-.sponsor-action .text-link {
-  margin-top: 5px;
-}
-
-/* =========================================================
-   SUPPORT SECTION
-   ========================================================= */
-
-.support-section {
-  margin-top: 65px;
-
-  border-top: 1px solid var(--line);
-
-  border-bottom: 1px solid var(--line);
-}
-
-.support-heading {
-  padding: 30px 0;
-
-  border-bottom: 1px solid var(--line);
-}
-
-.support-heading span {
-  display: block;
-
-  color: var(--yellow-dark);
-
-  font-size: .67rem;
+  font-size: .62rem;
 
   font-weight: 900;
 
-  letter-spacing: .15em;
-
-  margin-bottom: 7px;
+  letter-spacing: .1em;
 }
 
-.support-heading h3 {
-  font-size: 1.25rem;
+
+/* =========================================================
+   SPONSOR ICON
+   ========================================================= */
+
+.sponsor-icon {
+  width: 58px;
+  height: 58px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 17px;
+
+  background: var(--yellow);
+
+  font-size: 1.45rem;
+
+  margin-bottom: 22px;
+
+  position: relative;
+
+  z-index: 1;
 }
 
-.support-lines {
+.sponsor-card:not(.sponsor-featured)
+.sponsor-icon {
+  background: #111111;
+
+  color: white;
+}
+
+
+/* =========================================================
+   SPONSOR TITLE
+   ========================================================= */
+
+.sponsor-card h3 {
+  font-size: 1.35rem;
+
+  line-height: 1.2;
+
+  margin-bottom: 8px;
+
+  letter-spacing: -.02em;
+}
+
+.sponsor-card p {
+  color: var(--gray);
+
+  font-size: .86rem;
+
+  line-height: 1.65;
+
+  margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   SPONSOR PRICE
+   ========================================================= */
+
+.sponsor-price {
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 1.8rem;
+
+  font-weight: 900;
+
+  color: var(--black);
+
+  letter-spacing: -.04em;
+
+  margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   SPONSOR BENEFITS
+   ========================================================= */
+
+.sponsor-card ul {
+  list-style: none;
+
   display: flex;
 
   flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
 }
 
-.support-line {
-  display: grid;
+.sponsor-card li {
+  position: relative;
 
-  grid-template-columns: 70px 1fr;
+  padding-left: 23px;
 
-  gap: 25px;
+  color: #555;
 
-  padding: 32px 5px;
+  font-size: .78rem;
 
-  border-bottom: 1px solid var(--line);
+  line-height: 1.5;
 }
 
-.support-line:last-child {
-  border-bottom: 0;
-}
+.sponsor-card li::before {
+  content: "✓";
 
-.support-icon {
-  width: 48px;
-  height: 48px;
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 17px;
+  height: 17px;
 
   display: grid;
 
@@ -1233,26 +1289,158 @@ h1 em {
 
   background: var(--yellow);
 
-  border-radius: 14px;
+  color: var(--black);
 
+  border-radius: 50%;
+
+  font-size: .65rem;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   SPONSOR BUTTON
+   ========================================================= */
+
+.sponsor-card .btn {
+  margin-top: auto;
+}
+
+.sponsor-card .text-link {
+  margin-top: auto;
+}
+
+
+/* =========================================================
+   SUPPORT GRID
+   ========================================================= */
+
+.support-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 22px;
+
+  margin-top: 22px;
+}
+
+
+/* =========================================================
+   SUPPORT CARD
+   ========================================================= */
+
+.support-card {
+  background: #ffffff;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 26px;
+
+  padding: 32px;
+
+  position: relative;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.support-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(245, 197, 24, .55);
+
+  box-shadow: var(--shadow);
+}
+
+.support-dark {
+  background: var(--black);
+
+  color: white;
+
+  border-color: var(--black);
+}
+
+.support-dark:hover {
+  border-color: var(--yellow);
+}
+
+
+/* =========================================================
+   SUPPORT NUMBER
+   ========================================================= */
+
+.support-number {
+  position: absolute;
+
+  top: 22px;
+  right: 25px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: .72rem;
+
+  font-weight: 900;
+
+  color: #aaa;
+
+  letter-spacing: .1em;
+}
+
+
+/* =========================================================
+   SUPPORT ICON
+   ========================================================= */
+
+.support-card .support-icon {
+  width: 55px;
+  height: 55px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: var(--yellow);
+
+  color: var(--black);
+
+  border-radius: 16px;
+
+  font-size: 1.35rem;
+
+  margin-bottom: 20px;
+}
+
+.support-card h3 {
   font-size: 1.2rem;
+
+  margin-bottom: 8px;
 }
 
-.support-line h3 {
-  font-size: 1.05rem;
-
-  margin-bottom: 5px;
-}
-
-.support-line p {
+.support-card p {
   color: var(--gray);
 
-  max-width: 760px;
+  font-size: .84rem;
 
-  font-size: .85rem;
+  line-height: 1.65;
+
+  max-width: 600px;
 }
 
-/* FASILITAS */
+.support-dark p {
+  color: #aaa;
+}
+
+
+/* =========================================================
+   FACILITY PILLS
+   ========================================================= */
 
 .facility-pills {
   display: flex;
@@ -1261,17 +1449,18 @@ h1 em {
 
   gap: 8px;
 
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .facility-pills span {
-  background: white;
+  background: #f7f7f5;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius: 999px;
 
-  padding: 7px 11px;
+  padding: 8px 12px;
 
   color: #555;
 
@@ -1280,16 +1469,23 @@ h1 em {
   font-weight: 600;
 }
 
-/* DONOR */
+
+/* =========================================================
+   DONOR NOTE
+   ========================================================= */
 
 .donor-note {
-  margin-top: 15px;
+  margin-top: 20px;
 
-  padding: 15px 18px;
+  padding: 17px 18px;
 
-  border-left: 3px solid var(--yellow);
+  border-left:
+    3px solid var(--yellow);
 
-  background: white;
+  background: #f7f7f5;
+
+  border-radius:
+    0 12px 12px 0;
 }
 
 .donor-note strong,
@@ -1299,6 +1495,8 @@ h1 em {
 
 .donor-note strong {
   font-size: .76rem;
+
+  color: var(--black);
 }
 
 .donor-note span {
@@ -1306,8 +1504,11 @@ h1 em {
 
   font-size: .72rem;
 
-  margin-top: 3px;
+  margin-top: 4px;
+
+  line-height: 1.5;
 }
+
 
 /* =========================================================
    COMMITTEE NOTE
@@ -1354,6 +1555,7 @@ h1 em {
   color: white;
 }
 
+
 /* =========================================================
    WHY DONATE
    ========================================================= */
@@ -1367,7 +1569,8 @@ h1 em {
 .why-grid {
   display: grid;
 
-  grid-template-columns: .9fr 1.1fr;
+  grid-template-columns:
+    .9fr 1.1fr;
 
   gap: 100px;
 
@@ -1385,7 +1588,8 @@ h1 em {
 }
 
 .why-list {
-  border-top: 1px solid #2a2a2a;
+  border-top:
+    1px solid #2a2a2a;
 }
 
 .why-list > div {
@@ -1397,7 +1601,8 @@ h1 em {
 
   padding: 18px 0;
 
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom:
+    1px solid #2a2a2a;
 }
 
 .why-list span {
@@ -1412,6 +1617,7 @@ h1 em {
   font-size: .9rem;
 }
 
+
 /* =========================================================
    DONATION
    ========================================================= */
@@ -1423,7 +1629,8 @@ h1 em {
 .steps {
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:
+    repeat(3, 1fr);
 
   gap: 18px;
 }
@@ -1431,7 +1638,8 @@ h1 em {
 .step {
   background: white;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius: 26px;
 
@@ -1447,7 +1655,8 @@ h1 em {
 .step:hover {
   transform: translateY(-5px);
 
-  border-color: rgba(245, 197, 24, .6);
+  border-color:
+    rgba(245, 197, 24, .6);
 
   box-shadow: var(--shadow);
 }
@@ -1503,7 +1712,8 @@ h1 em {
 }
 
 .amount-options button {
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
   background: white;
 
@@ -1526,7 +1736,8 @@ h1 em {
 .payment-placeholder {
   margin-top: 22px;
 
-  border: 1px dashed #bbb;
+  border:
+    1px dashed #bbb;
 
   border-radius: 14px;
 
@@ -1565,6 +1776,7 @@ h1 em {
   transform: translateX(4px);
 }
 
+
 /* =========================================================
    CONTACT
    ========================================================= */
@@ -1578,7 +1790,8 @@ h1 em {
 .contact-grid {
   display: grid;
 
-  grid-template-columns: .9fr 1.1fr;
+  grid-template-columns:
+    .9fr 1.1fr;
 
   gap: 70px;
 
@@ -1601,7 +1814,8 @@ h1 em {
 }
 
 .contact-brand h2 {
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-size:
+    clamp(2.4rem, 5vw, 4.5rem);
 }
 
 .contact-brand p {
@@ -1637,20 +1851,25 @@ h1 em {
 .contact-card:hover {
   transform: translateX(5px);
 
-  box-shadow: 0 15px 35px rgba(0, 0, 0, .10);
+  box-shadow:
+    0 15px 35px
+    rgba(0, 0, 0, .10);
 }
 
 .contact-card > span {
   width: 46px;
   height: 46px;
 
-  flex: 0 0 46px;
+  flex:
+    0 0 46px;
 
   display: grid;
 
   place-items: center;
 
   background: var(--black);
+
+  color: white;
 
   border-radius: 13px;
 }
@@ -1680,6 +1899,7 @@ h1 em {
 
   font-weight: 700;
 }
+
 
 /* =========================================================
    FOOTER
@@ -1750,8 +1970,9 @@ footer a:hover {
   color: var(--yellow);
 }
 
+
 /* =========================================================
-   ANIMATION
+   REVEAL ANIMATION
    ========================================================= */
 
 .reveal {
@@ -1770,8 +1991,9 @@ footer a:hover {
   transform: translateY(0);
 }
 
+
 /* =========================================================
-   RESPONSIVE — TABLET
+   TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -1792,9 +2014,11 @@ footer a:hover {
 
     gap: 0;
 
-    padding: 12px 20px 20px;
+    padding:
+      12px 20px 20px;
 
-    background: rgba(8, 8, 8, .98);
+    background:
+      rgba(8, 8, 8, .98);
   }
 
   .nav-menu.open {
@@ -1806,7 +2030,8 @@ footer a:hover {
 
     padding: 13px 0;
 
-    border-bottom: 1px solid #242424;
+    border-bottom:
+      1px solid #242424;
   }
 
   .menu-toggle {
@@ -1825,11 +2050,13 @@ footer a:hover {
   }
 
   .competition-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      repeat(2, 1fr);
   }
 
   .budget-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      repeat(2, 1fr);
   }
 
   .steps {
@@ -1852,47 +2079,29 @@ footer a:hover {
     gap: 40px;
   }
 
-  /* SPONSOR TABLET */
+  /* SPONSOR */
 
-  .sponsor-row {
-    grid-template-columns: 55px 1fr;
-
-    gap: 20px;
+  .sponsor-grid,
+  .support-grid {
+    grid-template-columns: 1fr;
   }
 
-  .sponsor-action {
-    grid-column: 2;
-
-    text-align: left;
-
-    align-items: flex-start;
-
-    padding-top: 5px;
+  .sponsor-card {
+    padding: 30px;
   }
 
-  .sponsor-action > span {
-    margin-bottom: 10px;
-  }
-
-  .sponsor-info ul {
-    flex-direction: column;
-
-    gap: 5px;
-  }
-
-  .support-line {
-    grid-template-columns: 55px 1fr;
-  }
 }
 
+
 /* =========================================================
-   RESPONSIVE — MOBILE
+   MOBILE
    ========================================================= */
 
 @media (max-width: 600px) {
 
   .container {
-    width: min(100% - 28px, 1120px);
+    width:
+      min(100% - 28px, 1120px);
   }
 
   .section {
@@ -1966,7 +2175,8 @@ footer a:hover {
   .budget-total div {
     border-right: 0;
 
-    border-bottom: 1px solid #2b2b2b;
+    border-bottom:
+      1px solid #2b2b2b;
 
     padding-bottom: 15px;
   }
@@ -1983,74 +2193,52 @@ footer a:hover {
     font-size: 2rem;
   }
 
-  /* SPONSOR MOBILE */
 
-  .sponsor-row {
-    display: block;
+  /* =====================================================
+     SPONSOR MOBILE
+     ===================================================== */
 
-    padding: 30px 0;
+  .sponsor-grid,
+  .support-grid {
+    grid-template-columns: 1fr;
   }
 
-  .sponsor-row:hover {
-    padding-left: 0;
+  .sponsor-card {
+    padding: 27px;
 
-    padding-right: 0;
+    border-radius: 22px;
   }
 
-  .sponsor-main {
-    padding-left: 15px;
-  }
-
-  .sponsor-main:hover {
-    padding-left: 20px;
-  }
-
-  .sponsor-number {
-    margin-bottom: 12px;
-  }
-
-  .sponsor-info h3 {
+  .sponsor-card h3 {
     font-size: 1.15rem;
   }
 
-  .sponsor-info p {
+  .sponsor-card p {
     font-size: .82rem;
   }
 
-  .sponsor-info ul {
-    margin-top: 10px;
+  .sponsor-price {
+    font-size: 1.55rem;
   }
 
-  .sponsor-action {
-    margin-top: 22px;
-
-    padding-top: 0;
-
-    align-items: flex-start;
-  }
-
-  .sponsor-action strong {
-    font-size: 1.25rem;
-  }
-
-  .sponsor-action .btn {
+  .sponsor-card .btn {
     width: 100%;
   }
 
-  /* SUPPORT MOBILE */
+  .sponsor-tag {
+    right: 20px;
 
-  .support-section {
-    margin-top: 45px;
+    font-size: .55rem;
   }
 
-  .support-line {
-    display: block;
+  .support-card {
+    padding: 27px;
 
-    padding: 28px 0;
+    border-radius: 22px;
   }
 
-  .support-icon {
-    margin-bottom: 15px;
+  .support-card h3 {
+    font-size: 1.1rem;
   }
 
   .facility-pills {
@@ -2065,7 +2253,10 @@ footer a:hover {
     margin-top: 13px;
   }
 
-  /* COMMITTEE MOBILE */
+
+  /* =====================================================
+     COMMITTEE
+     ===================================================== */
 
   .committee-note {
     flex-direction: column;
@@ -2079,7 +2270,10 @@ footer a:hover {
     width: 100%;
   }
 
-  /* CONTACT */
+
+  /* =====================================================
+     CONTACT
+     ===================================================== */
 
   .contact-section {
     padding: 70px 0;
@@ -2093,12 +2287,19 @@ footer a:hover {
     padding: 18px;
   }
 
+
+  /* =====================================================
+     FOOTER
+     ===================================================== */
+
   .footer-inner {
     flex-direction: column;
 
     align-items: flex-start;
   }
+
 }
+
 
 /* =========================================================
    VERY SMALL MOBILE
@@ -2123,11 +2324,16 @@ footer a:hover {
     margin-bottom: 40px;
   }
 
-  .sponsor-info h3 {
+  .sponsor-card {
+    padding: 23px;
+  }
+
+  .sponsor-card h3 {
     font-size: 1.05rem;
   }
 
-  .sponsor-action strong {
-    font-size: 1.15rem;
+  .sponsor-price {
+    font-size: 1.4rem;
   }
+
 }
