@@ -82,7 +82,10 @@ button {
   background: var(--yellow);
 }
 
-h1, h2, h3, strong {
+h1,
+h2,
+h3,
+strong {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -92,7 +95,8 @@ h2 {
   letter-spacing: -.05em;
 }
 
-h2 em, h1 em {
+h2 em,
+h1 em {
   color: var(--yellow);
   font-style: normal;
 }
@@ -119,7 +123,10 @@ h2 em, h1 em {
   justify-content: center;
 }
 
-/* NAVBAR */
+/* ==============================
+   NAVBAR
+   ============================== */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -155,7 +162,10 @@ h2 em, h1 em {
   padding: 2px;
   box-shadow: 0 5px 16px rgba(0,0,0,.18);
   display: block;
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
 }
 
 .brand img:hover {
@@ -202,7 +212,10 @@ h2 em, h1 em {
   cursor: pointer;
 }
 
-/* HERO */
+/* ==============================
+   HERO
+   ============================== */
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -210,8 +223,17 @@ h2 em, h1 em {
   align-items: center;
   padding: 150px 0 85px;
   background:
-    radial-gradient(circle at 75% 35%, rgba(245,197,24,.14), transparent 27%),
-    linear-gradient(120deg, #070707 0%, #111 55%, #070707 100%);
+    radial-gradient(
+      circle at 75% 35%,
+      rgba(245,197,24,.14),
+      transparent 27%
+    ),
+    linear-gradient(
+      120deg,
+      #070707 0%,
+      #111 55%,
+      #070707 100%
+    );
   color: white;
   overflow: hidden;
 }
@@ -221,7 +243,13 @@ h2 em, h1 em {
   position: absolute;
   inset: auto 0 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--yellow),
+      transparent
+    );
   opacity: .5;
 }
 
@@ -291,7 +319,10 @@ h2 em, h1 em {
   font-weight: 800;
   font-size: .78rem;
   letter-spacing: .06em;
-  transition: transform .2s, box-shadow .2s, background .2s;
+  transition:
+    transform .2s,
+    box-shadow .2s,
+    background .2s;
 }
 
 .btn:hover {
@@ -339,7 +370,8 @@ h2 em, h1 em {
   font-size: .8rem;
 }
 
-.event-meta b, .event-meta small {
+.event-meta b,
+.event-meta small {
   display: block;
 }
 
@@ -348,7 +380,11 @@ h2 em, h1 em {
   margin-top: 2px;
 }
 
-.hero-logo-card {
+/* ==============================
+   HERO LOGO
+   ============================== */
+
+.hero-logo-box {
   min-height: 455px;
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 35px;
@@ -358,45 +394,104 @@ h2 em, h1 em {
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 40px;
   box-shadow: 0 30px 100px rgba(0,0,0,.35);
   overflow: hidden;
 }
 
-.hero-logo-card::before {
+/* Lingkaran dekorasi belakang */
+.hero-logo-box::before {
   content: "";
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 330px;
+  height: 330px;
   border-radius: 50%;
-  border: 1px solid rgba(245,197,24,.25);
+  border: 1px solid rgba(245,197,24,.28);
+  box-shadow:
+    0 0 60px rgba(245,197,24,.08),
+    inset 0 0 40px rgba(245,197,24,.04);
 }
 
-.hero-logo-card img {
-  position: relative;
-  width: 235px;
-  height: 235px;
-  object-fit: cover;
+/* Glow belakang */
+.hero-logo-box::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(245,197,24,.13);
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+/* Logo utama */
+.hero-logo-circle {
+  width: 245px;
+  height: 245px;
+  padding: 8px;
   border-radius: 50%;
   background: white;
-  border: 8px solid white;
-  box-shadow: 0 0 55px rgba(245,197,24,.15);
+  border: 3px solid var(--yellow);
+  box-shadow:
+    0 0 0 8px rgba(245,197,24,.08),
+    0 0 45px rgba(245,197,24,.25),
+    0 20px 50px rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
 
-.hero-logo-card > span {
+/* Gambar logo */
+.hero-logo-circle img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover logo */
+.hero-logo-circle:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow:
+    0 0 0 10px rgba(245,197,24,.1),
+    0 0 65px rgba(245,197,24,.4),
+    0 25px 60px rgba(0,0,0,.45);
+}
+
+/* Tulisan bawah logo */
+.hero-logo-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 28px;
+}
+
+.hero-logo-text h3 {
+  color: white;
   font-family: "Montserrat", sans-serif;
+  font-size: 1.05rem;
   font-weight: 900;
   letter-spacing: .16em;
-  margin-top: 25px;
 }
 
-.hero-logo-card > small {
+.hero-logo-text p {
   color: var(--yellow);
-  letter-spacing: .15em;
-  font-size: .62rem;
-  margin-top: 5px;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  margin-top: 6px;
 }
 
-/* ABOUT */
+/* ==============================
+   ABOUT
+   ============================== */
+
 .about-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -407,7 +502,9 @@ h2 em, h1 em {
   padding: 32px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  transition: transform .25s, box-shadow .25s;
+  transition:
+    transform .25s,
+    box-shadow .25s;
 }
 
 .info-card:hover {
@@ -491,7 +588,10 @@ h2 em, h1 em {
   margin-top: 7px;
 }
 
-/* FUNDRAISING */
+/* ==============================
+   FUNDRAISING
+   ============================== */
+
 .fund-section {
   background: var(--black);
   color: white;
@@ -610,7 +710,10 @@ h2 em, h1 em {
   width: 100%;
 }
 
-/* TRANSPARENCY */
+/* ==============================
+   TRANSPARENCY
+   ============================== */
+
 .budget-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -682,7 +785,10 @@ h2 em, h1 em {
   color: var(--yellow);
 }
 
-/* WHY */
+/* ==============================
+   WHY
+   ============================== */
+
 .dark-section {
   background: #111;
   color: white;
@@ -724,7 +830,10 @@ h2 em, h1 em {
   font-size: .9rem;
 }
 
-/* DONATION */
+/* ==============================
+   DONATION
+   ============================== */
+
 .donation-section {
   background: var(--cream);
 }
@@ -817,7 +926,10 @@ h2 em, h1 em {
   font-size: .8rem;
 }
 
-/* CONTACT */
+/* ==============================
+   CONTACT
+   ============================== */
+
 .contact-section {
   background: var(--yellow);
   padding: 90px 0;
@@ -893,7 +1005,10 @@ h2 em, h1 em {
   font-weight: 700;
 }
 
-/* FOOTER */
+/* ==============================
+   FOOTER
+   ============================== */
+
 footer {
   background: var(--black);
   color: white;
@@ -946,11 +1061,16 @@ footer a:hover {
   color: var(--yellow);
 }
 
-/* ANIMATION */
+/* ==============================
+   ANIMATION
+   ============================== */
+
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity .7s ease, transform .7s ease;
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
 }
 
 .reveal.show {
@@ -958,8 +1078,12 @@ footer a:hover {
   transform: translateY(0);
 }
 
-/* RESPONSIVE */
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
 @media (max-width: 900px) {
+
   .nav-menu {
     position: absolute;
     top: 76px;
@@ -994,7 +1118,7 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 
-  .hero-logo-card {
+  .hero-logo-box {
     min-height: 390px;
   }
 
@@ -1027,80 +1151,12 @@ footer a:hover {
   }
 }
 
+/* ==============================
+   MOBILE
+   ============================== */
+
 @media (max-width: 600px) {
+
   .container {
     width: min(100% - 28px, 1120px);
-  }
-
-  .section {
-    padding: 75px 0;
-  }
-
-  .hero {
-    padding-top: 120px;
-  }
-
-  .brand img {
-    width: 46px;
-    height: 46px;
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-  }
-
-  .event-meta {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .hero-logo-card {
-    min-height: 340px;
-  }
-
-  .hero-logo-card img {
-    width: 185px;
-    height: 185px;
-  }
-
-  .about-grid,
-  .budget-grid,
-  .competition-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .budget-total {
-    grid-template-columns: 1fr;
-  }
-
-  .budget-total div {
-    border-right: 0;
-    border-bottom: 1px solid #2b2b2b;
-    padding-bottom: 15px;
-  }
-
-  .budget-total div:last-child {
-    border-bottom: 0;
-  }
-
-  .progress-card {
-    padding: 25px;
-  }
-
-  .amount span {
-    font-size: 2rem;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+ 
