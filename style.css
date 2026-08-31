@@ -1733,27 +1733,105 @@ h2 em {
   border-color: var(--yellow);
 }
 
+/* =========================================================
+   REKENING DONASI
+   ========================================================= */
+
 .payment-placeholder {
   margin-top: 22px;
+  padding: 18px;
 
-  border:
-    1px dashed #bbb;
+  background: #ffffff;
+  border: 1px solid #e6e6e3;
+  border-radius: 20px;
 
-  border-radius: 14px;
-
-  padding: 16px;
-
-  text-align: center;
-
-  font-weight: 700;
-
-  font-size: .82rem;
+  text-align: left;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .07);
 }
 
-.payment-placeholder small {
-  color: #888;
+.payment-placeholder > strong {
+  display: block;
+  margin-bottom: 14px;
 
-  font-weight: 400;
+  color: var(--black);
+  font-family: "Montserrat", sans-serif;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+.bank-account {
+  position: relative;
+
+  margin-bottom: 12px;
+  padding: 16px 15px 16px 18px;
+
+  background: #f8f8f6;
+  border: 1px solid #ededeb;
+  border-radius: 16px;
+
+  overflow: hidden;
+  transition: .25s ease;
+}
+
+.bank-account::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 5px;
+  height: 100%;
+
+  background: var(--yellow);
+}
+
+.bank-account:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--yellow);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .07);
+}
+
+.bank-account span {
+  display: block;
+  margin-bottom: 6px;
+
+  color: #555;
+  font-size: .76rem;
+  font-weight: 800;
+}
+
+.bank-account b {
+  display: block;
+  margin-bottom: 4px;
+
+  color: var(--black);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  word-break: break-all;
+}
+
+.bank-account small {
+  display: block;
+  color: #777;
+  font-size: .68rem;
+  font-weight: 500;
+}
+
+.payment-note {
+  margin: 14px 0 0;
+  padding: 12px 13px;
+
+  background: #fff9dc;
+  border-radius: 12px;
+
+  color: #666;
+  font-size: .68rem;
+  line-height: 1.55;
 }
 
 .text-link {
@@ -2336,4 +2414,43 @@ footer a:hover {
     font-size: 1.4rem;
   }
 
+}
+
+
+/* =========================================================
+   REKENING — DARK MODE
+   ========================================================= */
+
+body.dark .payment-placeholder {
+  background: #181818;
+  border-color: #292929;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+}
+
+body.dark .payment-placeholder > strong {
+  color: #ffffff;
+}
+
+body.dark .bank-account {
+  background: #222222;
+  border-color: #333333;
+}
+
+body.dark .bank-account span,
+body.dark .bank-account b {
+  color: #ffffff;
+}
+
+body.dark .bank-account small {
+  color: #aaa;
+}
+
+body.dark .bank-account:hover {
+  background: #292600;
+  border-color: var(--yellow);
+}
+
+body.dark .payment-note {
+  background: #292600;
+  color: #ddd;
 }
