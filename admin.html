@@ -4,628 +4,759 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin TOS 2026</title>
+  <title>Admin | Talent Of Student 2026</title>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
       min-height: 100vh;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      background: linear-gradient(135deg, #fff8d6, #ffffff);
+      color: #111;
     }
 
     .container {
       width: 100%;
-      max-width: 500px;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 85px;
+      height: 85px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #111;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
     }
 
     .card {
       background: white;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    h1 {
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      color: #777;
-      margin-bottom: 25px;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+      border: 1px solid #eee;
     }
 
     label {
       display: block;
-      margin: 15px 0 8px;
       font-weight: bold;
+      margin-bottom: 8px;
     }
 
     input {
       width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
+      padding: 14px;
+      border: 1px solid #ccc;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 15px;
       outline: none;
+      margin-bottom: 15px;
     }
 
     input:focus {
       border-color: #f5c400;
+      box-shadow: 0 0 0 3px rgba(245,196,0,0.15);
     }
 
     button {
       width: 100%;
       border: none;
-      border-radius: 10px;
       padding: 14px;
-      margin-top: 20px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-login {
       background: #f5c400;
+      color: #111;
     }
 
-    button:hover {
-      opacity: 0.9;
+    .btn-login:hover {
+      transform: translateY(-2px);
+      background: #e8b900;
     }
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .logout {
-      background: #222;
+    .btn-save {
+      background: #111;
       color: white;
+      margin-top: 15px;
     }
 
-    .hidden {
+    .btn-save:hover {
+      transform: translateY(-2px);
+      background: #333;
+    }
+
+    .btn-logout {
+      background: #eee;
+      color: #111;
+      margin-top: 10px;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
       display: none;
     }
 
-    .current {
-      background: #f7f7f7;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px 0;
+    .success {
+      display: block;
+      background: #e9f9ef;
+      color: #137333;
     }
 
-    .current small {
-      color: #777;
+    .error {
+      display: block;
+      background: #fff0f0;
+      color: #c62828;
     }
 
-    .current h2 {
-      margin-top: 5px;
+    .info {
+      display: block;
+      background: #fff8d6;
+      color: #725900;
     }
 
-    #loginMessage,
-    #message {
-      margin-top: 15px;
+    .hidden {
+      display: none !important;
+    }
+
+    .admin-header {
+      margin-bottom: 20px;
+    }
+
+    .admin-header h2 {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .admin-email {
+      color: #666;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .field {
+      margin-top: 18px;
+    }
+
+    .field input {
+      margin-bottom: 0;
+    }
+
+    .info-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff8d6;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer {
       text-align: center;
-      font-weight: bold;
+      margin-top: 20px;
+      color: #777;
+      font-size: 13px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- ==========================================
-       LOGIN
-       ========================================== -->
+    <!-- ================= LOGIN ================= -->
+    <div id="loginSection">
 
-  <div class="card" id="loginCard">
+      <div class="logo">
+        <img src="logo-tos.jpeg" alt="Logo TOS">
+      </div>
 
-    <h1>Admin TOS 2026 🔐</h1>
+      <h1>Admin TOS 2026</h1>
 
-    <p class="subtitle">
-      Login untuk mengatur dana terkumpul.
-    </p>
+      <p class="subtitle">
+        Login menggunakan Magic Link
+      </p>
 
-    <label for="email">
-      Email
-    </label>
+      <div class="card">
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Email admin"
-      autocomplete="email"
-    >
+        <label for="email">Email Admin</label>
 
-    <label for="password">
-      Password
-    </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Masukkan email admin"
+          autocomplete="email"
+        >
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-      autocomplete="current-password"
-    >
+        <button
+          class="btn-login"
+          id="loginButton"
+        >
+          📩 Kirim Link Login
+        </button>
 
-    <button id="loginBtn">
-      Login
-    </button>
+        <div id="loginMessage" class="message"></div>
 
-    <div id="loginMessage"></div>
+        <div class="info-box">
+          💡 Masukkan email yang sudah terdaftar sebagai user di Supabase.
+          Setelah itu cek email dan klik link login yang dikirimkan.
+        </div>
 
-  </div>
-
-
-  <!-- ==========================================
-       DASHBOARD
-       ========================================== -->
-
-  <div class="card hidden" id="dashboardCard">
-
-    <h1>Dashboard 💰</h1>
-
-    <p class="subtitle">
-      Kelola dana TOS 2026
-    </p>
-
-    <div class="current">
-
-      <small>
-        Dana terkumpul saat ini
-      </small>
-
-      <h2 id="currentAmount">
-        Rp0
-      </h2>
+      </div>
 
     </div>
 
 
-    <label for="targetAmount">
-      Target Dana
-    </label>
+    <!-- ================= ADMIN DASHBOARD ================= -->
+    <div id="adminSection" class="hidden">
 
-    <input
-      type="number"
-      id="targetAmount"
-      placeholder="47005000"
-      min="1"
-    >
+      <div class="logo">
+        <img src="logo-tos.jpeg" alt="Logo TOS">
+      </div>
+
+      <div class="card">
+
+        <div class="admin-header">
+          <h2>👑 Dashboard Admin</h2>
+          <div class="admin-email" id="adminEmail">
+            -
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="targetAmount">
+            🎯 Target Dana
+          </label>
+
+          <input
+            type="number"
+            id="targetAmount"
+            min="0"
+            placeholder="47005000"
+          >
+        </div>
+
+        <div class="field">
+          <label for="currentAmount">
+            💰 Dana Terkumpul
+          </label>
+
+          <input
+            type="number"
+            id="currentAmount"
+            min="0"
+            placeholder="0"
+          >
+        </div>
+
+        <button
+          class="btn-save"
+          id="saveButton"
+        >
+          💾 Simpan Perubahan
+        </button>
+
+        <button
+          class="btn-logout"
+          id="logoutButton"
+        >
+          🚪 Logout
+        </button>
+
+        <div id="saveMessage" class="message"></div>
+
+        <div class="info-box">
+          <strong>Catatan:</strong><br>
+          Setiap perubahan dana akan tersimpan di database
+          dan dapat ditampilkan pada website TOS 2026.
+        </div>
+
+      </div>
+
+    </div>
 
 
-    <label for="newAmount">
-      Dana Terkumpul
-    </label>
-
-    <input
-      type="number"
-      id="newAmount"
-      placeholder="0"
-      min="0"
-    >
-
-
-    <button id="saveBtn">
-      💾 Simpan Perubahan
-    </button>
-
-
-    <button
-      class="logout"
-      id="logoutBtn"
-    >
-      Logout
-    </button>
-
-
-    <div id="message"></div>
+    <div class="footer">
+      TALENT OF STUDENT 2026
+    </div>
 
   </div>
 
-</div>
+
+  <!-- ================= SUPABASE ================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase-config.js"></script>
 
 
-<!-- ==========================================
-     SUPABASE
-     ========================================== -->
+  <script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    // ==========================================
+    // SUPABASE CLIENT
+    // ==========================================
 
-<script src="supabase-config.js"></script>
-
-
-<script>
-
-  // ==========================================
-  // SUPABASE CLIENT
-  // ==========================================
-
-  const supabaseClient =
-    window.supabase.createClient(
+    const supabaseClient = window.supabase.createClient(
       window.TOS_SUPABASE_URL,
       window.TOS_SUPABASE_KEY
     );
 
 
-  // ==========================================
-  // ELEMENT
-  // ==========================================
+    // ==========================================
+    // ELEMENT
+    // ==========================================
 
-  const loginCard =
-    document.getElementById("loginCard");
+    const loginSection = document.getElementById("loginSection");
+    const adminSection = document.getElementById("adminSection");
 
-  const dashboardCard =
-    document.getElementById("dashboardCard");
+    const emailInput = document.getElementById("email");
+    const loginButton = document.getElementById("loginButton");
+    const loginMessage = document.getElementById("loginMessage");
 
-  const loginBtn =
-    document.getElementById("loginBtn");
+    const adminEmail = document.getElementById("adminEmail");
 
-  const saveBtn =
-    document.getElementById("saveBtn");
+    const targetAmount = document.getElementById("targetAmount");
+    const currentAmount = document.getElementById("currentAmount");
 
-  const logoutBtn =
-    document.getElementById("logoutBtn");
+    const saveButton = document.getElementById("saveButton");
+    const saveMessage = document.getElementById("saveMessage");
 
-  const loginMessage =
-    document.getElementById("loginMessage");
-
-  const message =
-    document.getElementById("message");
-
-  const currentAmount =
-    document.getElementById("currentAmount");
-
-  const targetAmount =
-    document.getElementById("targetAmount");
-
-  const newAmount =
-    document.getElementById("newAmount");
+    const logoutButton = document.getElementById("logoutButton");
 
 
-  // ==========================================
-  // FORMAT RUPIAH
-  // ==========================================
+    // ==========================================
+    // MESSAGE
+    // ==========================================
 
-  function rupiah(number) {
+    function showMessage(element, text, type) {
 
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0
-    }).format(Number(number) || 0);
+      element.textContent = text;
 
-  }
-
-
-  // ==========================================
-  // LOAD DATA FUNDRAISING
-  // ==========================================
-
-  async function loadData() {
-
-    message.textContent =
-      "Mengambil data dana...";
-
-
-    const { data, error } =
-      await supabaseClient
-        .from("fundraising")
-        .select("target_amount, current_amount")
-        .eq("id", 1)
-        .single();
-
-
-    if (error) {
-
-      console.error(
-        "Load data error:",
-        error
-      );
-
-      message.textContent =
-        "❌ Gagal mengambil data dana.";
-
-      return;
+      element.className = "message " + type;
 
     }
 
 
-    currentAmount.textContent =
-      rupiah(data.current_amount);
+    // ==========================================
+    // TAMPILKAN DASHBOARD
+    // ==========================================
+
+    function showAdmin(user) {
+
+      loginSection.classList.add("hidden");
+
+      adminSection.classList.remove("hidden");
+
+      adminEmail.textContent =
+        "Login sebagai: " + user.email;
+
+      loadFundraising();
+
+    }
 
 
-    targetAmount.value =
-      data.target_amount;
+    // ==========================================
+    // TAMPILKAN LOGIN
+    // ==========================================
+
+    function showLogin() {
+
+      loginSection.classList.remove("hidden");
+
+      adminSection.classList.add("hidden");
+
+    }
 
 
-    newAmount.value =
-      data.current_amount;
+    // ==========================================
+    // KIRIM MAGIC LINK
+    // ==========================================
 
+    loginButton.addEventListener("click", async () => {
 
-    message.textContent = "";
+      const email = emailInput.value.trim();
 
-  }
+      if (!email) {
 
-
-  // ==========================================
-  // LOGIN
-  // ==========================================
-
-  loginBtn.addEventListener(
-    "click",
-    async () => {
-
-      const email =
-        document
-          .getElementById("email")
-          .value
-          .trim();
-
-
-      const password =
-        document
-          .getElementById("password")
-          .value;
-
-
-      if (!email || !password) {
-
-        loginMessage.textContent =
-          "❌ Email dan password wajib diisi.";
+        showMessage(
+          loginMessage,
+          "❌ Silakan masukkan email admin.",
+          "error"
+        );
 
         return;
-
       }
 
 
-      loginBtn.disabled = true;
+      loginButton.disabled = true;
 
-      loginBtn.textContent =
-        "Sedang login...";
+      loginButton.textContent = "Mengirim...";
 
-
-      loginMessage.textContent =
-        "";
+      loginMessage.className = "message";
 
 
-      const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
+      try {
 
-          email: email,
+        const { error } =
+          await supabaseClient.auth.signInWithOtp({
 
-          password: password
+            email: email,
 
-        });
+            options: {
+
+              // Jangan membuat user baru
+              shouldCreateUser: false,
+
+              // Setelah klik link, kembali ke admin
+              emailRedirectTo:
+                window.location.origin +
+                "/admin.html"
+
+            }
+
+          });
 
 
-      if (error) {
+        if (error) {
 
-        console.error(
-          "Login error:",
-          error
+          throw error;
+
+        }
+
+
+        showMessage(
+          loginMessage,
+          "✅ Link login sudah dikirim ke email. Silakan buka email tersebut lalu klik link login.",
+          "success"
         );
 
 
-        loginMessage.textContent =
-          "❌ " + error.message;
+      } catch (error) {
 
+        console.error(error);
 
-        loginBtn.disabled = false;
-
-        loginBtn.textContent =
-          "Login";
-
-
-        return;
+        showMessage(
+          loginMessage,
+          "❌ " + error.message,
+          "error"
+        );
 
       }
 
 
-      console.log(
-        "Login berhasil:",
-        data.user.email
-      );
+      loginButton.disabled = false;
+
+      loginButton.textContent = "📩 Kirim Link Login";
+
+    });
 
 
-      loginMessage.textContent =
-        "";
+    // ==========================================
+    // CEK SESSION
+    // ==========================================
+
+    async function checkLogin() {
+
+      try {
+
+        const {
+          data,
+          error
+        } = await supabaseClient.auth.getSession();
 
 
-      loginCard.classList.add(
-        "hidden"
-      );
+        if (error) {
+
+          throw error;
+
+        }
 
 
-      dashboardCard.classList.remove(
-        "hidden"
-      );
+        if (data.session) {
+
+          showAdmin(data.session.user);
+
+        } else {
+
+          showLogin();
+
+        }
 
 
-      await loadData();
+      } catch (error) {
 
+        console.error(error);
 
-      loginBtn.disabled = false;
+        showMessage(
+          loginMessage,
+          "❌ Gagal memeriksa login: " + error.message,
+          "error"
+        );
 
-      loginBtn.textContent =
-        "Login";
+      }
 
     }
-  );
 
 
-  // ==========================================
-  // SIMPAN PERUBAHAN
-  // ==========================================
+    // ==========================================
+    // DETEKSI LOGIN DARI MAGIC LINK
+    // ==========================================
 
-  saveBtn.addEventListener(
-    "click",
-    async () => {
+    supabaseClient.auth.onAuthStateChange(
+      (event, session) => {
 
-      const target =
-        Number(targetAmount.value);
-
-
-      const current =
-        Number(newAmount.value);
+        console.log(
+          "Auth event:",
+          event
+        );
 
 
-      if (!target || target <= 0) {
+        if (session) {
 
-        message.textContent =
-          "❌ Target dana tidak valid.";
+          showAdmin(session.user);
 
-        return;
+        } else {
 
-      }
+          showLogin();
 
-
-      if (current < 0) {
-
-        message.textContent =
-          "❌ Dana terkumpul tidak boleh negatif.";
-
-        return;
+        }
 
       }
+    );
 
 
-      saveBtn.disabled = true;
+    // ==========================================
+    // LOAD DATA FUNDRAISING
+    // ==========================================
 
-      saveBtn.textContent =
-        "Menyimpan...";
+    async function loadFundraising() {
 
+      try {
 
-      message.textContent =
-        "";
+        const {
+          data,
+          error
+        } = await supabaseClient
 
-
-      const { error } =
-        await supabaseClient
           .from("fundraising")
-          .update({
 
-            target_amount: target,
+          .select(
+            "target_amount, current_amount"
+          )
 
-            current_amount: current,
+          .eq("id", 1)
 
-            updated_at:
-              new Date().toISOString()
-
-          })
-          .eq("id", 1);
+          .single();
 
 
-      if (error) {
+        if (error) {
 
-        console.error(
-          "Update error:",
-          error
+          throw error;
+
+        }
+
+
+        targetAmount.value =
+          Number(data.target_amount) || 0;
+
+        currentAmount.value =
+          Number(data.current_amount) || 0;
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          saveMessage,
+          "❌ Gagal mengambil data fundraising: " +
+          error.message,
+          "error"
         );
-
-
-        message.textContent =
-          "❌ Gagal menyimpan: " +
-          error.message;
-
-      } else {
-
-        currentAmount.textContent =
-          rupiah(current);
-
-
-        message.textContent =
-          "✅ Dana berhasil diperbarui!";
 
       }
 
-
-      saveBtn.disabled = false;
-
-      saveBtn.textContent =
-        "💾 Simpan Perubahan";
-
-    }
-  );
-
-
-  // ==========================================
-  // LOGOUT
-  // ==========================================
-
-  logoutBtn.addEventListener(
-    "click",
-    async () => {
-
-      await supabaseClient.auth.signOut();
-
-
-      dashboardCard.classList.add(
-        "hidden"
-      );
-
-
-      loginCard.classList.remove(
-        "hidden"
-      );
-
-
-      document.getElementById(
-        "password"
-      ).value = "";
-
-
-      loginMessage.textContent = "";
-
-      message.textContent = "";
-
-    }
-  );
-
-
-  // ==========================================
-  // CEK SESSION
-  // ==========================================
-
-  async function checkLogin() {
-
-    const { data } =
-      await supabaseClient.auth.getSession();
-
-
-    if (data.session) {
-
-      loginCard.classList.add(
-        "hidden"
-      );
-
-
-      dashboardCard.classList.remove(
-        "hidden"
-      );
-
-
-      await loadData();
-
     }
 
-  }
+
+    // ==========================================
+    // SIMPAN DATA
+    // ==========================================
+
+    saveButton.addEventListener(
+      "click",
+      async () => {
+
+        const target =
+          Number(targetAmount.value);
+
+        const current =
+          Number(currentAmount.value);
 
 
-  // ==========================================
-  // JALANKAN
-  // ==========================================
+        if (!Number.isFinite(target) || target < 0) {
 
-  checkLogin();
+          showMessage(
+            saveMessage,
+            "❌ Target dana tidak valid.",
+            "error"
+          );
 
-</script>
+          return;
+
+        }
+
+
+        if (!Number.isFinite(current) || current < 0) {
+
+          showMessage(
+            saveMessage,
+            "❌ Dana terkumpul tidak valid.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        saveButton.disabled = true;
+
+        saveButton.textContent =
+          "Menyimpan...";
+
+
+        try {
+
+          const {
+            error
+          } = await supabaseClient
+
+            .from("fundraising")
+
+            .update({
+
+              target_amount: target,
+
+              current_amount: current,
+
+              updated_at:
+                new Date().toISOString()
+
+            })
+
+            .eq("id", 1);
+
+
+          if (error) {
+
+            throw error;
+
+          }
+
+
+          showMessage(
+            saveMessage,
+            "✅ Data fundraising berhasil disimpan!",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            saveMessage,
+            "❌ Gagal menyimpan: " +
+            error.message,
+            "error"
+          );
+
+        }
+
+
+        saveButton.disabled = false;
+
+        saveButton.textContent =
+          "💾 Simpan Perubahan";
+
+      }
+    );
+
+
+    // ==========================================
+    // LOGOUT
+    // ==========================================
+
+    logoutButton.addEventListener(
+      "click",
+      async () => {
+
+        const {
+          error
+        } = await supabaseClient.auth.signOut();
+
+
+        if (error) {
+
+          showMessage(
+            saveMessage,
+            "❌ Gagal logout: " +
+            error.message,
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showLogin();
+
+        emailInput.value = "";
+
+      }
+    );
+
+
+    // ==========================================
+    // START
+    // ==========================================
+
+    checkLogin();
+
+  </script>
 
 </body>
 </html>
