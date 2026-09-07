@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Admin | Talent Of Student 2026</title>
+
 
   <style>
 
@@ -15,6 +21,7 @@
       box-sizing: border-box;
       font-family: Arial, Helvetica, sans-serif;
     }
+
 
     body {
 
@@ -31,6 +38,7 @@
 
     }
 
+
     .container {
 
       width: 100%;
@@ -42,6 +50,7 @@
 
     }
 
+
     .logo {
 
       text-align: center;
@@ -49,6 +58,7 @@
       margin-bottom: 20px;
 
     }
+
 
     .logo img {
 
@@ -63,6 +73,7 @@
 
     }
 
+
     h1 {
 
       text-align: center;
@@ -73,6 +84,7 @@
 
     }
 
+
     .subtitle {
 
       text-align: center;
@@ -82,6 +94,7 @@
       margin-bottom: 25px;
 
     }
+
 
     .card {
 
@@ -98,6 +111,7 @@
 
     }
 
+
     label {
 
       display: block;
@@ -107,6 +121,7 @@
       margin-bottom: 8px;
 
     }
+
 
     input {
 
@@ -126,6 +141,7 @@
 
     }
 
+
     input:focus {
 
       border-color: #f5c400;
@@ -134,6 +150,7 @@
         0 0 0 3px rgba(245,196,0,0.15);
 
     }
+
 
     button {
 
@@ -155,11 +172,13 @@
 
     }
 
+
     button:hover {
 
       transform: translateY(-2px);
 
     }
+
 
     button:disabled {
 
@@ -171,6 +190,7 @@
 
     }
 
+
     .btn-login {
 
       background: #f5c400;
@@ -179,11 +199,13 @@
 
     }
 
+
     .btn-login:hover {
 
       background: #e8b900;
 
     }
+
 
     .btn-save {
 
@@ -195,11 +217,13 @@
 
     }
 
+
     .btn-save:hover {
 
       background: #333;
 
     }
+
 
     .btn-logout {
 
@@ -210,6 +234,7 @@
       margin-top: 10px;
 
     }
+
 
     .message {
 
@@ -227,6 +252,7 @@
 
     }
 
+
     .success {
 
       display: block;
@@ -236,6 +262,7 @@
       color: #137333;
 
     }
+
 
     .error {
 
@@ -247,6 +274,7 @@
 
     }
 
+
     .info {
 
       display: block;
@@ -257,17 +285,20 @@
 
     }
 
+
     .hidden {
 
       display: none !important;
 
     }
 
+
     .admin-header {
 
       margin-bottom: 20px;
 
     }
+
 
     .admin-header h2 {
 
@@ -276,6 +307,7 @@
       margin-bottom: 5px;
 
     }
+
 
     .admin-status {
 
@@ -287,17 +319,20 @@
 
     }
 
+
     .field {
 
       margin-top: 18px;
 
     }
 
+
     .field input {
 
       margin-bottom: 0;
 
     }
+
 
     .info-box {
 
@@ -315,6 +350,7 @@
 
     }
 
+
     .current-box {
 
       margin-top: 15px;
@@ -331,11 +367,13 @@
 
     }
 
+
     .current-box strong {
 
       font-size: 18px;
 
     }
+
 
     .footer {
 
@@ -348,6 +386,31 @@
       font-size: 13px;
 
     }
+
+
+    .loading {
+
+      text-align: center;
+
+      margin-top: 15px;
+
+      color: #777;
+
+      font-size: 14px;
+
+    }
+
+
+    .divider {
+
+      height: 1px;
+
+      background: #eee;
+
+      margin: 20px 0;
+
+    }
+
 
   </style>
 
@@ -365,6 +428,7 @@
     <!-- ================================= -->
 
     <div id="loginSection">
+
 
       <div class="logo">
 
@@ -406,7 +470,9 @@
           class="btn-login"
           id="loginButton"
         >
+
           🔓 Masuk ke Dashboard
+
         </button>
 
 
@@ -424,12 +490,19 @@
 
           <br><br>
 
-          Jangan membagikan kode admin kepada orang lain.
+          🔒 Kode admin akan diperiksa oleh
+          Google Apps Script.
+
+          <br><br>
+
+          Jangan membagikan kode admin kepada
+          orang lain.
 
         </div>
 
 
       </div>
+
 
     </div>
 
@@ -479,15 +552,29 @@
         <div class="current-box">
 
           🎯 Target Dana:
+
           <strong id="displayTarget">
             Rp0
           </strong>
 
+
           <br>
 
+
           💰 Dana Terkumpul:
+
           <strong id="displayCurrent">
             Rp0
+          </strong>
+
+
+          <br>
+
+
+          📊 Persentase:
+
+          <strong id="displayPercentage">
+            0%
           </strong>
 
         </div>
@@ -575,11 +662,17 @@
 
 
 
+        <!-- ============================== -->
+        <!-- INFO SISTEM -->
+        <!-- ============================== -->
+
         <div class="info-box">
 
-          <strong>📌 Sistem otomatis</strong>
+          <strong>
+            📌 Sistem otomatis
+          </strong>
 
-          <br>
+          <br><br>
 
           Setiap kali data disimpan:
 
@@ -599,14 +692,24 @@
 
           • Progress fundraising akan ikut berubah
 
+          <br>
+
+          • Data diperbarui otomatis setiap
+          ±15 detik di website utama
+
         </div>
 
 
       </div>
 
+
     </div>
 
 
+
+    <!-- ================================= -->
+    <!-- FOOTER -->
+    <!-- ================================= -->
 
     <div class="footer">
 
@@ -640,50 +743,81 @@
     // ==========================================
 
     const loginSection =
-      document.getElementById("loginSection");
+      document.getElementById(
+        "loginSection"
+      );
+
 
     const adminSection =
-      document.getElementById("adminSection");
+      document.getElementById(
+        "adminSection"
+      );
 
 
     const adminCode =
-      document.getElementById("adminCode");
+      document.getElementById(
+        "adminCode"
+      );
 
 
     const loginButton =
-      document.getElementById("loginButton");
+      document.getElementById(
+        "loginButton"
+      );
 
 
     const loginMessage =
-      document.getElementById("loginMessage");
+      document.getElementById(
+        "loginMessage"
+      );
 
 
     const targetAmount =
-      document.getElementById("targetAmount");
+      document.getElementById(
+        "targetAmount"
+      );
 
 
     const currentAmount =
-      document.getElementById("currentAmount");
+      document.getElementById(
+        "currentAmount"
+      );
 
 
     const displayTarget =
-      document.getElementById("displayTarget");
+      document.getElementById(
+        "displayTarget"
+      );
 
 
     const displayCurrent =
-      document.getElementById("displayCurrent");
+      document.getElementById(
+        "displayCurrent"
+      );
+
+
+    const displayPercentage =
+      document.getElementById(
+        "displayPercentage"
+      );
 
 
     const saveButton =
-      document.getElementById("saveButton");
+      document.getElementById(
+        "saveButton"
+      );
 
 
     const saveMessage =
-      document.getElementById("saveMessage");
+      document.getElementById(
+        "saveMessage"
+      );
 
 
     const logoutButton =
-      document.getElementById("logoutButton");
+      document.getElementById(
+        "logoutButton"
+      );
 
 
 
@@ -700,7 +834,9 @@
           currency: "IDR",
           maximumFractionDigits: 0
         }
-      ).format(Number(number) || 0);
+      ).format(
+        Number(number) || 0
+      );
 
     }
 
@@ -716,7 +852,8 @@
       type
     ) {
 
-      element.textContent = text;
+      element.textContent =
+        text;
 
       element.className =
         "message " + type;
@@ -726,12 +863,124 @@
 
 
     // ==========================================
-    // LOGIN
+    // LOAD DATA FUNDRAISING
+    // ==========================================
+
+    async function loadFundraising() {
+
+      try {
+
+        const response =
+          await fetch(
+            FUNDRAISING_API +
+            "?t=" +
+            Date.now(),
+            {
+              method: "GET",
+              cache: "no-store"
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "HTTP " +
+            response.status
+          );
+
+        }
+
+
+        const data =
+          await response.json();
+
+
+        const target =
+          Number(data.target) || 0;
+
+
+        const current =
+          Number(data.current) || 0;
+
+
+        const percentage =
+          target > 0
+            ? Math.min(
+                (current / target) * 100,
+                100
+              )
+            : 0;
+
+
+
+        // =====================================
+        // UPDATE INPUT
+        // =====================================
+
+        targetAmount.value =
+          target;
+
+
+        currentAmount.value =
+          current;
+
+
+
+        // =====================================
+        // UPDATE DISPLAY
+        // =====================================
+
+        displayTarget.textContent =
+          formatRupiah(
+            target
+          );
+
+
+        displayCurrent.textContent =
+          formatRupiah(
+            current
+          );
+
+
+        displayPercentage.textContent =
+          `${percentage.toFixed(0)}%`;
+
+
+
+        console.log(
+          "📊 Data fundraising:",
+          data
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "❌ Gagal mengambil data:",
+          error
+        );
+
+
+        showMessage(
+          saveMessage,
+          "❌ Gagal mengambil data dari Google Sheets. Pastikan Apps Script sudah dideploy sebagai Web App dengan akses Anyone.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+
+    // ==========================================
+    // LOGIN ADMIN
     // ==========================================
 
     loginButton.addEventListener(
       "click",
-      () => {
+      async () => {
 
         const code =
           adminCode.value.trim();
@@ -750,32 +999,129 @@
         }
 
 
-        /*
-          Untuk sementara kode admin
-          akan diverifikasi oleh Apps Script.
-
-          Kode tidak disimpan di halaman ini.
-        */
+        loginButton.disabled =
+          true;
 
 
-        sessionStorage.setItem(
-          "tos_admin_code",
-          code
-        );
+        loginButton.textContent =
+          "⏳ Memeriksa...";
 
 
-        loginSection.classList.add(
-          "hidden"
-        );
+        loginMessage.className =
+          "message";
 
 
-        adminSection.classList.remove(
-          "hidden"
-        );
+        try {
+
+          const response =
+            await fetch(
+              FUNDRAISING_API,
+              {
+
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+
+                body:
+                  JSON.stringify({
+
+                    action: "login",
+
+                    code: code
+
+                  })
+
+              }
+            );
 
 
-        loadFundraising();
+          if (!response.ok) {
 
+            throw new Error(
+              "HTTP " +
+              response.status
+            );
+
+          }
+
+
+          const result =
+            await response.json();
+
+
+          if (!result.success) {
+
+            throw new Error(
+              result.message ||
+              "Kode admin salah."
+            );
+
+          }
+
+
+
+          // ===================================
+          // SIMPAN SESSION
+          // ===================================
+
+          sessionStorage.setItem(
+            "tos_admin_code",
+            code
+          );
+
+
+
+          // ===================================
+          // PINDAH KE DASHBOARD
+          // ===================================
+
+          loginSection.classList.add(
+            "hidden"
+          );
+
+
+          adminSection.classList.remove(
+            "hidden"
+          );
+
+
+          showMessage(
+            saveMessage,
+            "✅ Login berhasil. Selamat datang, Admin!",
+            "success"
+          );
+
+
+          await loadFundraising();
+
+
+        } catch (error) {
+
+          console.error(
+            "❌ Login error:",
+            error
+          );
+
+
+          showMessage(
+            loginMessage,
+            "❌ " +
+            error.message,
+            "error"
+          );
+
+        }
+
+
+        loginButton.disabled =
+          false;
+
+
+        loginButton.textContent =
+          "🔓 Masuk ke Dashboard";
 
       }
     );
@@ -783,74 +1129,23 @@
 
 
     // ==========================================
-    // LOAD DATA FUNDRAISING
+    // ENTER UNTUK LOGIN
     // ==========================================
 
-    async function loadFundraising() {
+    adminCode.addEventListener(
+      "keydown",
+      event => {
 
-      try {
+        if (
+          event.key === "Enter"
+        ) {
 
-        const response =
-          await fetch(
-            FUNDRAISING_API,
-            {
-              method: "GET",
-              cache: "no-store"
-            }
-          );
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            "HTTP " + response.status
-          );
+          loginButton.click();
 
         }
 
-
-        const data =
-          await response.json();
-
-
-        const target =
-          Number(data.target) || 0;
-
-
-        const current =
-          Number(data.current) || 0;
-
-
-        targetAmount.value =
-          target;
-
-
-        currentAmount.value =
-          current;
-
-
-        displayTarget.textContent =
-          formatRupiah(target);
-
-
-        displayCurrent.textContent =
-          formatRupiah(current);
-
-
-      } catch (error) {
-
-        console.error(error);
-
-
-        showMessage(
-          saveMessage,
-          "❌ Gagal mengambil data dari Google Sheets.",
-          "error"
-        );
-
       }
-
-    }
+    );
 
 
 
@@ -864,11 +1159,15 @@
 
 
         const target =
-          Number(targetAmount.value);
+          Number(
+            targetAmount.value
+          );
 
 
         const current =
-          Number(currentAmount.value);
+          Number(
+            currentAmount.value
+          );
 
 
         const code =
@@ -877,9 +1176,28 @@
           );
 
 
-        // ==============================
-        // VALIDASI
-        // ==============================
+
+        // =====================================
+        // VALIDASI SESSION
+        // =====================================
+
+        if (!code) {
+
+          showMessage(
+            saveMessage,
+            "❌ Sesi admin tidak ditemukan. Silakan login kembali.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+
+        // =====================================
+        // VALIDASI TARGET
+        // =====================================
 
         if (
           !Number.isFinite(target) ||
@@ -897,6 +1215,11 @@
         }
 
 
+
+        // =====================================
+        // VALIDASI CURRENT
+        // =====================================
+
         if (
           !Number.isFinite(current) ||
           current < 0
@@ -912,6 +1235,32 @@
 
         }
 
+
+
+        // =====================================
+        // CEK CURRENT > TARGET
+        // =====================================
+
+        if (
+          target > 0 &&
+          current > target
+        ) {
+
+          showMessage(
+            saveMessage,
+            "❌ Dana terkumpul tidak boleh lebih besar dari target.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+
+        // =====================================
+        // BUTTON LOADING
+        // =====================================
 
         saveButton.disabled =
           true;
@@ -937,12 +1286,16 @@
                 method: "POST",
 
                 headers: {
+
                   "Content-Type":
                     "text/plain;charset=utf-8"
+
                 },
 
                 body:
                   JSON.stringify({
+
+                    action: "update",
 
                     code: code,
 
@@ -954,6 +1307,16 @@
 
               }
             );
+
+
+          if (!response.ok) {
+
+            throw new Error(
+              "HTTP " +
+              response.status
+            );
+
+          }
 
 
           const result =
@@ -971,29 +1334,49 @@
 
 
 
-          // ============================
-          // UPDATE TAMPILAN
-          // ============================
+          // ===================================
+          // UPDATE DISPLAY
+          // ===================================
+
+          const percentage =
+            target > 0
+              ? Math.min(
+                  (current / target) * 100,
+                  100
+                )
+              : 0;
+
 
           displayTarget.textContent =
-            formatRupiah(target);
+            formatRupiah(
+              target
+            );
 
 
           displayCurrent.textContent =
-            formatRupiah(current);
+            formatRupiah(
+              current
+            );
+
+
+          displayPercentage.textContent =
+            `${percentage.toFixed(0)}%`;
 
 
 
           showMessage(
             saveMessage,
-            "✅ Data berhasil disimpan! Riwayat perubahan juga sudah dicatat.",
+            "✅ Data berhasil disimpan! Google Sheets dan riwayat sudah diperbarui.",
             "success"
           );
 
 
         } catch (error) {
 
-          console.error(error);
+          console.error(
+            "❌ Save error:",
+            error
+          );
 
 
           showMessage(
@@ -1006,13 +1389,17 @@
         }
 
 
+
+        // ===================================
+        // BUTTON NORMAL
+        // ===================================
+
         saveButton.disabled =
           false;
 
 
         saveButton.textContent =
           "💾 Simpan Perubahan";
-
 
       }
     );
@@ -1032,7 +1419,8 @@
         );
 
 
-        adminCode.value = "";
+        adminCode.value =
+          "";
 
 
         loginMessage.className =
@@ -1058,7 +1446,7 @@
 
 
     // ==========================================
-    // CEK SESSION ADMIN
+    // CEK SESSION
     // ==========================================
 
     const savedCode =
@@ -1073,9 +1461,11 @@
         "hidden"
       );
 
+
       adminSection.classList.remove(
         "hidden"
       );
+
 
       loadFundraising();
 
@@ -1086,4 +1476,5 @@
 
 
 </body>
+
 </html>
