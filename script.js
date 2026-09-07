@@ -212,72 +212,185 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // ==========================================
-  // 5. FUNDRAISING PROGRESS
-  // ==========================================
+// 5. FUNDRAISING PROGRESS - SUPABASE
+// ==========================================
 
-  const target = 43545000;
+const DEFAULT_TARGET = 47005000;
+const FUNDRAISING_ID = 1;
 
-  // Saat ini belum ada nominal donasi
-  // yang terverifikasi untuk ditampilkan.
-  const current = 0;
+const formatRupiah = (number) => {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(Number(number) || 0);
+};
 
+const renderFundraising = (data) => {
+
+  const target =
+    Number(data?.target_amount) || DEFAULT_TARGET;
+
+  const current =
+    Number(data?.current_amount) || 0;
 
   const percentage =
-    Math.min(
-      (current / target) * 100,
-      100
-    );
-
+    Math.min((current / target) * 100, 100);
 
   const progressFill =
-    document.getElementById(
-      "progressFill"
-    );
-
+    document.getElementById("progressFill");
 
   const progressPercent =
-    document.getElementById(
-      "progressPercent"
-    );
-
+    document.getElementById("progressPercent");
 
   const raisedAmount =
-    document.getElementById(
-      "raisedAmount"
-    );
-
+    document.getElementById("raisedAmount");
 
   if (progressFill) {
-
-    progressFill.style.width =
-      `${percentage}%`;
-
+    progressFill.style.width = `${percentage}%`;
   }
-
 
   if (progressPercent) {
-
     progressPercent.textContent =
       `${percentage.toFixed(0)}%`;
-
   }
-
 
   if (raisedAmount) {
-
     raisedAmount.textContent =
-      new Intl.NumberFormat(
-        "id-ID",
+      formatRupiah(current);
+  }
+
+  // Jika nanti ada elemen dengan atribut ini,
+  // nilainya juga akan ikut diperbarui.
+  document.querySelectorAll("[data-fund-target]")
+    .forEach(element => {
+      element.textContent = formatRupiah(target);
+    });
+
+  document.querySelectorAll("[data-fund-current]")
+    .forEach(element => {
+      element.textContent = formatRupiah(current);
+    });
+
+  document.querySelectorAll("[data-fund-percent]")
+    .forEach(element => {
+      element.textContent =
+        `${percentage.toFixed(0)}%`;
+    });
+
+  console.log(
+    `💰 Dana TOS: ${formatRupiah(current)} / ${formatRupiah(target)}`
+  );
+};
+
+
+// Ambil data dari Supabase
+const loadFundraising = async () => {
+
+  // Pastikan Supabase sudah dimuat
+  if (
+    typeof window.supabase === "undefined" ||
+    !window.TOS_SUPABASE_URL ||
+    !window.TOS_SUPABASE_KEY
+  ) {
+
+    console.warn(
+      "⚠️ Konfigurasi Supabase belum tersedia."
+    );
+
+    renderFundraising({
+      target_amount: DEFAULT_TARGET,
+      current_amount: 0
+    });
+
+    return;
+  }
+
+  try {
+
+    const supabaseClient =
+      window.supabase.createClient(
+        window.TOS_SUPABASE_URL,
+        window.TOS_SUPABASE_KEY
+      );
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("fundraising")
+      .select("target_amount, current_amount")
+      .eq("id", FUNDRAISING_ID)
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    renderFundraising(data);
+
+    // Update otomatis ketika data Supabase berubah
+    supabaseClient
+      .channel("fundraising-live")
+      .on(
+        "postgres_changes",
         {
-          style: "currency",
-          currency: "IDR",
-          maximumFractionDigits: 0
+          event: "UPDATE",
+          schema: "public",
+          table: "fundraising",
+          filter: `id=eq.${FUNDRAISING_ID}`
+        },
+        (payload) => {
+
+          console.log(
+            "🔄 Data fundraising diperbarui!"
+          );
+
+          renderFundraising(
+            payload.new
+          );
+
         }
-      ).format(current);
+      )
+      .subscribe();
+
+    // Cadangan: cek ulang setiap 15 detik
+    setInterval(async () => {
+
+      const {
+        data: latestData,
+        error: latestError
+      } = await supabaseClient
+        .from("fundraising")
+        .select("target_amount, current_amount")
+        .eq("id", FUNDRAISING_ID)
+        .single();
+
+      if (!latestError && latestData) {
+        renderFundraising(latestData);
+      }
+
+    }, 15000);
+
+  } catch (error) {
+
+    console.error(
+      "❌ Gagal mengambil data fundraising:",
+      error
+    );
+
+    renderFundraising({
+      target_amount: DEFAULT_TARGET,
+      current_amount: 0
+    });
 
   }
 
+};
 
+
+// Jalankan pengambilan data
+loadFundraising();
   // ==========================================
   // 6. NAVBAR SAAT SCROLL
   // ==========================================
