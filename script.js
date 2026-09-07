@@ -1,21 +1,17 @@
 // ==========================================
 // TALENT OF STUDENT 2026
-// Interactive JavaScript
+// FINAL SCRIPT.JS
+// Google Sheets Fundraising System
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-
 
   // ==========================================
   // 1. MOBILE NAVIGATION
   // ==========================================
 
-  const menuToggle =
-    document.querySelector(".menu-toggle");
-
-  const navMenu =
-    document.querySelector(".nav-menu");
-
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navMenu = document.querySelector(".nav-menu");
 
   if (menuToggle && navMenu) {
 
@@ -24,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen =
         navMenu.classList.toggle("open");
 
-
       menuToggle.setAttribute(
         "aria-expanded",
         String(isOpen)
@@ -32,23 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    navMenu.querySelectorAll("a").forEach(link => {
 
-    navMenu
-      .querySelectorAll("a")
-      .forEach(link => {
+      link.addEventListener("click", () => {
 
-        link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
 
-          navMenu.classList.remove("open");
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-        });
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
 
       });
+
+    });
 
   }
 
@@ -64,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeIcon =
     document.getElementById("themeIcon");
 
-
   const savedTheme =
     localStorage.getItem("tos-theme");
 
@@ -76,11 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "dark"
     );
 
-
     if (themeIcon) {
-
       themeIcon.textContent = "☀";
-
     }
 
   }
@@ -88,56 +76,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (themeToggle) {
 
-    themeToggle.addEventListener("click", () => {
+    themeToggle.addEventListener(
+      "click",
+      () => {
 
-      const isDark =
-        document.documentElement.getAttribute(
-          "data-theme"
-        ) === "dark";
-
-
-      if (isDark) {
-
-        document.documentElement.removeAttribute(
-          "data-theme"
-        );
+        const isDark =
+          document.documentElement.getAttribute(
+            "data-theme"
+          ) === "dark";
 
 
-        localStorage.setItem(
-          "tos-theme",
-          "light"
-        );
+        if (isDark) {
 
+          document.documentElement.removeAttribute(
+            "data-theme"
+          );
 
-        if (themeIcon) {
+          localStorage.setItem(
+            "tos-theme",
+            "light"
+          );
 
-          themeIcon.textContent = "☾";
+          if (themeIcon) {
+            themeIcon.textContent = "☾";
+          }
 
-        }
+        } else {
 
-      } else {
+          document.documentElement.setAttribute(
+            "data-theme",
+            "dark"
+          );
 
-        document.documentElement.setAttribute(
-          "data-theme",
-          "dark"
-        );
+          localStorage.setItem(
+            "tos-theme",
+            "dark"
+          );
 
-
-        localStorage.setItem(
-          "tos-theme",
-          "dark"
-        );
-
-
-        if (themeIcon) {
-
-          themeIcon.textContent = "☀";
+          if (themeIcon) {
+            themeIcon.textContent = "☀";
+          }
 
         }
 
       }
-
-    });
+    );
 
   }
 
@@ -205,7 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ".amount-options button"
     );
 
-
   const selectedAmount =
     document.getElementById(
       "selectedAmount"
@@ -214,50 +196,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   donationButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
+
+        donationButtons.forEach(btn => {
+
+          btn.classList.remove("active");
+
+        });
 
 
-      donationButtons.forEach(btn => {
-
-        btn.classList.remove("active");
-
-      });
+        button.classList.add("active");
 
 
-      button.classList.add("active");
-
-
-      const amount =
-        button.getAttribute(
-          "data-amount"
-        );
-
-
-      if (selectedAmount && amount) {
-
-        selectedAmount.textContent =
-          new Intl.NumberFormat(
-            "id-ID",
-            {
-              style: "currency",
-              currency: "IDR",
-              maximumFractionDigits: 0
-            }
-          ).format(
-            Number(amount)
+        const amount =
+          button.getAttribute(
+            "data-amount"
           );
 
-      }
 
-    });
+        if (
+          selectedAmount &&
+          amount
+        ) {
+
+          selectedAmount.textContent =
+            formatRupiah(
+              Number(amount)
+            );
+
+        }
+
+      }
+    );
 
   });
 
 
 
   // ==========================================
-  // 5. FUNDRAISING PROGRESS
-  // GOOGLE SHEETS
+  // 5. GOOGLE SHEETS FUNDRAISING
   // ==========================================
 
   const FUNDRAISING_API =
@@ -291,11 +270,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // ==========================================
-  // TAMPILKAN DATA FUNDRAISING
+  // UPDATE SEMUA TAMPILAN FUNDRAISING
   // ==========================================
 
   function renderFundraising(data) {
-
 
     const target =
       Number(data?.target) ||
@@ -324,9 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ==============================
+    // ========================================
     // PROGRESS BAR
-    // ==============================
+    // ========================================
 
     const progressFill =
       document.getElementById(
@@ -343,9 +321,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ==============================
+    // ========================================
     // PERSENTASE
-    // ==============================
+    // ========================================
 
     const progressPercent =
       document.getElementById(
@@ -362,9 +340,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ==============================
+    // ========================================
     // DANA TERKUMPUL
-    // ==============================
+    // ========================================
 
     const raisedAmount =
       document.getElementById(
@@ -381,9 +359,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ==============================
-    // TARGET
-    // ==============================
+    // ========================================
+    // ID YANG DIPAKAI INDEX.HTML
+    // ========================================
+
+    const fundRemaining =
+      document.getElementById(
+        "fundRemaining"
+      );
+
+
+    if (fundRemaining) {
+
+      fundRemaining.textContent =
+        formatRupiah(remaining);
+
+    }
+
+
+
+    const fundCurrent =
+      document.getElementById(
+        "fundCurrent"
+      );
+
+
+    if (fundCurrent) {
+
+      fundCurrent.textContent =
+        formatRupiah(current);
+
+    }
+
+
+
+    const fundTarget =
+      document.getElementById(
+        "fundTarget"
+      );
+
+
+    if (fundTarget) {
+
+      fundTarget.textContent =
+        formatRupiah(target);
+
+    }
+
+
+
+    const targetAmountDisplay =
+      document.getElementById(
+        "targetAmountDisplay"
+      );
+
+
+    if (targetAmountDisplay) {
+
+      targetAmountDisplay.textContent =
+        formatRupiah(target);
+
+    }
+
+
+
+    // ========================================
+    // DATA ATTRIBUTE
+    // ========================================
 
     document
       .querySelectorAll(
@@ -397,11 +439,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-
-    // ==============================
-    // DANA TERKUMPUL
-    // ==============================
-
     document
       .querySelectorAll(
         "[data-fund-current]"
@@ -414,11 +451,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-
-    // ==============================
-    // PERSENTASE
-    // ==============================
-
     document
       .querySelectorAll(
         "[data-fund-percent]"
@@ -430,11 +462,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       });
 
-
-
-    // ==============================
-    // KEKURANGAN DANA
-    // ==============================
 
     document
       .querySelectorAll(
@@ -449,8 +476,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+    // ========================================
+    // CONSOLE
+    // ========================================
+
     console.log(
-      `💰 Dana TOS: ${formatRupiah(current)} / ${formatRupiah(target)}`
+      "💰 TOS 2026 Fundraising:",
+      formatRupiah(current),
+      "/",
+      formatRupiah(target),
+      `(${percentage.toFixed(0)}%)`
     );
 
   }
@@ -458,13 +493,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // ==========================================
-  // AMBIL DATA GOOGLE SHEETS
+  // AMBIL DATA DARI GOOGLE SHEETS
   // ==========================================
 
   async function loadFundraising() {
 
     try {
-
 
       const response =
         await fetch(
@@ -492,9 +526,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       console.log(
-        "📊 Data fundraising:",
+        "📊 Data Google Sheets:",
         data
       );
+
+
+      if (
+        typeof data.target === "undefined" ||
+        typeof data.current === "undefined"
+      ) {
+
+        throw new Error(
+          "Format data Google Sheets tidak sesuai."
+        );
+
+      }
 
 
       renderFundraising(data);
@@ -502,21 +548,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (error) {
 
-
       console.error(
         "❌ Gagal mengambil data fundraising:",
         error
       );
 
 
+      // Website tetap menggunakan
+      // target default jika API gagal.
+
       renderFundraising({
-
-        target:
-          DEFAULT_TARGET,
-
-        current:
-          0
-
+        target: DEFAULT_TARGET,
+        current: 0
       });
 
     }
@@ -525,7 +568,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Jalankan pertama kali
+  // ==========================================
+  // LOAD PERTAMA
+  // ==========================================
 
   loadFundraising();
 
@@ -565,14 +610,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "div"
       );
 
-
     scrollProgress.id =
       "scrollProgress";
 
-
     scrollProgress.className =
       "scroll-progress";
-
 
     document.body.prepend(
       scrollProgress
@@ -582,47 +624,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  const updateScroll = () => {
+  const updateScroll =
+    () => {
+
+      if (navbar) {
+
+        navbar.classList.toggle(
+          "scrolled",
+          window.scrollY > 15
+        );
+
+      }
 
 
-    // ==============================
-    // NAVBAR
-    // ==============================
-
-    if (navbar) {
-
-      navbar.classList.toggle(
-        "scrolled",
-        window.scrollY > 15
-      );
-
-    }
+      const documentHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
 
 
-
-    // ==============================
-    // SCROLL PROGRESS
-    // ==============================
-
-    const documentHeight =
-      document.documentElement
-        .scrollHeight -
-      window.innerHeight;
+      const scrollPercentage =
+        documentHeight > 0
+          ? (
+              window.scrollY /
+              documentHeight
+            ) * 100
+          : 0;
 
 
-    const scrollPercentage =
-      documentHeight > 0
-        ? (
-            window.scrollY /
-            documentHeight
-          ) * 100
-        : 0;
+      scrollProgress.style.width =
+        `${scrollPercentage}%`;
 
-
-    scrollProgress.style.width =
-      `${scrollPercentage}%`;
-
-  };
+    };
 
 
   window.addEventListener(
@@ -652,7 +684,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         event => {
 
-
           const targetSelector =
             anchor.getAttribute(
               "href"
@@ -666,9 +697,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           if (!targetElement) {
-
             return;
-
           }
 
 
@@ -702,7 +731,6 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener(
       "click",
       () => {
-
 
         button.style.transform =
           "scale(0.97)";
@@ -742,7 +770,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       event => {
 
-
         event.preventDefault();
 
 
@@ -754,9 +781,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const whatsappURL =
-          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-            message
-          )}`;
+          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 
         window.open(
@@ -779,7 +804,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "click",
     event => {
 
-
       if (
         navMenu &&
         menuToggle &&
@@ -787,7 +811,6 @@ document.addEventListener("DOMContentLoaded", () => {
         !navMenu.contains(event.target) &&
         !menuToggle.contains(event.target)
       ) {
-
 
         navMenu.classList.remove(
           "open"
@@ -817,7 +840,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   sponsorCards.forEach(card => {
-
 
     card.addEventListener(
       "mouseenter",
