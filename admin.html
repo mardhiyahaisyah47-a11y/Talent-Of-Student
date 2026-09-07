@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Admin TOS 2026</title>
 
   <style>
@@ -31,7 +32,7 @@
       background: white;
       border-radius: 20px;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 
     h1 {
@@ -55,6 +56,11 @@
       border: 1px solid #ddd;
       border-radius: 10px;
       font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #f5c400;
     }
 
     button {
@@ -70,7 +76,12 @@
     }
 
     button:hover {
-      opacity: .9;
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .logout {
@@ -97,6 +108,7 @@
       margin-top: 5px;
     }
 
+    #loginMessage,
     #message {
       margin-top: 15px;
       text-align: center;
@@ -109,25 +121,39 @@
 
 <div class="container">
 
-  <!-- LOGIN -->
+  <!-- ==========================================
+       LOGIN
+       ========================================== -->
+
   <div class="card" id="loginCard">
 
     <h1>Admin TOS 2026 🔐</h1>
+
     <p class="subtitle">
       Login untuk mengatur dana terkumpul.
     </p>
 
-    <label>Email</label>
+    <label for="email">
+      Email
+    </label>
+
     <input
       type="email"
       id="email"
-      placeholder="Email admin">
+      placeholder="Email admin"
+      autocomplete="email"
+    >
 
-    <label>Password</label>
+    <label for="password">
+      Password
+    </label>
+
     <input
       type="password"
       id="password"
-      placeholder="Password">
+      placeholder="Password"
+      autocomplete="current-password"
+    >
 
     <button id="loginBtn">
       Login
@@ -138,7 +164,10 @@
   </div>
 
 
-  <!-- DASHBOARD -->
+  <!-- ==========================================
+       DASHBOARD
+       ========================================== -->
+
   <div class="card hidden" id="dashboardCard">
 
     <h1>Dashboard 💰</h1>
@@ -149,37 +178,53 @@
 
     <div class="current">
 
-      <small>Dana terkumpul saat ini</small>
+      <small>
+        Dana terkumpul saat ini
+      </small>
 
       <h2 id="currentAmount">
-        Rp 2000000
+        Rp0
       </h2>
 
     </div>
 
-    <label>Target Dana</label>
+
+    <label for="targetAmount">
+      Target Dana
+    </label>
 
     <input
       type="number"
       id="targetAmount"
-      placeholder="47005000">
+      placeholder="47005000"
+      min="1"
+    >
 
-    <label>Dana Terkumpul</label>
+
+    <label for="newAmount">
+      Dana Terkumpul
+    </label>
 
     <input
       type="number"
       id="newAmount"
-      placeholder="0">
+      placeholder="0"
+      min="0"
+    >
+
 
     <button id="saveBtn">
       💾 Simpan Perubahan
     </button>
 
+
     <button
       class="logout"
-      id="logoutBtn">
+      id="logoutBtn"
+    >
       Logout
     </button>
+
 
     <div id="message"></div>
 
@@ -188,32 +233,66 @@
 </div>
 
 
-<!-- SUPABASE -->
+<!-- ==========================================
+     SUPABASE
+     ========================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="supabase-config.js"></script>
 
+
 <script>
 
-  const supabaseClient = window.supabase.createClient(
-    window.TOS_SUPABASE_URL,
-    window.TOS_SUPABASE_KEY
-  );
+  // ==========================================
+  // SUPABASE CLIENT
+  // ==========================================
 
-  const loginCard = document.getElementById("loginCard");
-  const dashboardCard = document.getElementById("dashboardCard");
+  const supabaseClient =
+    window.supabase.createClient(
+      window.TOS_SUPABASE_URL,
+      window.TOS_SUPABASE_KEY
+    );
 
-  const loginBtn = document.getElementById("loginBtn");
-  const saveBtn = document.getElementById("saveBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
 
-  const loginMessage = document.getElementById("loginMessage");
-  const message = document.getElementById("message");
+  // ==========================================
+  // ELEMENT
+  // ==========================================
 
-  const currentAmount = document.getElementById("currentAmount");
-  const targetAmount = document.getElementById("targetAmount");
-  const newAmount = document.getElementById("newAmount");
+  const loginCard =
+    document.getElementById("loginCard");
 
+  const dashboardCard =
+    document.getElementById("dashboardCard");
+
+  const loginBtn =
+    document.getElementById("loginBtn");
+
+  const saveBtn =
+    document.getElementById("saveBtn");
+
+  const logoutBtn =
+    document.getElementById("logoutBtn");
+
+  const loginMessage =
+    document.getElementById("loginMessage");
+
+  const message =
+    document.getElementById("message");
+
+  const currentAmount =
+    document.getElementById("currentAmount");
+
+  const targetAmount =
+    document.getElementById("targetAmount");
+
+  const newAmount =
+    document.getElementById("newAmount");
+
+
+  // ==========================================
+  // FORMAT RUPIAH
+  // ==========================================
 
   function rupiah(number) {
 
@@ -221,174 +300,328 @@
       style: "currency",
       currency: "IDR",
       maximumFractionDigits: 0
-    }).format(number);
+    }).format(Number(number) || 0);
 
   }
 
 
+  // ==========================================
+  // LOAD DATA FUNDRAISING
+  // ==========================================
+
   async function loadData() {
 
-    const { data, error } = await supabaseClient
-      .from("fundraising")
-      .select("*")
-      .eq("id", 1)
-      .single();
+    message.textContent =
+      "Mengambil data dana...";
+
+
+    const { data, error } =
+      await supabaseClient
+        .from("fundraising")
+        .select("target_amount, current_amount")
+        .eq("id", 1)
+        .single();
+
 
     if (error) {
 
+      console.error(
+        "Load data error:",
+        error
+      );
+
       message.textContent =
-        "Gagal mengambil data dana.";
+        "❌ Gagal mengambil data dana.";
 
       return;
 
     }
+
 
     currentAmount.textContent =
       rupiah(data.current_amount);
 
+
     targetAmount.value =
       data.target_amount;
+
 
     newAmount.value =
       data.current_amount;
 
+
+    message.textContent = "";
+
   }
 
 
-  loginBtn.addEventListener("click", async () => {
+  // ==========================================
+  // LOGIN
+  // ==========================================
 
-    const email =
-      document.getElementById("email").value;
+  loginBtn.addEventListener(
+    "click",
+    async () => {
 
-    const password =
-      document.getElementById("password").value;
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
 
-    loginMessage.textContent =
-      "Sedang login...";
 
-    const { error } =
-      await supabaseClient.auth.signInWithPassword({
-        email,
-        password
-      });
+      const password =
+        document
+          .getElementById("password")
+          .value;
 
-    if (error) {
+
+      if (!email || !password) {
+
+        loginMessage.textContent =
+          "❌ Email dan password wajib diisi.";
+
+        return;
+
+      }
+
+
+      loginBtn.disabled = true;
+
+      loginBtn.textContent =
+        "Sedang login...";
+
 
       loginMessage.textContent =
-        "Login gagal. Periksa email dan password.";
-
-      return;
-
-    }
-
-    loginCard.classList.add("hidden");
-
-    dashboardCard.classList.remove("hidden");
-
-    loadData();
-
-  });
+        "";
 
 
-  saveBtn.addEventListener("click", async () => {
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
 
-    const target =
-      Number(targetAmount.value);
+          email: email,
 
-    const current =
-      Number(newAmount.value);
+          password: password
 
-    if (!target || target <= 0) {
-
-      message.textContent =
-        "Target dana tidak valid.";
-
-      return;
-
-    }
-
-    if (current < 0) {
-
-      message.textContent =
-        "Dana terkumpul tidak boleh negatif.";
-
-      return;
-
-    }
-
-    saveBtn.disabled = true;
-
-    saveBtn.textContent =
-      "Menyimpan...";
+        });
 
 
-    const { error } =
-      await supabaseClient
-        .from("fundraising")
-        .update({
-          target_amount: target,
-          current_amount: current,
-          updated_at: new Date().toISOString()
-        })
-        .eq("id", 1);
+      if (error) {
+
+        console.error(
+          "Login error:",
+          error
+        );
 
 
-    if (error) {
+        loginMessage.textContent =
+          "❌ " + error.message;
 
-      message.textContent =
-        "Gagal menyimpan perubahan.";
 
-      console.error(error);
+        loginBtn.disabled = false;
 
-    } else {
+        loginBtn.textContent =
+          "Login";
 
-      message.textContent =
-        "✅ Dana berhasil diperbarui!";
 
-      currentAmount.textContent =
-        rupiah(current);
+        return;
+
+      }
+
+
+      console.log(
+        "Login berhasil:",
+        data.user.email
+      );
+
+
+      loginMessage.textContent =
+        "";
+
+
+      loginCard.classList.add(
+        "hidden"
+      );
+
+
+      dashboardCard.classList.remove(
+        "hidden"
+      );
+
+
+      await loadData();
+
+
+      loginBtn.disabled = false;
+
+      loginBtn.textContent =
+        "Login";
 
     }
+  );
 
 
-    saveBtn.disabled = false;
+  // ==========================================
+  // SIMPAN PERUBAHAN
+  // ==========================================
 
-    saveBtn.textContent =
-      "💾 Simpan Perubahan";
+  saveBtn.addEventListener(
+    "click",
+    async () => {
 
-  });
+      const target =
+        Number(targetAmount.value);
 
 
-  logoutBtn.addEventListener("click", async () => {
+      const current =
+        Number(newAmount.value);
 
-    await supabaseClient.auth.signOut();
 
-    dashboardCard.classList.add("hidden");
+      if (!target || target <= 0) {
 
-    loginCard.classList.remove("hidden");
+        message.textContent =
+          "❌ Target dana tidak valid.";
 
-    document.getElementById("password").value = "";
+        return;
 
-  });
+      }
 
+
+      if (current < 0) {
+
+        message.textContent =
+          "❌ Dana terkumpul tidak boleh negatif.";
+
+        return;
+
+      }
+
+
+      saveBtn.disabled = true;
+
+      saveBtn.textContent =
+        "Menyimpan...";
+
+
+      message.textContent =
+        "";
+
+
+      const { error } =
+        await supabaseClient
+          .from("fundraising")
+          .update({
+
+            target_amount: target,
+
+            current_amount: current,
+
+            updated_at:
+              new Date().toISOString()
+
+          })
+          .eq("id", 1);
+
+
+      if (error) {
+
+        console.error(
+          "Update error:",
+          error
+        );
+
+
+        message.textContent =
+          "❌ Gagal menyimpan: " +
+          error.message;
+
+      } else {
+
+        currentAmount.textContent =
+          rupiah(current);
+
+
+        message.textContent =
+          "✅ Dana berhasil diperbarui!";
+
+      }
+
+
+      saveBtn.disabled = false;
+
+      saveBtn.textContent =
+        "💾 Simpan Perubahan";
+
+    }
+  );
+
+
+  // ==========================================
+  // LOGOUT
+  // ==========================================
+
+  logoutBtn.addEventListener(
+    "click",
+    async () => {
+
+      await supabaseClient.auth.signOut();
+
+
+      dashboardCard.classList.add(
+        "hidden"
+      );
+
+
+      loginCard.classList.remove(
+        "hidden"
+      );
+
+
+      document.getElementById(
+        "password"
+      ).value = "";
+
+
+      loginMessage.textContent = "";
+
+      message.textContent = "";
+
+    }
+  );
+
+
+  // ==========================================
+  // CEK SESSION
+  // ==========================================
 
   async function checkLogin() {
 
     const { data } =
       await supabaseClient.auth.getSession();
 
+
     if (data.session) {
 
-      loginCard.classList.add("hidden");
+      loginCard.classList.add(
+        "hidden"
+      );
 
-      dashboardCard.classList.remove("hidden");
 
-      loadData();
+      dashboardCard.classList.remove(
+        "hidden"
+      );
+
+
+      await loadData();
 
     }
 
   }
 
+
+  // ==========================================
+  // JALANKAN
+  // ==========================================
 
   checkLogin();
 
