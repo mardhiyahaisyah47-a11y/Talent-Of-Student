@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Admin | Talent Of Student 2026</title>
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -15,248 +17,493 @@
     }
 
     body {
+
       min-height: 100vh;
-      background: linear-gradient(135deg, #fff8d6, #ffffff);
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff8d6,
+          #ffffff
+        );
+
       color: #111;
+
     }
 
     .container {
+
       width: 100%;
       max-width: 480px;
+
       margin: 0 auto;
+
       padding: 30px 20px;
+
     }
 
     .logo {
+
       text-align: center;
+
       margin-bottom: 20px;
+
     }
 
     .logo img {
+
       width: 85px;
       height: 85px;
+
       object-fit: cover;
+
       border-radius: 50%;
+
       border: 4px solid #111;
+
     }
 
     h1 {
+
       text-align: center;
+
       font-size: 26px;
+
       margin-bottom: 6px;
+
     }
 
     .subtitle {
+
       text-align: center;
+
       color: #666;
+
       margin-bottom: 25px;
+
     }
 
     .card {
+
       background: white;
+
       border-radius: 18px;
+
       padding: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.10);
+
       border: 1px solid #eee;
+
     }
 
     label {
+
       display: block;
+
       font-weight: bold;
+
       margin-bottom: 8px;
+
     }
 
     input {
+
       width: 100%;
+
       padding: 14px;
+
       border: 1px solid #ccc;
+
       border-radius: 10px;
+
       font-size: 15px;
+
       outline: none;
+
       margin-bottom: 15px;
+
     }
 
     input:focus {
+
       border-color: #f5c400;
-      box-shadow: 0 0 0 3px rgba(245,196,0,0.15);
+
+      box-shadow:
+        0 0 0 3px rgba(245,196,0,0.15);
+
     }
 
     button {
+
       width: 100%;
+
       border: none;
+
       padding: 14px;
+
       border-radius: 10px;
+
       font-size: 15px;
+
       font-weight: bold;
+
       cursor: pointer;
+
       transition: 0.2s;
+
+    }
+
+    button:hover {
+
+      transform: translateY(-2px);
+
+    }
+
+    button:disabled {
+
+      opacity: 0.6;
+
+      cursor: not-allowed;
+
+      transform: none;
+
     }
 
     .btn-login {
+
       background: #f5c400;
+
       color: #111;
+
     }
 
     .btn-login:hover {
-      transform: translateY(-2px);
+
       background: #e8b900;
+
     }
 
     .btn-save {
+
       background: #111;
+
       color: white;
+
       margin-top: 15px;
+
     }
 
     .btn-save:hover {
-      transform: translateY(-2px);
+
       background: #333;
+
     }
 
     .btn-logout {
+
       background: #eee;
+
       color: #111;
+
       margin-top: 10px;
+
     }
 
     .message {
+
       margin-top: 15px;
+
       padding: 12px;
+
       border-radius: 10px;
+
       font-size: 14px;
+
       display: none;
+
+      line-height: 1.5;
+
     }
 
     .success {
+
       display: block;
+
       background: #e9f9ef;
+
       color: #137333;
+
     }
 
     .error {
+
       display: block;
+
       background: #fff0f0;
+
       color: #c62828;
+
     }
 
     .info {
+
       display: block;
+
       background: #fff8d6;
+
       color: #725900;
+
     }
 
     .hidden {
+
       display: none !important;
+
     }
 
     .admin-header {
+
       margin-bottom: 20px;
+
     }
 
     .admin-header h2 {
+
       font-size: 22px;
+
       margin-bottom: 5px;
+
     }
 
-    .admin-email {
-      color: #666;
+    .admin-status {
+
+      color: #137333;
+
       font-size: 14px;
-      word-break: break-word;
+
+      font-weight: bold;
+
     }
 
     .field {
+
       margin-top: 18px;
+
     }
 
     .field input {
+
       margin-bottom: 0;
+
     }
 
     .info-box {
+
       margin-top: 20px;
+
       padding: 15px;
+
       background: #fff8d6;
+
       border-radius: 12px;
+
       font-size: 14px;
+
       line-height: 1.6;
+
+    }
+
+    .current-box {
+
+      margin-top: 15px;
+
+      padding: 15px;
+
+      background: #f7f7f7;
+
+      border-radius: 12px;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+    }
+
+    .current-box strong {
+
+      font-size: 18px;
+
     }
 
     .footer {
+
       text-align: center;
+
       margin-top: 20px;
+
       color: #777;
+
       font-size: 13px;
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <div class="container">
 
-    <!-- ================= LOGIN ================= -->
+
+    <!-- ================================= -->
+    <!-- LOGIN ADMIN -->
+    <!-- ================================= -->
+
     <div id="loginSection">
 
       <div class="logo">
-        <img src="logo-tos.jpeg" alt="Logo TOS">
+
+        <img
+          src="logo-tos.jpeg"
+          alt="Logo TOS"
+        >
+
       </div>
 
-      <h1>Admin TOS 2026</h1>
+
+      <h1>
+        Admin TOS 2026
+      </h1>
+
 
       <p class="subtitle">
-        Login menggunakan Magic Link
+        Panel pengelolaan dana fundraising
       </p>
+
 
       <div class="card">
 
-        <label for="email">Email Admin</label>
+
+        <label for="adminCode">
+          🔐 Kode Admin
+        </label>
+
 
         <input
-          type="email"
-          id="email"
-          placeholder="Masukkan email admin"
-          autocomplete="email"
+          type="password"
+          id="adminCode"
+          placeholder="Masukkan kode admin"
+          autocomplete="off"
         >
+
 
         <button
           class="btn-login"
           id="loginButton"
         >
-          📩 Kirim Link Login
+          🔓 Masuk ke Dashboard
         </button>
 
-        <div id="loginMessage" class="message"></div>
+
+        <div
+          id="loginMessage"
+          class="message"
+        ></div>
+
 
         <div class="info-box">
-          💡 Masukkan email yang sudah terdaftar sebagai user di Supabase.
-          Setelah itu cek email dan klik link login yang dikirimkan.
+
+          💡 Halaman ini digunakan oleh panitia
+          untuk memperbarui jumlah dana yang sudah
+          terkumpul.
+
+          <br><br>
+
+          Jangan membagikan kode admin kepada orang lain.
+
         </div>
+
 
       </div>
 
     </div>
 
 
-    <!-- ================= ADMIN DASHBOARD ================= -->
-    <div id="adminSection" class="hidden">
+
+    <!-- ================================= -->
+    <!-- ADMIN DASHBOARD -->
+    <!-- ================================= -->
+
+    <div
+      id="adminSection"
+      class="hidden"
+    >
+
 
       <div class="logo">
-        <img src="logo-tos.jpeg" alt="Logo TOS">
+
+        <img
+          src="logo-tos.jpeg"
+          alt="Logo TOS"
+        >
+
       </div>
+
 
       <div class="card">
 
+
         <div class="admin-header">
-          <h2>👑 Dashboard Admin</h2>
-          <div class="admin-email" id="adminEmail">
-            -
+
+          <h2>
+            👑 Dashboard Admin
+          </h2>
+
+          <div class="admin-status">
+            ● Admin aktif
           </div>
+
         </div>
 
+
+
+        <!-- ============================== -->
+        <!-- DATA TERKINI -->
+        <!-- ============================== -->
+
+        <div class="current-box">
+
+          🎯 Target Dana:
+          <strong id="displayTarget">
+            Rp0
+          </strong>
+
+          <br>
+
+          💰 Dana Terkumpul:
+          <strong id="displayCurrent">
+            Rp0
+          </strong>
+
+        </div>
+
+
+
+        <!-- ============================== -->
+        <!-- TARGET -->
+        <!-- ============================== -->
+
         <div class="field">
+
           <label for="targetAmount">
             🎯 Target Dana
           </label>
+
 
           <input
             type="number"
@@ -264,12 +511,21 @@
             min="0"
             placeholder="47005000"
           >
+
         </div>
 
+
+
+        <!-- ============================== -->
+        <!-- DANA TERKUMPUL -->
+        <!-- ============================== -->
+
         <div class="field">
+
           <label for="currentAmount">
             💰 Dana Terkumpul
           </label>
+
 
           <input
             type="number"
@@ -277,282 +533,253 @@
             min="0"
             placeholder="0"
           >
+
         </div>
+
+
+
+        <!-- ============================== -->
+        <!-- SAVE -->
+        <!-- ============================== -->
 
         <button
           class="btn-save"
           id="saveButton"
         >
+
           💾 Simpan Perubahan
+
         </button>
+
+
+
+        <!-- ============================== -->
+        <!-- LOGOUT -->
+        <!-- ============================== -->
 
         <button
           class="btn-logout"
           id="logoutButton"
         >
-          🚪 Logout
+
+          🚪 Keluar
+
         </button>
 
-        <div id="saveMessage" class="message"></div>
+
+
+        <div
+          id="saveMessage"
+          class="message"
+        ></div>
+
+
 
         <div class="info-box">
-          <strong>Catatan:</strong><br>
-          Setiap perubahan dana akan tersimpan di database
-          dan dapat ditampilkan pada website TOS 2026.
+
+          <strong>📌 Sistem otomatis</strong>
+
+          <br>
+
+          Setiap kali data disimpan:
+
+          <br>
+
+          • Google Sheets akan diperbarui
+
+          <br>
+
+          • Riwayat perubahan akan dicatat
+
+          <br>
+
+          • Website utama akan membaca data terbaru
+
+          <br>
+
+          • Progress fundraising akan ikut berubah
+
         </div>
+
 
       </div>
 
     </div>
 
 
+
     <div class="footer">
+
       TALENT OF STUDENT 2026
+
     </div>
+
 
   </div>
 
 
-  <!-- ================= SUPABASE ================= -->
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="supabase-config.js"></script>
-
+  <!-- ================================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ================================= -->
 
   <script>
 
+
     // ==========================================
-    // SUPABASE CLIENT
+    // GOOGLE APPS SCRIPT API
     // ==========================================
 
-    const supabaseClient = window.supabase.createClient(
-      window.TOS_SUPABASE_URL,
-      window.TOS_SUPABASE_KEY
-    );
+    const FUNDRAISING_API =
+      "https://script.google.com/macros/s/AKfycbyGUkVLMueF3gznmgHjk4M4IwrRj6Aj61GHy_hXOrfU9wM4PcQ-90EKdMeFJN_LoFEg/exec";
+
 
 
     // ==========================================
     // ELEMENT
     // ==========================================
 
-    const loginSection = document.getElementById("loginSection");
-    const adminSection = document.getElementById("adminSection");
+    const loginSection =
+      document.getElementById("loginSection");
 
-    const emailInput = document.getElementById("email");
-    const loginButton = document.getElementById("loginButton");
-    const loginMessage = document.getElementById("loginMessage");
+    const adminSection =
+      document.getElementById("adminSection");
 
-    const adminEmail = document.getElementById("adminEmail");
 
-    const targetAmount = document.getElementById("targetAmount");
-    const currentAmount = document.getElementById("currentAmount");
+    const adminCode =
+      document.getElementById("adminCode");
 
-    const saveButton = document.getElementById("saveButton");
-    const saveMessage = document.getElementById("saveMessage");
 
-    const logoutButton = document.getElementById("logoutButton");
+    const loginButton =
+      document.getElementById("loginButton");
+
+
+    const loginMessage =
+      document.getElementById("loginMessage");
+
+
+    const targetAmount =
+      document.getElementById("targetAmount");
+
+
+    const currentAmount =
+      document.getElementById("currentAmount");
+
+
+    const displayTarget =
+      document.getElementById("displayTarget");
+
+
+    const displayCurrent =
+      document.getElementById("displayCurrent");
+
+
+    const saveButton =
+      document.getElementById("saveButton");
+
+
+    const saveMessage =
+      document.getElementById("saveMessage");
+
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+
+
+    // ==========================================
+    // FORMAT RUPIAH
+    // ==========================================
+
+    function formatRupiah(number) {
+
+      return new Intl.NumberFormat(
+        "id-ID",
+        {
+          style: "currency",
+          currency: "IDR",
+          maximumFractionDigits: 0
+        }
+      ).format(Number(number) || 0);
+
+    }
+
 
 
     // ==========================================
     // MESSAGE
     // ==========================================
 
-    function showMessage(element, text, type) {
+    function showMessage(
+      element,
+      text,
+      type
+    ) {
 
       element.textContent = text;
 
-      element.className = "message " + type;
+      element.className =
+        "message " + type;
 
     }
 
 
-    // ==========================================
-    // TAMPILKAN DASHBOARD
-    // ==========================================
-
-    function showAdmin(user) {
-
-      loginSection.classList.add("hidden");
-
-      adminSection.classList.remove("hidden");
-
-      adminEmail.textContent =
-        "Login sebagai: " + user.email;
-
-      loadFundraising();
-
-    }
-
 
     // ==========================================
-    // TAMPILKAN LOGIN
+    // LOGIN
     // ==========================================
 
-    function showLogin() {
+    loginButton.addEventListener(
+      "click",
+      () => {
 
-      loginSection.classList.remove("hidden");
-
-      adminSection.classList.add("hidden");
-
-    }
-
-
-    // ==========================================
-    // KIRIM MAGIC LINK
-    // ==========================================
-
-    loginButton.addEventListener("click", async () => {
-
-      const email = emailInput.value.trim();
-
-      if (!email) {
-
-        showMessage(
-          loginMessage,
-          "❌ Silakan masukkan email admin.",
-          "error"
-        );
-
-        return;
-      }
+        const code =
+          adminCode.value.trim();
 
 
-      loginButton.disabled = true;
+        if (!code) {
 
-      loginButton.textContent = "Mengirim...";
+          showMessage(
+            loginMessage,
+            "❌ Masukkan kode admin terlebih dahulu.",
+            "error"
+          );
 
-      loginMessage.className = "message";
-
-
-      try {
-
-        const { error } =
-          await supabaseClient.auth.signInWithOtp({
-
-            email: email,
-
-            options: {
-
-              // Jangan membuat user baru
-              shouldCreateUser: false,
-
-              // Setelah klik link, kembali ke admin
-              emailRedirectTo:
-                window.location.origin +
-                "/admin.html"
-
-            }
-
-          });
-
-
-        if (error) {
-
-          throw error;
+          return;
 
         }
 
 
-        showMessage(
-          loginMessage,
-          "✅ Link login sudah dikirim ke email. Silakan buka email tersebut lalu klik link login.",
-          "success"
+        /*
+          Untuk sementara kode admin
+          akan diverifikasi oleh Apps Script.
+
+          Kode tidak disimpan di halaman ini.
+        */
+
+
+        sessionStorage.setItem(
+          "tos_admin_code",
+          code
         );
 
 
-      } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-          loginMessage,
-          "❌ " + error.message,
-          "error"
-        );
-
-      }
-
-
-      loginButton.disabled = false;
-
-      loginButton.textContent = "📩 Kirim Link Login";
-
-    });
-
-
-    // ==========================================
-    // CEK SESSION
-    // ==========================================
-
-    async function checkLogin() {
-
-      try {
-
-        const {
-          data,
-          error
-        } = await supabaseClient.auth.getSession();
-
-
-        if (error) {
-
-          throw error;
-
-        }
-
-
-        if (data.session) {
-
-          showAdmin(data.session.user);
-
-        } else {
-
-          showLogin();
-
-        }
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-          loginMessage,
-          "❌ Gagal memeriksa login: " + error.message,
-          "error"
-        );
-
-      }
-
-    }
-
-
-    // ==========================================
-    // DETEKSI LOGIN DARI MAGIC LINK
-    // ==========================================
-
-    supabaseClient.auth.onAuthStateChange(
-      (event, session) => {
-
-        console.log(
-          "Auth event:",
-          event
+        loginSection.classList.add(
+          "hidden"
         );
 
 
-        if (session) {
+        adminSection.classList.remove(
+          "hidden"
+        );
 
-          showAdmin(session.user);
 
-        } else {
+        loadFundraising();
 
-          showLogin();
-
-        }
 
       }
     );
+
 
 
     // ==========================================
@@ -563,50 +790,68 @@
 
       try {
 
-        const {
-          data,
-          error
-        } = await supabaseClient
-
-          .from("fundraising")
-
-          .select(
-            "target_amount, current_amount"
-          )
-
-          .eq("id", 1)
-
-          .single();
+        const response =
+          await fetch(
+            FUNDRAISING_API,
+            {
+              method: "GET",
+              cache: "no-store"
+            }
+          );
 
 
-        if (error) {
+        if (!response.ok) {
 
-          throw error;
+          throw new Error(
+            "HTTP " + response.status
+          );
 
         }
 
 
+        const data =
+          await response.json();
+
+
+        const target =
+          Number(data.target) || 0;
+
+
+        const current =
+          Number(data.current) || 0;
+
+
         targetAmount.value =
-          Number(data.target_amount) || 0;
+          target;
+
 
         currentAmount.value =
-          Number(data.current_amount) || 0;
+          current;
+
+
+        displayTarget.textContent =
+          formatRupiah(target);
+
+
+        displayCurrent.textContent =
+          formatRupiah(current);
 
 
       } catch (error) {
 
         console.error(error);
 
+
         showMessage(
           saveMessage,
-          "❌ Gagal mengambil data fundraising: " +
-          error.message,
+          "❌ Gagal mengambil data dari Google Sheets.",
           "error"
         );
 
       }
 
     }
+
 
 
     // ==========================================
@@ -617,14 +862,29 @@
       "click",
       async () => {
 
+
         const target =
           Number(targetAmount.value);
+
 
         const current =
           Number(currentAmount.value);
 
 
-        if (!Number.isFinite(target) || target < 0) {
+        const code =
+          sessionStorage.getItem(
+            "tos_admin_code"
+          );
+
+
+        // ==============================
+        // VALIDASI
+        // ==============================
+
+        if (
+          !Number.isFinite(target) ||
+          target < 0
+        ) {
 
           showMessage(
             saveMessage,
@@ -637,7 +897,10 @@
         }
 
 
-        if (!Number.isFinite(current) || current < 0) {
+        if (
+          !Number.isFinite(current) ||
+          current < 0
+        ) {
 
           showMessage(
             saveMessage,
@@ -650,44 +913,80 @@
         }
 
 
-        saveButton.disabled = true;
+        saveButton.disabled =
+          true;
+
 
         saveButton.textContent =
-          "Menyimpan...";
+          "⏳ Menyimpan...";
+
+
+        saveMessage.className =
+          "message";
+
 
 
         try {
 
-          const {
-            error
-          } = await supabaseClient
 
-            .from("fundraising")
+          const response =
+            await fetch(
+              FUNDRAISING_API,
+              {
 
-            .update({
+                method: "POST",
 
-              target_amount: target,
+                headers: {
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
 
-              current_amount: current,
+                body:
+                  JSON.stringify({
 
-              updated_at:
-                new Date().toISOString()
+                    code: code,
 
-            })
+                    target: target,
 
-            .eq("id", 1);
+                    current: current
+
+                  })
+
+              }
+            );
 
 
-          if (error) {
+          const result =
+            await response.json();
 
-            throw error;
+
+          if (!result.success) {
+
+            throw new Error(
+              result.message ||
+              "Gagal menyimpan data."
+            );
 
           }
 
 
+
+          // ============================
+          // UPDATE TAMPILAN
+          // ============================
+
+          displayTarget.textContent =
+            formatRupiah(target);
+
+
+          displayCurrent.textContent =
+            formatRupiah(current);
+
+
+
           showMessage(
             saveMessage,
-            "✅ Data fundraising berhasil disimpan!",
+            "✅ Data berhasil disimpan! Riwayat perubahan juga sudah dicatat.",
             "success"
           );
 
@@ -696,9 +995,10 @@
 
           console.error(error);
 
+
           showMessage(
             saveMessage,
-            "❌ Gagal menyimpan: " +
+            "❌ Gagal menyimpan data: " +
             error.message,
             "error"
           );
@@ -706,13 +1006,17 @@
         }
 
 
-        saveButton.disabled = false;
+        saveButton.disabled =
+          false;
+
 
         saveButton.textContent =
           "💾 Simpan Perubahan";
 
+
       }
     );
+
 
 
     // ==========================================
@@ -721,42 +1025,65 @@
 
     logoutButton.addEventListener(
       "click",
-      async () => {
+      () => {
 
-        const {
-          error
-        } = await supabaseClient.auth.signOut();
-
-
-        if (error) {
-
-          showMessage(
-            saveMessage,
-            "❌ Gagal logout: " +
-            error.message,
-            "error"
-          );
-
-          return;
-
-        }
+        sessionStorage.removeItem(
+          "tos_admin_code"
+        );
 
 
-        showLogin();
+        adminCode.value = "";
 
-        emailInput.value = "";
+
+        loginMessage.className =
+          "message";
+
+
+        saveMessage.className =
+          "message";
+
+
+        adminSection.classList.add(
+          "hidden"
+        );
+
+
+        loginSection.classList.remove(
+          "hidden"
+        );
 
       }
     );
 
 
+
     // ==========================================
-    // START
+    // CEK SESSION ADMIN
     // ==========================================
 
-    checkLogin();
+    const savedCode =
+      sessionStorage.getItem(
+        "tos_admin_code"
+      );
+
+
+    if (savedCode) {
+
+      loginSection.classList.add(
+        "hidden"
+      );
+
+      adminSection.classList.remove(
+        "hidden"
+      );
+
+      loadFundraising();
+
+    }
+
 
   </script>
+
 
 </body>
 </html>
