@@ -1,1 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin TOS 2026</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #f5c400;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    .logout {
+      background: #222;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .current {
+      background: #f7f7f7;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+    }
+
+    .current small {
+      color: #777;
+    }
+
+    .current h2 {
+      margin-top: 5px;
+    }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LOGIN -->
+  <div class="card" id="loginCard">
+
+    <h1>Admin TOS 2026 🔐</h1>
+    <p class="subtitle">
+      Login untuk mengatur dana terkumpul.
+    </p>
+
+    <label>Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Email admin">
+
+    <label>Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Password">
+
+    <button id="loginBtn">
+      Login
+    </button>
+
+    <div id="loginMessage"></div>
+
+  </div>
+
+
+  <!-- DASHBOARD -->
+  <div class="card hidden" id="dashboardCard">
+
+    <h1>Dashboard 💰</h1>
+
+    <p class="subtitle">
+      Kelola dana TOS 2026
+    </p>
+
+    <div class="current">
+
+      <small>Dana terkumpul saat ini</small>
+
+      <h2 id="currentAmount">
+        Rp 0
+      </h2>
+
+    </div>
+
+    <label>Target Dana</label>
+
+    <input
+      type="number"
+      id="targetAmount"
+      placeholder="47005000">
+
+    <label>Dana Terkumpul</label>
+
+    <input
+      type="number"
+      id="newAmount"
+      placeholder="0">
+
+    <button id="saveBtn">
+      💾 Simpan Perubahan
+    </button>
+
+    <button
+      class="logout"
+      id="logoutBtn">
+      Logout
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+</div>
+
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<script>
+
+  const supabaseClient = window.supabase.createClient(
+    window.TOS_SUPABASE_URL,
+    window.TOS_SUPABASE_KEY
+  );
+
+  const loginCard = document.getElementById("loginCard");
+  const dashboardCard = document.getElementById("dashboardCard");
+
+  const loginBtn = document.getElementById("loginBtn");
+  const saveBtn = document.getElementById("saveBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  const loginMessage = document.getElementById("loginMessage");
+  const message = document.getElementById("message");
+
+  const currentAmount = document.getElementById("currentAmount");
+  const targetAmount = document.getElementById("targetAmount");
+  const newAmount = document.getElementById("newAmount");
+
+
+  function rupiah(number) {
+
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0
+    }).format(number);
+
+  }
+
+
+  async function loadData() {
+
+    const { data, error } = await supabaseClient
+      .from("fundraising")
+      .select("*")
+      .eq("id", 1)
+      .single();
+
+    if (error) {
+
+      message.textContent =
+        "Gagal mengambil data dana.";
+
+      return;
+
+    }
+
+    currentAmount.textContent =
+      rupiah(data.current_amount);
+
+    targetAmount.value =
+      data.target_amount;
+
+    newAmount.value =
+      data.current_amount;
+
+  }
+
+
+  loginBtn.addEventListener("click", async () => {
+
+    const email =
+      document.getElementById("email").value;
+
+    const password =
+      document.getElementById("password").value;
+
+    loginMessage.textContent =
+      "Sedang login...";
+
+    const { error } =
+      await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if (error) {
+
+      loginMessage.textContent =
+        "Login gagal. Periksa email dan password.";
+
+      return;
+
+    }
+
+    loginCard.classList.add("hidden");
+
+    dashboardCard.classList.remove("hidden");
+
+    loadData();
+
+  });
+
+
+  saveBtn.addEventListener("click", async () => {
+
+    const target =
+      Number(targetAmount.value);
+
+    const current =
+      Number(newAmount.value);
+
+    if (!target || target <= 0) {
+
+      message.textContent =
+        "Target dana tidak valid.";
+
+      return;
+
+    }
+
+    if (current < 0) {
+
+      message.textContent =
+        "Dana terkumpul tidak boleh negatif.";
+
+      return;
+
+    }
+
+    saveBtn.disabled = true;
+
+    saveBtn.textContent =
+      "Menyimpan...";
+
+
+    const { error } =
+      await supabaseClient
+        .from("fundraising")
+        .update({
+          target_amount: target,
+          current_amount: current,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", 1);
+
+
+    if (error) {
+
+      message.textContent =
+        "Gagal menyimpan perubahan.";
+
+      console.error(error);
+
+    } else {
+
+      message.textContent =
+        "✅ Dana berhasil diperbarui!";
+
+      currentAmount.textContent =
+        rupiah(current);
+
+    }
+
+
+    saveBtn.disabled = false;
+
+    saveBtn.textContent =
+      "💾 Simpan Perubahan";
+
+  });
+
+
+  logoutBtn.addEventListener("click", async () => {
+
+    await supabaseClient.auth.signOut();
+
+    dashboardCard.classList.add("hidden");
+
+    loginCard.classList.remove("hidden");
+
+    document.getElementById("password").value = "";
+
+  });
+
+
+  async function checkLogin() {
+
+    const { data } =
+      await supabaseClient.auth.getSession();
+
+    if (data.session) {
+
+      loginCard.classList.add("hidden");
+
+      dashboardCard.classList.remove("hidden");
+
+      loadData();
+
+    }
+
+  }
+
+
+  checkLogin();
+
+</script>
+
+</body>
+</html>
