@@ -24,7 +24,6 @@
 
 
     body {
-
       min-height: 100vh;
 
       background:
@@ -35,33 +34,26 @@
         );
 
       color: #111;
-
     }
 
 
     .container {
-
       width: 100%;
       max-width: 480px;
 
       margin: 0 auto;
 
       padding: 30px 20px;
-
     }
 
 
     .logo {
-
       text-align: center;
-
       margin-bottom: 20px;
-
     }
 
 
     .logo img {
-
       width: 85px;
       height: 85px;
 
@@ -70,34 +62,28 @@
       border-radius: 50%;
 
       border: 4px solid #111;
-
     }
 
 
     h1 {
-
       text-align: center;
 
       font-size: 26px;
 
       margin-bottom: 6px;
-
     }
 
 
     .subtitle {
-
       text-align: center;
 
       color: #666;
 
       margin-bottom: 25px;
-
     }
 
 
     .card {
-
       background: white;
 
       border-radius: 18px;
@@ -105,26 +91,23 @@
       padding: 25px;
 
       box-shadow:
-        0 10px 30px rgba(0,0,0,0.10);
+        0 10px 30px
+        rgba(0,0,0,0.10);
 
       border: 1px solid #eee;
-
     }
 
 
     label {
-
       display: block;
 
       font-weight: bold;
 
       margin-bottom: 8px;
-
     }
 
 
     input {
-
       width: 100%;
 
       padding: 14px;
@@ -138,22 +121,19 @@
       outline: none;
 
       margin-bottom: 15px;
-
     }
 
 
     input:focus {
-
       border-color: #f5c400;
 
       box-shadow:
-        0 0 0 3px rgba(245,196,0,0.15);
-
+        0 0 0 3px
+        rgba(245,196,0,0.15);
     }
 
 
     button {
-
       width: 100%;
 
       border: none;
@@ -169,75 +149,49 @@
       cursor: pointer;
 
       transition: 0.2s;
-
     }
 
 
     button:hover {
-
       transform: translateY(-2px);
-
     }
 
 
     button:disabled {
-
       opacity: 0.6;
 
       cursor: not-allowed;
 
       transform: none;
-
     }
 
 
     .btn-login {
-
       background: #f5c400;
 
       color: #111;
-
-    }
-
-
-    .btn-login:hover {
-
-      background: #e8b900;
-
     }
 
 
     .btn-save {
-
       background: #111;
 
       color: white;
 
       margin-top: 15px;
-
-    }
-
-
-    .btn-save:hover {
-
-      background: #333;
-
     }
 
 
     .btn-logout {
-
       background: #eee;
 
       color: #111;
 
       margin-top: 10px;
-
     }
 
 
     .message {
-
       margin-top: 15px;
 
       padding: 12px;
@@ -249,93 +203,28 @@
       display: none;
 
       line-height: 1.5;
-
     }
 
 
     .success {
-
       display: block;
 
       background: #e9f9ef;
 
       color: #137333;
-
     }
 
 
     .error {
-
       display: block;
 
       background: #fff0f0;
 
       color: #c62828;
-
-    }
-
-
-    .info {
-
-      display: block;
-
-      background: #fff8d6;
-
-      color: #725900;
-
-    }
-
-
-    .hidden {
-
-      display: none !important;
-
-    }
-
-
-    .admin-header {
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .admin-header h2 {
-
-      font-size: 22px;
-
-      margin-bottom: 5px;
-
-    }
-
-
-    .admin-status {
-
-      color: #137333;
-
-      font-size: 14px;
-
-      font-weight: bold;
-
-    }
-
-
-    .field {
-
-      margin-top: 18px;
-
-    }
-
-
-    .field input {
-
-      margin-bottom: 0;
-
     }
 
 
     .info-box {
-
       margin-top: 20px;
 
       padding: 15px;
@@ -347,12 +236,10 @@
       font-size: 14px;
 
       line-height: 1.6;
-
     }
 
 
     .current-box {
-
       margin-top: 15px;
 
       padding: 15px;
@@ -364,19 +251,20 @@
       font-size: 14px;
 
       line-height: 1.7;
-
     }
 
 
     .current-box strong {
-
       font-size: 18px;
+    }
 
+
+    .field {
+      margin-top: 18px;
     }
 
 
     .footer {
-
       text-align: center;
 
       margin-top: 20px;
@@ -384,33 +272,12 @@
       color: #777;
 
       font-size: 13px;
-
     }
 
 
-    .loading {
-
-      text-align: center;
-
-      margin-top: 15px;
-
-      color: #777;
-
-      font-size: 14px;
-
+    .hidden {
+      display: none !important;
     }
-
-
-    .divider {
-
-      height: 1px;
-
-      background: #eee;
-
-      margin: 20px 0;
-
-    }
-
 
   </style>
 
@@ -423,12 +290,11 @@
   <div class="container">
 
 
-    <!-- ================================= -->
-    <!-- LOGIN ADMIN -->
-    <!-- ================================= -->
+    <!-- =====================================================
+         LOGIN
+         ===================================================== -->
 
     <div id="loginSection">
-
 
       <div class="logo">
 
@@ -452,7 +318,6 @@
 
       <div class="card">
 
-
         <label for="adminCode">
           🔐 Kode Admin
         </label>
@@ -470,9 +335,7 @@
           class="btn-login"
           id="loginButton"
         >
-
           🔓 Masuk ke Dashboard
-
         </button>
 
 
@@ -484,39 +347,31 @@
 
         <div class="info-box">
 
-          💡 Halaman ini digunakan oleh panitia
-          untuk memperbarui jumlah dana yang sudah
-          terkumpul.
+          💡 Halaman ini digunakan oleh
+          panitia untuk memperbarui jumlah
+          dana yang sudah terkumpul.
 
           <br><br>
 
-          🔒 Kode admin akan diperiksa oleh
+          🔒 Kode admin diperiksa oleh
           Google Apps Script.
-
-          <br><br>
-
-          Jangan membagikan kode admin kepada
-          orang lain.
 
         </div>
 
-
       </div>
-
 
     </div>
 
 
 
-    <!-- ================================= -->
-    <!-- ADMIN DASHBOARD -->
-    <!-- ================================= -->
+    <!-- =====================================================
+         DASHBOARD
+         ===================================================== -->
 
     <div
       id="adminSection"
       class="hidden"
     >
-
 
       <div class="logo">
 
@@ -530,24 +385,23 @@
 
       <div class="card">
 
-
-        <div class="admin-header">
-
-          <h2>
-            👑 Dashboard Admin
-          </h2>
-
-          <div class="admin-status">
-            ● Admin aktif
-          </div>
-
-        </div>
+        <h2>
+          👑 Dashboard Admin
+        </h2>
 
 
+        <p
+          style="
+            color:#137333;
+            font-weight:bold;
+            margin-top:6px;
+          "
+        >
+          ● Admin aktif
+        </p>
 
-        <!-- ============================== -->
+
         <!-- DATA TERKINI -->
-        <!-- ============================== -->
 
         <div class="current-box">
 
@@ -557,9 +411,7 @@
             Rp0
           </strong>
 
-
           <br>
-
 
           💰 Dana Terkumpul:
 
@@ -567,9 +419,7 @@
             Rp0
           </strong>
 
-
           <br>
-
 
           📊 Persentase:
 
@@ -580,17 +430,13 @@
         </div>
 
 
-
-        <!-- ============================== -->
         <!-- TARGET -->
-        <!-- ============================== -->
 
         <div class="field">
 
           <label for="targetAmount">
             🎯 Target Dana
           </label>
-
 
           <input
             type="number"
@@ -602,17 +448,13 @@
         </div>
 
 
-
-        <!-- ============================== -->
-        <!-- DANA TERKUMPUL -->
-        <!-- ============================== -->
+        <!-- CURRENT -->
 
         <div class="field">
 
           <label for="currentAmount">
             💰 Dana Terkumpul
           </label>
-
 
           <input
             type="number"
@@ -624,35 +466,24 @@
         </div>
 
 
-
-        <!-- ============================== -->
         <!-- SAVE -->
-        <!-- ============================== -->
 
         <button
           class="btn-save"
           id="saveButton"
         >
-
           💾 Simpan Perubahan
-
         </button>
 
 
-
-        <!-- ============================== -->
         <!-- LOGOUT -->
-        <!-- ============================== -->
 
         <button
           class="btn-logout"
           id="logoutButton"
         >
-
           🚪 Keluar
-
         </button>
-
 
 
         <div
@@ -660,11 +491,6 @@
           class="message"
         ></div>
 
-
-
-        <!-- ============================== -->
-        <!-- INFO SISTEM -->
-        <!-- ============================== -->
 
         <div class="info-box">
 
@@ -682,34 +508,22 @@
 
           <br>
 
-          • Riwayat perubahan akan dicatat
+          • Riwayat perubahan dicatat
 
           <br>
 
-          • Website utama akan membaca data terbaru
+          • Website utama membaca data terbaru
 
           <br>
 
-          • Progress fundraising akan ikut berubah
-
-          <br>
-
-          • Data diperbarui otomatis setiap
-          ±15 detik di website utama
+          • Progress fundraising ikut berubah
 
         </div>
 
-
       </div>
-
 
     </div>
 
-
-
-    <!-- ================================= -->
-    <!-- FOOTER -->
-    <!-- ================================= -->
 
     <div class="footer">
 
@@ -717,102 +531,84 @@
 
     </div>
 
-
   </div>
 
 
 
-  <!-- ================================= -->
-  <!-- JAVASCRIPT -->
-  <!-- ================================= -->
-
   <script>
 
 
-    // ==========================================
-    // GOOGLE APPS SCRIPT API
-    // ==========================================
+    /* =====================================================
+       API
+       ===================================================== */
 
     const FUNDRAISING_API =
       "https://script.google.com/macros/s/AKfycbyGUkVLMueF3gznmgHjk4M4IwrRj6Aj61GHy_hXOrfU9wM4PcQ-90EKdMeFJN_LoFEg/exec";
 
 
-
-    // ==========================================
-    // ELEMENT
-    // ==========================================
+    /* =====================================================
+       ELEMENT
+       ===================================================== */
 
     const loginSection =
       document.getElementById(
         "loginSection"
       );
 
-
     const adminSection =
       document.getElementById(
         "adminSection"
       );
-
 
     const adminCode =
       document.getElementById(
         "adminCode"
       );
 
-
     const loginButton =
       document.getElementById(
         "loginButton"
       );
-
 
     const loginMessage =
       document.getElementById(
         "loginMessage"
       );
 
-
     const targetAmount =
       document.getElementById(
         "targetAmount"
       );
-
 
     const currentAmount =
       document.getElementById(
         "currentAmount"
       );
 
-
     const displayTarget =
       document.getElementById(
         "displayTarget"
       );
-
 
     const displayCurrent =
       document.getElementById(
         "displayCurrent"
       );
 
-
     const displayPercentage =
       document.getElementById(
         "displayPercentage"
       );
-
 
     const saveButton =
       document.getElementById(
         "saveButton"
       );
 
-
     const saveMessage =
       document.getElementById(
         "saveMessage"
       );
-
 
     const logoutButton =
       document.getElementById(
@@ -820,10 +616,9 @@
       );
 
 
-
-    // ==========================================
-    // FORMAT RUPIAH
-    // ==========================================
+    /* =====================================================
+       FORMAT RUPIAH
+       ===================================================== */
 
     function formatRupiah(number) {
 
@@ -841,10 +636,9 @@
     }
 
 
-
-    // ==========================================
-    // MESSAGE
-    // ==========================================
+    /* =====================================================
+       MESSAGE
+       ===================================================== */
 
     function showMessage(
       element,
@@ -861,10 +655,9 @@
     }
 
 
-
-    // ==========================================
-    // LOAD DATA FUNDRAISING
-    // ==========================================
+    /* =====================================================
+       LOAD DATA
+       ===================================================== */
 
     async function loadFundraising() {
 
@@ -874,21 +667,15 @@
           await fetch(
             FUNDRAISING_API +
             "?t=" +
-            Date.now(),
-            {
-              method: "GET",
-              cache: "no-store"
-            }
+            Date.now()
           );
 
 
         if (!response.ok) {
-
           throw new Error(
             "HTTP " +
             response.status
           );
-
         }
 
 
@@ -896,13 +683,19 @@
           await response.json();
 
 
+        if (!data.success) {
+          throw new Error(
+            data.message ||
+            "Gagal mengambil data."
+          );
+        }
+
+
         const target =
           Number(data.target) || 0;
 
-
         const current =
           Number(data.current) || 0;
-
 
         const percentage =
           target > 0
@@ -913,58 +706,33 @@
             : 0;
 
 
-
-        // =====================================
-        // UPDATE INPUT
-        // =====================================
-
         targetAmount.value =
           target;
-
 
         currentAmount.value =
           current;
 
 
-
-        // =====================================
-        // UPDATE DISPLAY
-        // =====================================
-
         displayTarget.textContent =
-          formatRupiah(
-            target
-          );
-
+          formatRupiah(target);
 
         displayCurrent.textContent =
-          formatRupiah(
-            current
-          );
-
+          formatRupiah(current);
 
         displayPercentage.textContent =
           `${percentage.toFixed(0)}%`;
 
 
-
-        console.log(
-          "📊 Data fundraising:",
-          data
-        );
-
-
       } catch (error) {
 
         console.error(
-          "❌ Gagal mengambil data:",
+          "Load error:",
           error
         );
 
-
         showMessage(
-          saveMessage,
-          "❌ Gagal mengambil data dari Google Sheets. Pastikan Apps Script sudah dideploy sebagai Web App dengan akses Anyone.",
+          loginMessage,
+          "❌ Gagal mengambil data dari Google Sheets.",
           "error"
         );
 
@@ -973,10 +741,9 @@
     }
 
 
-
-    // ==========================================
-    // LOGIN ADMIN
-    // ==========================================
+    /* =====================================================
+       LOGIN
+       ===================================================== */
 
     loginButton.addEventListener(
       "click",
@@ -1002,40 +769,23 @@
         loginButton.disabled =
           true;
 
-
         loginButton.textContent =
           "⏳ Memeriksa...";
 
 
-        loginMessage.className =
-          "message";
-
-
         try {
 
+          const url =
+            FUNDRAISING_API +
+            "?action=login" +
+            "&code=" +
+            encodeURIComponent(code) +
+            "&t=" +
+            Date.now();
+
+
           const response =
-            await fetch(
-              FUNDRAISING_API,
-              {
-
-                method: "POST",
-
-                headers: {
-                  "Content-Type":
-                    "text/plain;charset=utf-8"
-                },
-
-                body:
-                  JSON.stringify({
-
-                    action: "login",
-
-                    code: code
-
-                  })
-
-              }
-            );
+            await fetch(url);
 
 
           if (!response.ok) {
@@ -1062,26 +812,15 @@
           }
 
 
-
-          // ===================================
-          // SIMPAN SESSION
-          // ===================================
-
           sessionStorage.setItem(
             "tos_admin_code",
             code
           );
 
 
-
-          // ===================================
-          // PINDAH KE DASHBOARD
-          // ===================================
-
           loginSection.classList.add(
             "hidden"
           );
-
 
           adminSection.classList.remove(
             "hidden"
@@ -1101,7 +840,7 @@
         } catch (error) {
 
           console.error(
-            "❌ Login error:",
+            "Login error:",
             error
           );
 
@@ -1119,7 +858,6 @@
         loginButton.disabled =
           false;
 
-
         loginButton.textContent =
           "🔓 Masuk ke Dashboard";
 
@@ -1127,14 +865,13 @@
     );
 
 
-
-    // ==========================================
-    // ENTER UNTUK LOGIN
-    // ==========================================
+    /* =====================================================
+       ENTER LOGIN
+       ===================================================== */
 
     adminCode.addEventListener(
       "keydown",
-      event => {
+      (event) => {
 
         if (
           event.key === "Enter"
@@ -1148,38 +885,29 @@
     );
 
 
-
-    // ==========================================
-    // SIMPAN DATA
-    // ==========================================
+    /* =====================================================
+       SIMPAN DATA
+       ===================================================== */
 
     saveButton.addEventListener(
       "click",
       async () => {
-
 
         const target =
           Number(
             targetAmount.value
           );
 
-
         const current =
           Number(
             currentAmount.value
           );
-
 
         const code =
           sessionStorage.getItem(
             "tos_admin_code"
           );
 
-
-
-        // =====================================
-        // VALIDASI SESSION
-        // =====================================
 
         if (!code) {
 
@@ -1193,11 +921,6 @@
 
         }
 
-
-
-        // =====================================
-        // VALIDASI TARGET
-        // =====================================
 
         if (
           !Number.isFinite(target) ||
@@ -1215,11 +938,6 @@
         }
 
 
-
-        // =====================================
-        // VALIDASI CURRENT
-        // =====================================
-
         if (
           !Number.isFinite(current) ||
           current < 0
@@ -1235,11 +953,6 @@
 
         }
 
-
-
-        // =====================================
-        // CEK CURRENT > TARGET
-        // =====================================
 
         if (
           target > 0 &&
@@ -1257,56 +970,30 @@
         }
 
 
-
-        // =====================================
-        // BUTTON LOADING
-        // =====================================
-
         saveButton.disabled =
           true;
-
 
         saveButton.textContent =
           "⏳ Menyimpan...";
 
 
-        saveMessage.className =
-          "message";
-
-
-
         try {
+
+          const url =
+            FUNDRAISING_API +
+            "?action=update" +
+            "&code=" +
+            encodeURIComponent(code) +
+            "&target=" +
+            encodeURIComponent(target) +
+            "&current=" +
+            encodeURIComponent(current) +
+            "&t=" +
+            Date.now();
 
 
           const response =
-            await fetch(
-              FUNDRAISING_API,
-              {
-
-                method: "POST",
-
-                headers: {
-
-                  "Content-Type":
-                    "text/plain;charset=utf-8"
-
-                },
-
-                body:
-                  JSON.stringify({
-
-                    action: "update",
-
-                    code: code,
-
-                    target: target,
-
-                    current: current
-
-                  })
-
-              }
-            );
+            await fetch(url);
 
 
           if (!response.ok) {
@@ -1333,11 +1020,6 @@
           }
 
 
-
-          // ===================================
-          // UPDATE DISPLAY
-          // ===================================
-
           const percentage =
             target > 0
               ? Math.min(
@@ -1348,25 +1030,18 @@
 
 
           displayTarget.textContent =
-            formatRupiah(
-              target
-            );
-
+            formatRupiah(target);
 
           displayCurrent.textContent =
-            formatRupiah(
-              current
-            );
-
+            formatRupiah(current);
 
           displayPercentage.textContent =
             `${percentage.toFixed(0)}%`;
 
 
-
           showMessage(
             saveMessage,
-            "✅ Data berhasil disimpan! Google Sheets dan riwayat sudah diperbarui.",
+            "✅ Data berhasil disimpan ke Google Sheets!",
             "success"
           );
 
@@ -1374,7 +1049,7 @@
         } catch (error) {
 
           console.error(
-            "❌ Save error:",
+            "Save error:",
             error
           );
 
@@ -1389,14 +1064,8 @@
         }
 
 
-
-        // ===================================
-        // BUTTON NORMAL
-        // ===================================
-
         saveButton.disabled =
           false;
-
 
         saveButton.textContent =
           "💾 Simpan Perubahan";
@@ -1405,10 +1074,9 @@
     );
 
 
-
-    // ==========================================
-    // LOGOUT
-    // ==========================================
+    /* =====================================================
+       LOGOUT
+       ===================================================== */
 
     logoutButton.addEventListener(
       "click",
@@ -1435,7 +1103,6 @@
           "hidden"
         );
 
-
         loginSection.classList.remove(
           "hidden"
         );
@@ -1444,10 +1111,9 @@
     );
 
 
-
-    // ==========================================
-    // CEK SESSION
-    // ==========================================
+    /* =====================================================
+       CEK SESSION
+       ===================================================== */
 
     const savedCode =
       sessionStorage.getItem(
@@ -1461,11 +1127,9 @@
         "hidden"
       );
 
-
       adminSection.classList.remove(
         "hidden"
       );
-
 
       loadFundraising();
 
@@ -1473,7 +1137,6 @@
 
 
   </script>
-
 
 </body>
 
