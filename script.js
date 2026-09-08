@@ -235,295 +235,238 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // ==========================================
-  // 5. GOOGLE SHEETS FUNDRAISING
-  // ==========================================
+ // ==========================================
+// 5. GOOGLE SHEETS FUNDRAISING
+// ==========================================
 
-  const FUNDRAISING_API =
-    "https://script.google.com/macros/s/AKfycbyGUkVLMueF3gznmgHjk4M4IwrRj6Aj61GHy_hXOrfU9wM4PcQ-90EKdMeFJN_LoFEg/exec";
+const FUNDRAISING_API =
+  "https://script.google.com/macros/s/AKfycbyGUkVLMueF3gznmgHjk4M4IwrRj6Aj61GHy_hXOrfU9wM4PcQ-90EKdMeFJN_LoFEg/exec";
 
-
-  const DEFAULT_TARGET =
-    47005000;
+const DEFAULT_TARGET = 47005000;
 
 
+// ==========================================
+// FORMAT RUPIAH
+// ==========================================
 
-  // ==========================================
-  // FORMAT RUPIAH
-  // ==========================================
+function formatRupiah(number) {
 
-  function formatRupiah(number) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(Number(number) || 0);
 
-    return new Intl.NumberFormat(
-      "id-ID",
-      {
-        style: "currency",
-        currency: "IDR",
-        maximumFractionDigits: 0
-      }
-    ).format(
-      Number(number) || 0
-    );
+}
+
+
+// ==========================================
+// UPDATE TAMPILAN FUNDRAISING
+// ==========================================
+
+function renderFundraising(data) {
+
+  const target =
+    Number(data.target) || DEFAULT_TARGET;
+
+  const current =
+    Number(data.current) || 0;
+
+  const percentage =
+    target > 0
+      ? Math.min((current / target) * 100, 100)
+      : 0;
+
+  const remaining =
+    Math.max(target - current, 0);
+
+
+  // Progress bar
+  const progressFill =
+    document.getElementById("progressFill");
+
+  if (progressFill) {
+
+    progressFill.style.width =
+      percentage + "%";
 
   }
 
 
+  // Persentase
+  const progressPercent =
+    document.getElementById("progressPercent");
 
-  // ==========================================
-  // UPDATE SEMUA TAMPILAN FUNDRAISING
-  // ==========================================
+  if (progressPercent) {
 
-  function renderFundraising(data) {
+    progressPercent.textContent =
+      percentage.toFixed(0) + "%";
 
-    const target =
-      Number(data?.target) ||
-      DEFAULT_TARGET;
-
-
-    const current =
-      Number(data?.current) ||
-      0;
+  }
 
 
-    const percentage =
-      target > 0
-        ? Math.min(
-            (current / target) * 100,
-            100
-          )
-        : 0;
+  // Dana terkumpul
+  const raisedAmount =
+    document.getElementById("raisedAmount");
+
+  if (raisedAmount) {
+
+    raisedAmount.textContent =
+      formatRupiah(current);
+
+  }
 
 
-    const remaining =
-      Math.max(
-        target - current,
-        0
-      );
+  // ID tambahan jika ada di HTML
+  const fundRemaining =
+    document.getElementById("fundRemaining");
+
+  if (fundRemaining) {
+
+    fundRemaining.textContent =
+      formatRupiah(remaining);
+
+  }
 
 
+  const fundCurrent =
+    document.getElementById("fundCurrent");
 
-    // ========================================
-    // PROGRESS BAR
-    // ========================================
+  if (fundCurrent) {
 
-    const progressFill =
-      document.getElementById(
-        "progressFill"
-      );
+    fundCurrent.textContent =
+      formatRupiah(current);
 
-
-    if (progressFill) {
-
-      progressFill.style.width =
-        `${percentage}%`;
-
-    }
+  }
 
 
+  const fundTarget =
+    document.getElementById("fundTarget");
 
-    // ========================================
-    // PERSENTASE
-    // ========================================
+  if (fundTarget) {
 
-    const progressPercent =
-      document.getElementById(
-        "progressPercent"
-      );
+    fundTarget.textContent =
+      formatRupiah(target);
 
-
-    if (progressPercent) {
-
-      progressPercent.textContent =
-        `${percentage.toFixed(0)}%`;
-
-    }
+  }
 
 
+  const targetAmountDisplay =
+    document.getElementById("targetAmountDisplay");
 
-    // ========================================
-    // DANA TERKUMPUL
-    // ========================================
+  if (targetAmountDisplay) {
 
-    const raisedAmount =
-      document.getElementById(
-        "raisedAmount"
-      );
+    targetAmountDisplay.textContent =
+      formatRupiah(target);
+
+  }
 
 
-    if (raisedAmount) {
+  // Data attribute
+  document
+    .querySelectorAll("[data-fund-target]")
+    .forEach(element => {
 
-      raisedAmount.textContent =
+      element.textContent =
+        formatRupiah(target);
+
+    });
+
+
+  document
+    .querySelectorAll("[data-fund-current]")
+    .forEach(element => {
+
+      element.textContent =
         formatRupiah(current);
 
-    }
+    });
 
 
+  document
+    .querySelectorAll("[data-fund-percent]")
+    .forEach(element => {
 
-    // ========================================
-    // ID YANG DIPAKAI INDEX.HTML
-    // ========================================
+      element.textContent =
+        percentage.toFixed(0) + "%";
 
-    const fundRemaining =
-      document.getElementById(
-        "fundRemaining"
-      );
+    });
 
 
-    if (fundRemaining) {
+  document
+    .querySelectorAll("[data-fund-remaining]")
+    .forEach(element => {
 
-      fundRemaining.textContent =
+      element.textContent =
         formatRupiah(remaining);
 
-    }
+    });
 
 
+  console.log(
+    "💰 TOS 2026:",
+    formatRupiah(current),
+    "/",
+    formatRupiah(target),
+    "(" + percentage.toFixed(0) + "%)"
+  );
 
-    const fundCurrent =
-      document.getElementById(
-        "fundCurrent"
+}
+
+
+// ==========================================
+// GOOGLE SHEETS → JSONP
+// ==========================================
+
+function loadFundraising() {
+
+  const callbackName =
+    "tosFundraisingCallback_" +
+    Date.now();
+
+  const script =
+    document.createElement("script");
+
+  const timeout =
+    setTimeout(() => {
+
+      cleanup();
+
+      console.error(
+        "❌ Google Sheets tidak merespons."
       );
 
-
-    if (fundCurrent) {
-
-      fundCurrent.textContent =
-        formatRupiah(current);
-
-    }
+    }, 15000);
 
 
+  function cleanup() {
 
-    const fundTarget =
-      document.getElementById(
-        "fundTarget"
-      );
+    clearTimeout(timeout);
 
+    if (script.parentNode) {
 
-    if (fundTarget) {
-
-      fundTarget.textContent =
-        formatRupiah(target);
+      script.parentNode.removeChild(script);
 
     }
-
-
-
-    const targetAmountDisplay =
-      document.getElementById(
-        "targetAmountDisplay"
-      );
-
-
-    if (targetAmountDisplay) {
-
-      targetAmountDisplay.textContent =
-        formatRupiah(target);
-
-    }
-
-
-
-    // ========================================
-    // DATA ATTRIBUTE
-    // ========================================
-
-    document
-      .querySelectorAll(
-        "[data-fund-target]"
-      )
-      .forEach(element => {
-
-        element.textContent =
-          formatRupiah(target);
-
-      });
-
-
-    document
-      .querySelectorAll(
-        "[data-fund-current]"
-      )
-      .forEach(element => {
-
-        element.textContent =
-          formatRupiah(current);
-
-      });
-
-
-    document
-      .querySelectorAll(
-        "[data-fund-percent]"
-      )
-      .forEach(element => {
-
-        element.textContent =
-          `${percentage.toFixed(0)}%`;
-
-      });
-
-
-    document
-      .querySelectorAll(
-        "[data-fund-remaining]"
-      )
-      .forEach(element => {
-
-        element.textContent =
-          formatRupiah(remaining);
-
-      });
-
-
-
-    // ========================================
-    // CONSOLE
-    // ========================================
-
-    console.log(
-      "💰 TOS 2026 Fundraising:",
-      formatRupiah(current),
-      "/",
-      formatRupiah(target),
-      `(${percentage.toFixed(0)}%)`
-    );
-
-  }
-
-
-
-  // ==========================================
-  // AMBIL DATA DARI GOOGLE SHEETS
-  // ==========================================
-
-  async function loadFundraising() {
 
     try {
 
-      const response =
-        await fetch(
-          FUNDRAISING_API +
-          "?t=" +
-          Date.now(),
-          {
-            method: "GET",
-            cache: "no-store"
-          }
-        );
+      delete window[callbackName];
+
+    } catch (error) {
+
+      window[callbackName] =
+        undefined;
+
+    }
+
+  }
 
 
-      if (!response.ok) {
+  window[callbackName] =
+    function(data) {
 
-        throw new Error(
-          `HTTP ${response.status}`
-        );
-
-      }
-
-
-      const data =
-        await response.json();
-
+      cleanup();
 
       console.log(
         "📊 Data Google Sheets:",
@@ -532,60 +475,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       if (
-        typeof data.target === "undefined" ||
-        typeof data.current === "undefined"
+        data &&
+        data.success &&
+        typeof data.target !== "undefined" &&
+        typeof data.current !== "undefined"
       ) {
 
-        throw new Error(
-          "Format data Google Sheets tidak sesuai."
+        renderFundraising(data);
+
+      } else {
+
+        console.error(
+          "❌ Data fundraising tidak valid."
         );
+
+        renderFundraising({
+          target: DEFAULT_TARGET,
+          current: 0
+        });
 
       }
 
+    };
 
-      renderFundraising(data);
 
+  script.onerror =
+    function() {
 
-    } catch (error) {
+      cleanup();
 
       console.error(
-        "❌ Gagal mengambil data fundraising:",
-        error
+        "❌ Gagal terhubung ke Google Sheets."
       );
-
-
-      // Website tetap menggunakan
-      // target default jika API gagal.
 
       renderFundraising({
         target: DEFAULT_TARGET,
         current: 0
       });
 
-    }
-
-  }
+    };
 
 
-
-  // ==========================================
-  // LOAD PERTAMA
-  // ==========================================
-
-  loadFundraising();
-
-
-
-  // ==========================================
-  // UPDATE OTOMATIS SETIAP 15 DETIK
-  // ==========================================
-
-  setInterval(
-    loadFundraising,
-    15000
-  );
+  script.src =
+    FUNDRAISING_API +
+    "?callback=" +
+    encodeURIComponent(callbackName) +
+    "&t=" +
+    Date.now();
 
 
+  document.body.appendChild(script);
+
+}
+
+
+// ==========================================
+// LOAD PERTAMA
+// ==========================================
+
+loadFundraising();
+
+
+// ==========================================
+// UPDATE OTOMATIS SETIAP 15 DETIK
+// ==========================================
+
+setInterval(
+  loadFundraising,
+  15000
+);
 
   // ==========================================
   // 6. NAVBAR SAAT SCROLL
